@@ -12,6 +12,10 @@
 #define TAILLEMAX 5
 
 
+void displayHeaderExercice(int number){
+    printf("\n-----------Exercice %d-----------\n",number);
+}
+
 int main() {
 
     int tab1[TAILLE1];
@@ -61,7 +65,7 @@ int main() {
     afficherTab(tab2,TAILLE2);
 
     //Exercice 2
-    printf("Exercice 2 ----------------\n");
+    displayHeaderExercice(2);
 
     int tab3[TAILLEMAX];
     int taille =0;
@@ -114,21 +118,21 @@ int main() {
     afficherTab(tab3,taille);
 
     //Exercice 3
-    printf("Exercice 3 ----------------\n");
-    printf("Test trie à bulle : \n",valeur);
+    displayHeaderExercice(3);
+    printf("Test trie à bulle : %d\n",valeur);
     int tab4[TAILLE1];
     remplirTabValeursAleatoires(tab4, TAILLE1,0, 100);
     afficherTab(tab4,TAILLE1);
     triABulle(tab4,TAILLE1);
     afficherTab(tab4,TAILLE1);
-    printf("Test trie selection : \n",valeur);
+    printf("Test trie selection : %d \n",valeur);
     remplirTabValeursAleatoires(tab4, TAILLE1,0, 100);
     afficherTab(tab4,TAILLE1);
     triSelection(tab4,TAILLE1);
     afficherTab(tab4,TAILLE1);
 
     //Exercice 4
-    printf("Exercice 4 ----------------\n");
+    displayHeaderExercice(4);
     afficherTab(tab4,TAILLE1);
     printf("Test valeur contenu : \n");
     printf("valeur %i contenu dans le tableau : %d \n",5,valeurContenueDansTabTrie(tab4,TAILLE1,5));

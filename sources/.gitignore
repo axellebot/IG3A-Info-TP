@@ -1,3 +1,5 @@
+
+# Clion
 # Prerequisites
 *.d
 
@@ -31,3 +33,8 @@
 *.out
 *.app
 
+# Jetbrains
+.idea/
+
+# Build
+cmake-build-debug/
