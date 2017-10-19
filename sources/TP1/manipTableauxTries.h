@@ -8,7 +8,7 @@
 
 int valeurContenueDansTabTrie(int tab[], int taille, int val);
 
-int nbOccurencesValeurDansTabTrie(int tab[], int taille, int val) ;
+int nbOccurencesValeurDansTabTrie(int tab[], int taille, int val);
 
 
 // fin de declaration des prototypes de fonctions

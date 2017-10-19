@@ -10,8 +10,8 @@ int ajoutValeurTabNonTrie(int tab[], int taille, int tailleMax, int val) {
 
     // [a completer] ajouter code de valeurContenueDansTabNonTrie()
 
-    if(taille>=tailleMax) return 0;
-    tab[taille]=val;
+    if (taille >= tailleMax) return 0;
+    tab[taille] = val;
     taille--;
     return 1;
 }
@@ -22,15 +22,15 @@ int supprimeValeurTabNonTrie(int tab[], int taille, int val) {
     // @action : supprime la premiere occurence de val dans le tableau
     // @retour : retourne 1 si la valeur val a ete correctement supprimee
     //           retourne 0 sinon (valeur non trouvee)
-    
+
     // [a completer] ajouter code de supprimeValeurTabNonTrie()
     bool finish = false;
-    int i =0;
-    while(!finish || i<taille){
-        if(tab[i]==val){
-            tab[i]=tab[taille-1];
+    int i = 0;
+    while (!finish || i < taille) {
+        if (tab[i] == val) {
+            tab[i] = tab[taille - 1];
             taille--;
-            finish=true;
+            finish = true;
         }
         i++;
     }
@@ -42,12 +42,12 @@ int supprimeToutesLesValeursTabNonTrie(int tab[], int taille, int val) {
     //           val : valeur
     // @action : supprime toutes les occurences de val dans le tableau
     // @retour : retourne le nombre d'occurences supprimees
-    
+
     // [a completer] ajouter code de supprimeToutesLesValeursTabNonTrie()
-    int i=0,count=0;
-    for(i = 0;i<taille;i++){
-        if(tab[i]==val){
-            tab[i]=tab[taille-1];
+    int i = 0, count = 0;
+    for (i = 0; i < taille; i++) {
+        if (tab[i] == val) {
+            tab[i] = tab[taille - 1];
             count++;
             taille--;
             i--;

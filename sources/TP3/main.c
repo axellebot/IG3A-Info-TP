@@ -1,75 +1,95 @@
+//
+// Created by axel on 19/10/17.
+//
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <time.h>
 #include "arbresBasiques.h"
 #include "arbresFctRecursives.h"
 #include "modifArbres.h"
 
-void displayHeaderTP(int number){
-    printf("\n////////////////////////////////////\n/////////////// TP %d ///////////////\n////////////////////////////////////\n",number);
+void displayHeaderTP(int number) {
+    printf("\n////////////////////////////////////\n/////////////// TP %d ///////////////\n////////////////////////////////////\n",
+           number);
 }
 
-void displayHeaderExercice(int number){
-    printf("\n-----------Exercice %d-----------\n",number);
+void displayHeaderExercice(int number) {
+    printf("\n-----------Exercice %d-----------\n", number);
 }
 
-void exercice1(){
+bool endOfProgram() {
+    char s;
+    printf("Stop ? [Y/n] : ");
+    scanf("%s", &s);
+
+    if (s == 'N' || s == 'n') {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+void exercice1() {
     displayHeaderExercice(1);
     int i;
-    struct noeud * racine;
+    struct noeud *racine;
     // recuperation de l'arbre predefini
     racine = unArbrePredefini();
     i = afficheArbre(racine);
-    if (i ==0)
+    if (i == 0)
         printf(" arbre vide\n");
 }
-void exercice2(){
+
+void exercice2() {
     displayHeaderExercice(2);
     int i;
-    struct noeud * racine;
+    struct noeud *racine;
     // recuperation de l'arbre predefini
     racine = unArbrePredefini();
     printf("affichage d'un arbre : \n");
     i = afficheArbre(racine);
-    if (i ==0)
+    if (i == 0)
         printf("arbre vide\n");
 
     // test de la fonction nbNoeuds
     i = nbNoeuds(racine);
-    printf("le nombre de ses noeuds est %i\n",i);
+    printf("le nombre de ses noeuds est %i\n", i);
 
     // test de la fonction sommeValArbres
     i = sommeValArbres(racine);
-    printf("la somme de ses valeurs est %i\n",i);
+    printf("la somme de ses valeurs est %i\n", i);
 
     // test de la fonction hauteur
     i = hauteur(racine);
-    printf("sa hauteur est %i\n",i);
+    printf("sa hauteur est %i\n", i);
 }
-void exercice3(){
+
+void exercice3() {
     displayHeaderExercice(3);
-    int i,j;
-    struct noeud * racine;
-    racine =NULL;
+    int i, j;
+    struct noeud *racine;
+    racine = NULL;
     srand(time(NULL));
     // recuperation de l'arbre predefini
     racine = unArbrePredefini();
     i = afficheArbre(racine);
-    if (i ==0)
+    if (i == 0)
         printf(" arbre vide\n");
 
-    for (i =0; i < 5; i++) {
+    for (i = 0; i < 5; i++) {
         j = rand() % 100;
         printf("ajout de la valeur %i\n", j);
-        racine = ajouterValeurABR(racine, j) ;
+        racine = ajouterValeurABR(racine, j);
     }
     afficheArbre(racine);
 
-    for (i =0; i < 5; i++) {
+    for (i = 0; i < 5; i++) {
         j = rand() % 100;
 
         rechercheValeur(racine, j);
-        printf("% dans larbre? %i\n", j, rechercheValeur(racine, j)) ;
+        printf("% dans larbre? %i\n", j, rechercheValeur(racine, j));
     }
 
     printf("entrez une valeur a supprimer ");
@@ -78,38 +98,45 @@ void exercice3(){
     printf("arbre apres suppression ");
     afficheArbre(racine);
 }
-void exercice4(){
+
+void exercice4() {
     displayHeaderExercice(4);
 }
-void exercice5(){
+
+void exercice5() {
     displayHeaderExercice(5);
 }
 
 int main() {
     displayHeaderTP(3);
 
+    bool finished = false;
     int ex = 0;
-    printf("Select a exercice : ");
-    scanf("%d", &ex);
-    switch(ex){
-        case 1:
-            exercice1();
-            break;
-        case 2:
-            exercice2();
-            break;
-        case 3:
-            exercice3();
-            break;
-        case 4:
-            exercice4();
-            break;
-        case 5:
-            exercice5();
-            break;
-        default:
-            printf("404 Not found");
+    while (!finished) {
+        printf("Select an exercice : ");
+        scanf("%d", &ex);
+        switch (ex) {
+            case 1:
+                exercice1();
+                break;
+            case 2:
+                exercice2();
+                break;
+            case 3:
+                exercice3();
+                break;
+            case 4:
+                exercice4();
+                break;
+            case 5:
+                exercice5();
+                break;
+            default:
+                printf("404 Not found");
+        }
+        finished = endOfProgram();
     }
 
+    printf("Bye !!!");
     exit(0);
 }
