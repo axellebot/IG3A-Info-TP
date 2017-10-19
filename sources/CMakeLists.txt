@@ -18,4 +18,15 @@ set(SOURCE_FILES_TP1
         TP1/modifTableauxTries.c
         TP1/modifTableauxTries.h)
 
+set(SOURCE_FILES_TP3
+        TP3/main.c
+        TP3/arbresBasiques.c
+        TP3/arbresBasiques.h
+        TP3/arbresFctRecursives.c
+        TP3/arbresFctRecursives.h
+        TP3/modifArbres.c
+        TP3/modifArbres.h)
+
+
 add_executable(TP1 ${SOURCE_FILES_TP1})
+add_executable(TP3 ${SOURCE_FILES_TP3})
