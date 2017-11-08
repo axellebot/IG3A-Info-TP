@@ -11,7 +11,8 @@ TAB=( "SIGHUP" "SIGINT" "SIGQUIT"  "SIGILL" "SIGTRAP" "SIGABRT" "SIGBUS" "SIGFPE
 for signal in "${TAB[@]}"
 do
     echo "Signal : $signal"
-    ./infinityLoop.sh & > /dev/null 2>&1
+    # ./infinityLoop.sh & > /dev/null 2>&1
+    ./ex3-shellLoop.sh & > /dev/null 2>&1
     PID=$!
     echo "Process $PID"
     kill -s $signal $PID > /dev/null 2>&1
@@ -24,5 +25,5 @@ do
         echo "Process ended"
     fi
     echo "------"
-    sleep 0.5
+    sleep 0
 done
