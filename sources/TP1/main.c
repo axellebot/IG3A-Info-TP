@@ -7,17 +7,19 @@
 #include <stdbool.h>
 #include <time.h>
 #include "generationTableaux.h"
+#include "algosTri.h"
 #include "manipTableauxNonTries.h"
 #include "modifTableauxNonTries.h"
-#include "algosTri.h"
 #include "manipTableauxTries.h"
+#include "modifTableauxTries.h"
 
 #define TAILLE1 20
 #define TAILLE2 30
 #define TAILLEMAX 5
 
 void displayHeaderTP(int number) {
-    printf("\n////////////////////////////////////\n/////////////// TP %d ///////////////\n////////////////////////////////////\n", number);
+    printf("\n////////////////////////////////////\n/////////////// TP %d ///////////////\n////////////////////////////////////\n",
+           number);
 }
 
 void displayHeaderExercice(int number) {
@@ -167,6 +169,24 @@ void exercice4() {
     printf("valeur %i contenu dans le tableau : %d \n", 5, valeurContenueDansTabTrie(tab4, TAILLE1, 5));
     printf("Test occurence: \n");
     printf("valeur %i contenu dans le tableau : %i \n", 5, nbOccurencesValeurDansTabTrie(tab4, TAILLE1, 5));
+}
+
+//Exercice 5
+void exercice5() {
+    displayHeaderExercice(5);
+
+    int tab[TAILLEMAX];
+    int taille=0;
+
+    remplirTabValeursAleatoires(tab, TAILLE1, 0, 100);
+
+
+    int res5 = 0;
+    res5 = supprimeToutesLesValeursTabTrie(tab, taille, 5);
+
+    printf("%i", res5);
+
+
 }
 
 int main() {
