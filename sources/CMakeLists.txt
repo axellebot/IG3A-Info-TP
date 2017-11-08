@@ -16,7 +16,7 @@ set(SOURCE_FILES_TP1
         TP1/modifTableauxNonTries.c
         TP1/modifTableauxNonTries.h
         TP1/modifTableauxTries.c
-        TP1/modifTableauxTries.h)
+        TP1/modifTableauxTries.h TP5/main.c)
 
 set(SOURCE_FILES_TP3
         TP3/main.c
@@ -27,6 +27,9 @@ set(SOURCE_FILES_TP3
         TP3/modifArbres.c
         TP3/modifArbres.h)
 
+set(SOURCE_FILES_TP5
+        TP5/main.c)
 
 add_executable(TP1 ${SOURCE_FILES_TP1})
 add_executable(TP3 ${SOURCE_FILES_TP3})
+add_executable(TP5 ${SOURCE_FILES_TP5})
