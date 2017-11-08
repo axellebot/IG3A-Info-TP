@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "lancement du processus $$";
-
 TAB=( "SIGHUP" "SIGINT" "SIGQUIT"  "SIGILL" "SIGTRAP" "SIGABRT" "SIGBUS" "SIGFPE" "SIGKILL" "SIGUSR1"
 "SIGSEGV" "SIGUSR2" "SIGPIPE" "SIGALRM" "SIGTERM" "SIGSTKFLT" "SIGCHLD" "SIGCONT" "SIGSTOP" "SIGTSTP" "SIGTTIN"
 "SIGTTOU" "SIGURG" "SIGXCPU" "SIGXFSZ" "SIGVTALRM" "SIGPROF" "SIGWINCH" "SIGIO" "SIGPWR" "SIGSYS" "SIGRTMIN"
@@ -10,7 +8,21 @@ TAB=( "SIGHUP" "SIGINT" "SIGQUIT"  "SIGILL" "SIGTRAP" "SIGABRT" "SIGBUS" "SIGFPE
 "SIGRTMAX-13" "SIGRTMAX-12" "SIGRTMAX-11" "SIGRTMAX-10" "SIGRTMAX-9" "SIGRTMAX-8" "SIGRTMAX-7" "SIGRTMAX-6"
 "SIGRTMAX-5" "SIGRTMAX-4" "SIGRTMAX-3" "SIGRTMAX-2" "SIGRTMAX-1" "SIGRTMAX" )
 
-for i in $TAB; do
-    echo "$i"
-    sleep 1
+for signal in "${TAB[@]}"
+do
+    echo "Signal : $signal"
+    ./infinityLoop.sh & > /dev/null 2>&1
+    PID=$!
+    echo "Process $PID"
+    kill -s $signal $PID > /dev/null 2>&1
+
+    if ps -p $PID > /dev/null 2>&1
+    then
+        echo "Process not ended"
+        kill $PID > /dev/null 2>&1
+    else
+        echo "Process ended"
+    fi
+    echo "------"
+    sleep 0.5
 done
