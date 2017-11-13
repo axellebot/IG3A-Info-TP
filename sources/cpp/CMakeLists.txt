@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.8)
-project(Cpp)
+project(cpp)
 
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 
 set(SOURCE_FILES_TP1
         TP1/algosTri.c
@@ -16,7 +18,7 @@ set(SOURCE_FILES_TP1
         TP1/modifTableauxNonTries.c
         TP1/modifTableauxNonTries.h
         TP1/modifTableauxTries.c
-        TP1/modifTableauxTries.h TP5/main.c)
+        TP1/modifTableauxTries.h)
 
 set(SOURCE_FILES_TP3
         TP3/main.c
