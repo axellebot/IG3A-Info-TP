@@ -1,1 +1,3 @@
-# IG3A-Cpp-TP
+# IG3A-Info-TP
+## Shell
+## C++
