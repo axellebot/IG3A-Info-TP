@@ -3,3 +3,7 @@
 *.aux
 *.toc
 
+# Pygments
+# _minted-report
+*.pygtex
+*.pygstyle
