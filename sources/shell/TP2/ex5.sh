@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 # Axel LE BOT - 2017-10-01
 clear
 USER=$(whoami)
