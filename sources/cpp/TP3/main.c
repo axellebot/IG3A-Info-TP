@@ -11,18 +11,18 @@
 #include "modifArbres.h"
 #include "../libs/libs.h"
 
-void exercice1() {
+void exercice1(){
     displayHeaderExercice(1);
     int i;
     struct noeud *racine;
     // recuperation de l'arbre predefini
     racine = unArbrePredefini();
     i = afficheArbre(racine);
-    if (i == 0)
+    if(i == 0)
         printf(" arbre vide\n");
 }
 
-void exercice2() {
+void exercice2(){
     displayHeaderExercice(2);
     int i;
     struct noeud *racine;
@@ -30,7 +30,7 @@ void exercice2() {
     racine = unArbrePredefini();
     printf("affichage d'un arbre : \n");
     i = afficheArbre(racine);
-    if (i == 0)
+    if(i == 0)
         printf("arbre vide\n");
 
     // test de la fonction nbNoeuds
@@ -46,7 +46,7 @@ void exercice2() {
     printf("sa hauteur est %i\n", i);
 }
 
-void exercice3() {
+void exercice3(){
     displayHeaderExercice(3);
     int i, j;
     struct noeud *racine;
@@ -55,17 +55,17 @@ void exercice3() {
     // recuperation de l'arbre predefini
     racine = unArbrePredefini();
     i = afficheArbre(racine);
-    if (i == 0)
+    if(i == 0)
         printf(" arbre vide\n");
 
-    for (i = 0; i < 5; i++) {
+    for(i = 0; i < 5; i++){
         j = rand() % 100;
         printf("ajout de la valeur %i\n", j);
         racine = ajouterValeurABR(racine, j);
     }
     afficheArbre(racine);
 
-    for (i = 0; i < 5; i++) {
+    for(i = 0; i < 5; i++){
         j = rand() % 100;
 
         rechercheValeur(racine, j);
@@ -79,23 +79,23 @@ void exercice3() {
     afficheArbre(racine);
 }
 
-void exercice4() {
+void exercice4(){
     displayHeaderExercice(4);
 }
 
-void exercice5() {
+void exercice5(){
     displayHeaderExercice(5);
 }
 
-int main() {
+int main(){
     displayHeaderTP(3);
 
     bool finished = false;
     int ex = 0;
-    while (!finished) {
+    while(!finished){
         printf("Select an exercice : ");
         scanf("%d", &ex);
-        switch (ex) {
+        switch(ex){
             case 1:
                 exercice1();
                 break;

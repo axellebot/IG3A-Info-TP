@@ -2,7 +2,7 @@
 #define _arbresBasiques_h
 
 // definition de la structure contenant un noeud
-struct noeud {
+struct noeud{
     int valeur;
     struct noeud *filsGauche;
     struct noeud *filsDroit;

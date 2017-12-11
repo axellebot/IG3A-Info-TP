@@ -8,7 +8,7 @@
 
 
 // fonction main() a ne pas modifier
-int main() {
+int main(){
     int i, j;
     struct noeud *racine;
     racine = NULL;
@@ -16,17 +16,17 @@ int main() {
     // recuperation de l'arbre predefini
     //  racine = unArbrePredefini();
     i = afficheArbre(racine);
-    if (i == 0)
+    if(i == 0)
         printf(" arbre vide\n");
 
-    for (i = 0; i < 10000000; i++) {
+    for(i = 0; i < 10000000; i++){
         j = rand();
         //  printf("ajout de la valeur %i\n", j);
         racine = ajouterValeurABR(racine, j);
     }
     // afficheArbre(racine);
     printf("arbre genere\n");
-    for (i = 0; i < 500000; i++) {
+    for(i = 0; i < 500000; i++){
         j = rand();
         rechercheValeur(racine, j);
 //        printf("% dans larbre? %i\n", j, rechercheValeur(racine, j)) ;

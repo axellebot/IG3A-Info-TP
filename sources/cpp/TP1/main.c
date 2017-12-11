@@ -20,7 +20,7 @@
 
 
 //Exercice 1
-void exercice1() {
+void exercice1(){
     displayHeaderExercice(1);
     int tabTest[6] = {1, 1, 2, 3, 5, 8};
     int tabTest2[3] = {13, 21, 33};
@@ -68,7 +68,7 @@ void exercice1() {
 }
 
 //Exercice 2
-void exercice2() {
+void exercice2(){
     displayHeaderExercice(2);
 
     int tab3[TAILLEMAX];
@@ -80,25 +80,25 @@ void exercice2() {
     valeur = 4;
     printf("Test ajout de valeur : %i \n", valeur);
     resultat = ajoutValeurTabNonTrie(tab3, taille, TAILLEMAX, valeur);
-    if (resultat == 1) {
+    if(resultat == 1){
         taille++;
     }
     valeur = 12;
     printf("Test ajout de valeur : %i \n", valeur);
     resultat = ajoutValeurTabNonTrie(tab3, taille, TAILLEMAX, valeur);
-    if (resultat == 1) {
+    if(resultat == 1){
         taille++;
     }
     valeur = 12;
     printf("Test ajout de valeur : %i \n", valeur);
     resultat = ajoutValeurTabNonTrie(tab3, taille, TAILLEMAX, valeur);
-    if (resultat == 1) {
+    if(resultat == 1){
         taille++;
     }
     valeur = 8;
     printf("Test ajout de valeur : %i \n", valeur);
     resultat = ajoutValeurTabNonTrie(tab3, taille, TAILLEMAX, valeur);
-    if (resultat == 1) {
+    if(resultat == 1){
         taille++;
     }
     afficherTab(tab3, taille);
@@ -107,7 +107,7 @@ void exercice2() {
     valeur = 4;
     printf("Test suppression valeur : %i\n", valeur);
     resultat = supprimeValeurTabNonTrie(tab3, taille, valeur);
-    if (resultat == 1) {
+    if(resultat == 1){
         taille--;
     }
     afficherTab(tab3, taille);
@@ -116,14 +116,14 @@ void exercice2() {
     valeur = 12;
     printf("Test suppression valeurs %i\n", valeur);
     resultat = supprimeToutesLesValeursTabNonTrie(tab3, taille, 12);
-    if (resultat > 0) {
+    if(resultat > 0){
         taille = taille - resultat;
     }
     afficherTab(tab3, taille);
 }
 
 //Exercice 3
-void exercice3() {
+void exercice3(){
     displayHeaderExercice(3);
     int valeur = 0;
     printf("Test trie à bulle : %d\n", valeur);
@@ -140,7 +140,7 @@ void exercice3() {
 }
 
 //Exercice 4
-void exercice4() {
+void exercice4(){
     displayHeaderExercice(4);
     int tab4[TAILLE1];
     remplirTabValeursAleatoires(tab4, TAILLE1, 0, 100);
@@ -153,34 +153,31 @@ void exercice4() {
 }
 
 //Exercice 5
-void exercice5() {
+void exercice5(){
     displayHeaderExercice(5);
 
     int tab[TAILLEMAX];
-    int taille=0;
+    int taille = 0;
 
     remplirTabValeursAleatoires(tab, TAILLE1, 0, 100);
-
 
     int res5 = 0;
     res5 = supprimeToutesLesValeursTabTrie(tab, taille, 5);
 
     printf("%i", res5);
-
-
 }
 
-int main() {
+int main(){
     srand(time(NULL)); // initialise le generateur de nb aleatoires
 
     displayHeaderTP(1);
 
     bool finished = false;
     int ex = 0;
-    while (!finished) {
+    while(!finished){
         printf("Select an exercice : ");
         scanf("%d", &ex);
-        switch (ex) {
+        switch(ex){
             case 1:
                 exercice1();
                 break;
@@ -194,6 +191,7 @@ int main() {
                 exercice4();
                 break;
             case 5:
+                exercice5();
             default:
                 printf("404 Not found");
         }

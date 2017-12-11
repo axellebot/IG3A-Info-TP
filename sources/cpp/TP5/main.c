@@ -6,9 +6,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include <time.h>
 #include <signal.h>
-#include <sys/types.h>
 #include "../libs/libs.h"
 
 void signalsHandler(int interruption){
@@ -51,14 +49,14 @@ void exercice2(){
 int main(){
     displayHeaderTP(5);
 
-    printf("Lancement du processus %d\n",getpid());
+    printf("Lancement du processus %d\n", getpid());
 
     bool finished = false;
     int ex = 0;
-    while (!finished) {
+    while(!finished){
         printf("Select an exercice [1-2] : ");
         scanf("%d", &ex);
-        switch (ex) {
+        switch(ex){
             case 1:
                 exercice1();
                 break;

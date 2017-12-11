@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include "modifTableauxNonTries.h"
 
-int ajoutValeurTabNonTrie(int tab[], int taille, int tailleMax, int val) {
+int ajoutValeurTabNonTrie(int tab[], int taille, int tailleMax, int val){
     // @params : tab : tableau d'entiers, taille : taille effective du tableau
     //           tailleMax : nb d'element maximum du tableau. val : valeur
     // @action : ajoute val au tableau s'il reste de la place, sinon ne fait rien
@@ -10,13 +10,13 @@ int ajoutValeurTabNonTrie(int tab[], int taille, int tailleMax, int val) {
 
     // [a completer] ajouter code de valeurContenueDansTabNonTrie()
 
-    if (taille >= tailleMax) return 0;
+    if(taille >= tailleMax) return 0;
     tab[taille] = val;
     taille--;
     return 1;
 }
 
-int supprimeValeurTabNonTrie(int tab[], int taille, int val) {
+int supprimeValeurTabNonTrie(int tab[], int taille, int val){
     // @params : tab : tableau d'entiers, taille : taille effective du tableau
     //           val : valeur
     // @action : supprime la premiere occurence de val dans le tableau
@@ -26,8 +26,8 @@ int supprimeValeurTabNonTrie(int tab[], int taille, int val) {
     // [a completer] ajouter code de supprimeValeurTabNonTrie()
     bool finish = false;
     int i = 0;
-    while (!finish || i < taille) {
-        if (tab[i] == val) {
+    while(!finish || i < taille){
+        if(tab[i] == val){
             tab[i] = tab[taille - 1];
             taille--;
             finish = true;
@@ -37,7 +37,7 @@ int supprimeValeurTabNonTrie(int tab[], int taille, int val) {
     return finish;
 }
 
-int supprimeToutesLesValeursTabNonTrie(int tab[], int taille, int val) {
+int supprimeToutesLesValeursTabNonTrie(int tab[], int taille, int val){
     // @params : tab : tableau d'entiers, taille : taille effective du tableau
     //           val : valeur
     // @action : supprime toutes les occurences de val dans le tableau
@@ -45,8 +45,8 @@ int supprimeToutesLesValeursTabNonTrie(int tab[], int taille, int val) {
 
     // [a completer] ajouter code de supprimeToutesLesValeursTabNonTrie()
     int i = 0, count = 0;
-    for (i = 0; i < taille; i++) {
-        if (tab[i] == val) {
+    for(i = 0; i < taille; i++){
+        if(tab[i] == val){
             tab[i] = tab[taille - 1];
             count++;
             taille--;
