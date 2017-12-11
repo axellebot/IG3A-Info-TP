@@ -1,65 +1,44 @@
 #include "manipTableauxTries.h"
 
 int valeurContenueDansTabTrie(int tab[], int taille, int val){
-    // @params : tab : tableau d'entiers, taille :taille du tableau
-    //           val : une valeur a chercher dans le tableau
-    // @retour : 1 si la valeur val est contenue dans tab. 0 sinon
-
-    int retour = 0;
-    int find = 0;
-    // [a completer] ajouter code de valeurContenueDansTabTrie()
-    int min = 0;
-    int max = taille;
-
-    while(find == 0){
-        if((max - min) == 1){
-            find = 1;
-        }
-        if(tab[(min + max) / 2] == val){
-            retour = 1;
-            find = 1;
-        }else if(tab[(min + max) / 2] > val){
-            max = (min + max) / 2;
-        }else if(tab[(min + max) / 2] < val){
-            min = (min + max) / 2;
-        }
+    int iMin = 0;
+    int iMax = taille - 1;
+    int iMid;
+    int trouve = -1;
+    while((iMin <= iMax) && (trouve == -1)){
+        iMid = (iMax + iMin) / 2;
+        if(val < tab[iMid])
+            iMax = iMid - 1;
+        else if(val > tab[iMid])
+            iMin = iMid + 1;
+        else
+            trouve = 1;
     }
-
-    return retour;
+    return (trouve);
 }
 
 int nbOccurencesValeurDansTabTrie(int tab[], int taille, int val){
-    // @params : tab : tableau d'entiers, taille :taille du tableau
-    //           val : uen valeur a chercher dans le tableau
-    // @retour : 1 si la valeur val est contenue dans tab. 0 sinon
-    int retour = 0;
-    int min = 0;
-    int max = taille;
-    int find = 0;
-    // [a completer] ajouter code de nbOccurencesValeurDansTabTrie()
-    while(find == 0){
-        if((max - min) == 1){
-            find = 1;
+    int iMax = taille - 1, iMin = 0;
+    int iMid = (iMin + iMax) / 2;
+    int compteur = 0;
+    int i;
+    while((iMin <= iMax) && (tab[iMid] != val)){
+        if(tab[iMid] > val){
+            iMax = iMid - 1;
+        }else{
+            iMin = iMid + 1;
         }
-        if(tab[(min + max) / 2] == val){
-            retour++;
-            int tval1 = 0;
-            int tval2 = 0;
-            while(tab[((min + max) / 2) + 1 + tval1] == val){
-                retour++;
-                tval1++;
-            }
-            while(tab[((min + max) / 2) - 1 - tval2] == val){
-                retour++;
-                tval2++;
-            }
-            find = 1;
-        }else if(tab[(min + max) / 2] > val){
-            max = (min + max) / 2;
-        }else if(tab[(min + max) / 2] < val){
-            min = (min + max) / 2;
-        }
+        iMid = (iMin + iMax) / 2;
     }
-
-    return retour;
+    i = iMid;
+    while((i >= iMin) && (tab[i] == val)){
+        ++compteur;
+        --i;
+    }
+    i = iMid + 1;
+    while((i <= iMax) && (tab[i] == val)){
+        ++compteur;
+        ++i;
+    }
+    return compteur;
 }
