@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.8)
-project(cpp)
+project(Cpp)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+set(SOURCE_FILES_LIBS
+        libs/libs.h
+        libs/libs.c)
 
 set(SOURCE_FILES_TP1
         TP1/algosTri.c
@@ -32,6 +35,13 @@ set(SOURCE_FILES_TP3
 set(SOURCE_FILES_TP5
         TP5/main.c)
 
+add_library(mylib ${SOURCE_FILES_LIBS})
+
 add_executable(TP1 ${SOURCE_FILES_TP1})
 add_executable(TP3 ${SOURCE_FILES_TP3})
 add_executable(TP5 ${SOURCE_FILES_TP5})
+
+target_link_libraries(TP1 mylib)
+target_link_libraries(TP3 mylib)
+target_link_libraries(TP5 mylib)
+

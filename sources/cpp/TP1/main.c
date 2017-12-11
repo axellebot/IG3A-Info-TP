@@ -12,31 +12,12 @@
 #include "modifTableauxNonTries.h"
 #include "manipTableauxTries.h"
 #include "modifTableauxTries.h"
+#include "../libs/libs.h"
 
 #define TAILLE1 20
 #define TAILLE2 30
 #define TAILLEMAX 5
 
-void displayHeaderTP(int number) {
-    printf("\n////////////////////////////////////\n/////////////// TP %d ///////////////\n////////////////////////////////////\n",
-           number);
-}
-
-void displayHeaderExercice(int number) {
-    printf("\n-----------Exercice %d-----------\n", number);
-}
-
-bool endOfProgram() {
-    char s;
-    printf("Stop ? [Y/n] : ");
-    scanf("%s", &s);
-
-    if (s == 'N' || s == 'n') {
-        return false;
-    } else {
-        return true;
-    }
-}
 
 //Exercice 1
 void exercice1() {
