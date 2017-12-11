@@ -16,7 +16,7 @@ void displayHeaderExercice(int number) {
 
 bool endOfProgram() {
     char s;
-    printf("Stop ? [Y/n] : ");
+    printf("\nStop ? [Y/n] : ");
     scanf("%s", &s);
 
     if (s == 'N' || s == 'n') {

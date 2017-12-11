@@ -1,23 +1,6 @@
-//#include <openssl/rand.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include "generationTableaux.h"
-
-
-// declaration des prototypes de fonctions qui seront
-// utilisees dans la suite de ce programme
-// (cette partie ne doit pas etre modifiee)
-int nbAleatoire(int min, int max);
-
-void afficherTab(int tab[], int taille);
-
-void remplirTabValeursAleatoires(int tab[], int taille, int min, int max);
-
-void remplirTabValeurs1aN(int tab[], int taille);
-
-void melangerTab(int tab[], int taille, int nb);
-// fin de declaration des prototypes de fonctions
-
-// definition des fonctions
 
 int nbAleatoire(int min, int max){
     // @params : deux nombres
