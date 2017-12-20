@@ -12,7 +12,7 @@
 #include "../libs/libs.h"
 
 void exercice1(){
-    displayHeaderExercice(1);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 1");
     int i;
     struct noeud *racine;
     // recuperation de l'arbre predefini
@@ -23,7 +23,7 @@ void exercice1(){
 }
 
 void exercice2(){
-    displayHeaderExercice(2);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 2");
     int i;
     struct noeud *racine;
     // recuperation de l'arbre predefini
@@ -47,7 +47,7 @@ void exercice2(){
 }
 
 void exercice3(){
-    displayHeaderExercice(3);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 3");
     int i, j;
     struct noeud *racine;
     racine = NULL;
@@ -80,15 +80,15 @@ void exercice3(){
 }
 
 void exercice4(){
-    displayHeaderExercice(4);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 4");
 }
 
 void exercice5(){
-    displayHeaderExercice(5);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 5");
 }
 
 int main(){
-    displayHeaderTP(3);
+    displayHeader(HEADER_LEVEL_TP, "TP 3");
 
     bool finished = false;
     int ex = 0;

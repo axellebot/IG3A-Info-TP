@@ -13,7 +13,7 @@
 
 //Exercice 6
 void exercice6(){
-    displayHeaderExercice(6);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 6");
 
     int value = 0;
     printf("Entrer un nombre pour les algos :");
@@ -40,7 +40,7 @@ void exercice6(){
 }
 
 void exercice7(){
-    displayHeaderExercice(7);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 7");
     int taille1 = 9, taille2 = 15;
     int M[9][15] = {
             {1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1},
@@ -64,7 +64,7 @@ void exercice7(){
 }
 
 int main(){
-    displayHeaderTP(2);
+    displayHeader(HEADER_LEVEL_TP, "TP 2");
 
     bool finished = false;
     int ex = 0;

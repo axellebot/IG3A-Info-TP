@@ -16,7 +16,7 @@
 
 //Exercice 1
 void exercice1(){
-    displayHeaderExercice(1);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 1");
     int tabTest[6] = {1, 1, 2, 3, 5, 8};
     int tabTest2[3] = {13, 21, 33};
     int taille1 = 20, taille2 = 20;
@@ -65,7 +65,7 @@ void exercice1(){
 
 //Exercice 2
 void exercice2(){
-    displayHeaderExercice(2);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 2");
 
     int tailleMax = 5;
     int tab3[tailleMax];
@@ -121,7 +121,7 @@ void exercice2(){
 
 //Exercice 3
 void exercice3(){
-    displayHeaderExercice(3);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 3");
     int taille = 20;
     printf("Test trie à bulle :\n");
     int tab[taille];
@@ -138,7 +138,7 @@ void exercice3(){
 
 //Exercice 4
 void exercice4(){
-    displayHeaderExercice(4);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 4");
     int taille = 20;
 
     int tab[taille];
@@ -153,7 +153,7 @@ void exercice4(){
 
 //Exercice 5
 void exercice5(){
-    displayHeaderExercice(5);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 5");
     int taille = 20;
 
     int tab[taille];
@@ -170,7 +170,7 @@ void exercice5(){
 int main(){
     srand(time(NULL)); // initialise le generateur de nb aleatoires
 
-    displayHeaderTP(1);
+    displayHeader(HEADER_LEVEL_TP, "TP 1");
 
     bool finished = false;
     int ex = 0;
