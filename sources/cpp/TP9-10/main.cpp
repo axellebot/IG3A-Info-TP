@@ -3,14 +3,16 @@
 //
 
 #include "Guerrier.h"
+#include "Mage.h"
 
 extern "C" {
 void displayHeaderTP(int number);
 void displayHeaderExercice(int number);
 bool endOfProgram();
+
 }
 
-#include "Mage.h"
+#include "../libs/libs.h"
 
 void combat(){
     Mage *mage = new Mage("Mage 1", 10, 5, 3, 3);
