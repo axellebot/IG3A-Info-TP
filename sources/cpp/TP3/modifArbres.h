@@ -1,5 +1,5 @@
-#ifndef _modifArbres_h
-#define _modifArbres_h
+#ifndef TP_CPP_MODIF_ARBRES_H
+#define TP_CPP_MODIF_ARBRES_H
 
 // prototype des fonctions a mettre en place (ne pas modifier)
 

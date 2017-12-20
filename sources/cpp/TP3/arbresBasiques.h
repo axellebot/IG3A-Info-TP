@@ -1,5 +1,5 @@
-#ifndef _arbresBasiques_h
-#define _arbresBasiques_h
+#ifndef TP_CPP_ARBRES_BASIQUES_H
+#define TP_CPP_ARBRES_BASIQUES_H
 
 // definition de la structure contenant un noeud
 struct noeud{

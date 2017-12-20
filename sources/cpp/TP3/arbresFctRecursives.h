@@ -1,5 +1,5 @@
-#ifndef _arbresFctRecursives_h
-#define _arbresFctRecursives_h
+#ifndef TP_CPP_ARBRES_FCT_RECURSIVES_H
+#define TP_CPP_ARBRES_FCT_RECURSIVES_H
 
 // prototype des fonctions a mettre en place (ne pas modifier)
 

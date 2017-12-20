@@ -2,11 +2,10 @@
 // Created by Axel LE BOT on 17/11/17.
 //
 
-#ifndef _LIBS_CPP
-#define _LIBS_CPP
+#ifndef TP_CPP_LIBS_H
+#define TP_CPP_LIBS_H
 
 #include <stdbool.h>
-
 
 void displayHeaderTP(int number);
 
@@ -15,4 +14,4 @@ void displayHeaderExercice(int number);
 bool endOfProgram();
 
 
-#endif //_LIBS_CPP
+#endif //TP_CPP_LIBS_H

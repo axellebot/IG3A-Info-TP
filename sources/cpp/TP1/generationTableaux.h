@@ -1,5 +1,5 @@
-#ifndef _generationTableaux_h
-#define _generationTableaux_h
+#ifndef TP_CPP_GENERATION_TABLEAUX_H
+#define TP_CPP_GENERATION_TABLEAUX_H
 
 // ce fichier ne doit pas etre modifiee
 // sauf si vous souhaitez ajouter des fonctions supplémentaires

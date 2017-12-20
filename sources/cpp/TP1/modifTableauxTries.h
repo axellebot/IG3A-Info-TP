@@ -1,5 +1,5 @@
-#ifndef _modifTableauxTries_h
-#define _modifTableauxTries_h
+#ifndef TP_CPP_MODIF_TABLEAUX_TRIES_H
+#define TP_CPP_MODIF_TABLEAUX_TRIES_H
 
 // ce fichier ne doit pas etre modifiee
 // sauf si vous souhaitez ajouter des fonctions supplémentaires
