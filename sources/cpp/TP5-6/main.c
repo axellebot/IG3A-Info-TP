@@ -25,7 +25,7 @@ void signalsHandler(int interruption){
 
 // Exercice 1
 void exercice1(){
-    displayHeaderExercice(1);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 1");
 
     while(true){
         sleep(1);
@@ -35,7 +35,7 @@ void exercice1(){
 
 // Exercice 2
 void exercice2(){
-    displayHeaderExercice(2);
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 2");
 
     signal(SIGINT, signalsHandler);
     signal(SIGUSR1, signalsHandler);
@@ -47,7 +47,7 @@ void exercice2(){
 }
 
 int main(){
-    displayHeaderTP(5);
+    displayHeader(HEADER_LEVEL_TP, "TP 5");
 
     printf("Lancement du processus %d\n", getpid());
 

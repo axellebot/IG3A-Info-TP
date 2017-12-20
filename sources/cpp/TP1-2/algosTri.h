@@ -1,5 +1,5 @@
-#ifndef _algosTri_h
-#define _algosTri_h
+#ifndef TP_CPP_ALGOS_TRI_H
+#define TP_CPP_ALGOS_TRI_H
 
 // ce fichier ne doit pas etre modifiee
 

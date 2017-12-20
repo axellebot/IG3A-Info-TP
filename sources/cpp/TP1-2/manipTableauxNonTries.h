@@ -1,5 +1,5 @@
-#ifndef _manipTableauxNonTries_h
-#define _manipTableauxNonTries_h
+#ifndef TP_CPP_MANIP_TABLEAUX_NON_TRIES_H
+#define TP_CPP_MANIP_TABLEAUX_NON_TRIES_H
 
 // ce fichier ne doit pas etre modifiee
 // sauf si vous souhaitez ajouter des fonctions supplémentaires

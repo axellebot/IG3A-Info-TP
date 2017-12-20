@@ -10,43 +10,40 @@ set(SOURCE_FILES_LIBS
         libs/libs.h
         libs/libs.c)
 
-set(SOURCE_FILES_TP1
-        TP1/algosTri.c
-        TP1/algosTri.h
-        TP1/generationTableaux.c
-        TP1/generationTableaux.h
-        TP1/main.c
-        TP1/manipTableauxNonTries.c
-        TP1/manipTableauxNonTries.h
-        TP1/manipTableauxTries.c
-        TP1/manipTableauxTries.h
-        TP1/modifTableauxNonTries.c
-        TP1/modifTableauxNonTries.h
-        TP1/modifTableauxTries.c
-        TP1/modifTableauxTries.h)
+set(SOURCE_FILES_TP1-2
+        TP1-2/algosTri.c
+        TP1-2/algosTri.h
+        TP1-2/generationTableaux.c
+        TP1-2/generationTableaux.h
+        TP1-2/main.c
+        TP1-2/manipTableauxNonTries.c
+        TP1-2/manipTableauxNonTries.h
+        TP1-2/manipTableauxTries.c
+        TP1-2/manipTableauxTries.h
+        TP1-2/modifTableauxNonTries.c
+        TP1-2/modifTableauxNonTries.h
+        TP1-2/modifTableauxTries.c
+        TP1-2/modifTableauxTries.h
+        TP1-2/factorielle.c
+        TP1-2/factorielle.h
+        TP1-2/harmonique.c
+        TP1-2/harmonique.h
+        TP1-2/piLeibniz.c
+        TP1-2/piLeibniz.h
+        TP1-2/bubbleBreaker.c
+        TP1-2/bubbleBreaker.h)
 
-set(SOURCE_FILES_TP2
-        TP2/main.c
-        TP2/factorielle.c
-        TP2/factorielle.h
-        TP2/harmonique.c
-        TP2/harmonique.h
-        TP2/piLeibniz.c
-        TP2/piLeibniz.h
-        TP2/bubbleBreaker.c
-        TP2/bubbleBreaker.h)
+set(SOURCE_FILES_TP3-4
+        TP3-4/main.c
+        TP3-4/arbresBasiques.c
+        TP3-4/arbresBasiques.h
+        TP3-4/arbresFctRecursives.c
+        TP3-4/arbresFctRecursives.h
+        TP3-4/modifArbres.c
+        TP3-4/modifArbres.h)
 
-set(SOURCE_FILES_TP3
-        TP3/main.c
-        TP3/arbresBasiques.c
-        TP3/arbresBasiques.h
-        TP3/arbresFctRecursives.c
-        TP3/arbresFctRecursives.h
-        TP3/modifArbres.c
-        TP3/modifArbres.h)
-
-set(SOURCE_FILES_TP5
-        TP5/main.c)
+set(SOURCE_FILES_TP5-6
+        TP5-6/main.c)
 
 set(SOURCE_FILES_TP9-10
         TP9-10/main.cpp
@@ -59,16 +56,14 @@ set(SOURCE_FILES_TP9-10
 
 add_library(mylib ${SOURCE_FILES_LIBS})
 
-add_executable(TP1 ${SOURCE_FILES_TP1})
-add_executable(TP2 ${SOURCE_FILES_TP2})
-add_executable(TP3 ${SOURCE_FILES_TP3})
-add_executable(TP5 ${SOURCE_FILES_TP5})
+add_executable(TP1-2 ${SOURCE_FILES_TP1-2})
+add_executable(TP3-4 ${SOURCE_FILES_TP3-4})
+add_executable(TP5-6 ${SOURCE_FILES_TP5-6})
 add_executable(TP9-10 ${SOURCE_FILES_TP9-10})
 
 # 'm' for cmath lib
-target_link_libraries(TP1 mylib)
-target_link_libraries(TP2 mylib m)
-target_link_libraries(TP3 mylib)
-target_link_libraries(TP5 mylib)
+target_link_libraries(TP1-2 mylib m)
+target_link_libraries(TP3-4 mylib)
+target_link_libraries(TP5-6 mylib)
 target_link_libraries(TP9-10 mylib m)
 

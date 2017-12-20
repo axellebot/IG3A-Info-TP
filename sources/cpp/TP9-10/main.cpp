@@ -3,14 +3,15 @@
 //
 
 #include "Guerrier.h"
+#include "Mage.h"
 
 extern "C" {
-void displayHeaderTP(int number);
-void displayHeaderExercice(int number);
+void displayHeader(int level, char *string);
 bool endOfProgram();
+
 }
 
-#include "Mage.h"
+#include "../libs/libs.h"
 
 void combat(){
     Mage *mage = new Mage("Mage 1", 10, 5, 3, 3);
@@ -18,7 +19,7 @@ void combat(){
 }
 
 int main(){
-    displayHeaderTP(9);
+    displayHeader(1, (char *) "TP 9-10");
     bool finished = false;
     int ex = 0;
     while(!finished){
