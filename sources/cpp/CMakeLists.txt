@@ -48,15 +48,27 @@ set(SOURCE_FILES_TP3
 set(SOURCE_FILES_TP5
         TP5/main.c)
 
+set(SOURCE_FILES_TP9-10
+        TP9-10/main.cpp
+        TP9-10/Mage.h
+        TP9-10/Personne.cpp
+        TP9-10/Personne.h
+        TP9-10/Guerrier.cpp
+        TP9-10/Guerrier.h
+        TP9-10/Mage.cpp)
+
 add_library(mylib ${SOURCE_FILES_LIBS})
 
 add_executable(TP1 ${SOURCE_FILES_TP1})
 add_executable(TP2 ${SOURCE_FILES_TP2})
 add_executable(TP3 ${SOURCE_FILES_TP3})
 add_executable(TP5 ${SOURCE_FILES_TP5})
+add_executable(TP9-10 ${SOURCE_FILES_TP9-10})
 
+# 'm' for cmath lib
 target_link_libraries(TP1 mylib)
-target_link_libraries(TP2 mylib m) # 'm' for cmath lib
+target_link_libraries(TP2 mylib m)
 target_link_libraries(TP3 mylib)
 target_link_libraries(TP5 mylib)
+target_link_libraries(TP9-10 mylib m)
 
