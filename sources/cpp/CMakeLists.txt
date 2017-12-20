@@ -33,6 +33,8 @@ set(SOURCE_FILES_TP2
         TP2/harmonique.h
         TP2/piLeibniz.c
         TP2/piLeibniz.h
+        TP2/bubbleBreaker.c
+        TP2/bubbleBreaker.h
         )
 
 set(SOURCE_FILES_TP3

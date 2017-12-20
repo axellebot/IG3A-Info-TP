@@ -39,6 +39,30 @@ void exercice6(){
     printf("PiLeibniz(%d) = %f\n", value, PiLeibnizRecursif(value));
 }
 
+void exercice7(){
+    displayHeaderExercice(7);
+
+    int M[9][15] = {
+            {1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1},
+            {1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0},
+            {1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1},
+            {1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0},
+            {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0},
+            {1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0},
+            {1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1},
+            {1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0},
+            {1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1},
+    };
+
+    printf("etat de la matrice avant selection de cellule:");
+    afficheMatrice(M, 9, 15);
+
+    // selection d'une cellule (ici 10,3) et modification des valeurs
+    remplir(M, 9, 15, 10, 3);
+    printf("etat de la matrice apres selection d'une cellule:");
+    afficheMatrice(M, 9, 15);
+}
+
 int main(){
     displayHeaderTP(2);
 
@@ -50,6 +74,9 @@ int main(){
         switch(ex){
             case 6:
                 exercice6();
+                break;
+            case 7:
+                exercice7();
                 break;
             default:
                 printf("404 Not found");
