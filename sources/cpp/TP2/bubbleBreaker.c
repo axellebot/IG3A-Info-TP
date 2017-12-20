@@ -3,45 +3,42 @@
 //
 
 #include <stdio.h>
-#include "bubbleBreaker.h"
 
 
-
-void remplir (int M[9][15], int taille1, int taille2, int x, int y) {
-    int temp;
-    if(M[x][y] != 2){
-        temp = M[x][y];
-        M[x][y] = 2;
-        if(x<8 && M[x+1][y] == temp){
-            remplir(M, 9, 15, x+1, y);
+void remplir(int taille1, int taille2, int M[taille1][taille2], int i, int j){
+    if(M[i][j] != 2){
+        int tmp = M[i][j];
+        M[i][j] = 2;
+        if(i > 0 && M[i - 1][j] == tmp){
+            remplir(taille1, taille2, M, i - 1, j);
         }
-        if(x>0 && M[x-1][y] == temp){
-            remplir(M, 9, 15, x-1, y);
+        if(i < taille1 - 2 && M[i + 1][j] == tmp){
+            remplir(taille1, taille2, M, i + 1, j);
         }
-        if(y>0 && M[x][y-1] == temp){
-            remplir(M, 9, 15, x, y-1);
+        if(j > 0 && M[i][j - 1] == tmp){
+            remplir(taille1, taille2, M, i, j - 1);
         }
-        if(y<14 && M[x][y+1] == temp){
-            remplir(M, 9, 15, x, y+1);
+        if(j < taille2 - 2 && M[i][j + 1] == tmp){
+            remplir(taille1, taille2, M, i, j + 1);
         }
     }
 }
 
-void afficheMatrice (int M[9][15], int taille1, int taille2) {
+void afficheMatrice(int taille1, int taille2, int M[taille1][taille2]){
     // affiche la matrice M dont les dimensions sont passees en param.
-    int i,j;
+    int i, j;
     printf("\n");
-    for (j=0; j < taille2; j++) {
+    for(i = 0; i < taille2; i++){
         printf("----");
     }
     printf("\n");
-    for (i=0; i < taille1; i++) {
-        for (j=0; j < taille2; j++) {
+    for(i = 0; i < taille1; i++){
+        for(j = 0; j < taille2; j++){
             printf("| %i ", M[i][j]);
         }
         printf("|\n");
     }
-    for (j=0; j < taille2; j++) {
+    for(j = 0; j < taille2; j++){
         printf("----");
     }
     printf("\n");

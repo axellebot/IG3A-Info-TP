@@ -6,8 +6,8 @@
 #define TP_CPP_BUBBLEBREAKER_H
 
 
-void remplir(int M[9][15], int taille1, int taille2, int x, int y);
+void remplir(int taille1, int taille2, int M[taille1][taille2], int i, int j);
 
-void afficheMatrice(int M[9][15], int taille1, int taille2);
+void afficheMatrice(int taille1, int taille2, int M[taille1][taille2]);
 
 #endif //TP_CPP_BUBBLEBREAKER_H

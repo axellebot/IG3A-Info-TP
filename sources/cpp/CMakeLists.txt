@@ -34,8 +34,7 @@ set(SOURCE_FILES_TP2
         TP2/piLeibniz.c
         TP2/piLeibniz.h
         TP2/bubbleBreaker.c
-        TP2/bubbleBreaker.h
-        )
+        TP2/bubbleBreaker.h)
 
 set(SOURCE_FILES_TP3
         TP3/main.c
