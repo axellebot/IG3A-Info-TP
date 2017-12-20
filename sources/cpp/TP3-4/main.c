@@ -93,7 +93,7 @@ int main(){
     bool finished = false;
     int ex = 0;
     while(!finished){
-        printf("Select an exercice : ");
+        printf("Select an exercice [1-5] : ");
         scanf("%d", &ex);
         switch(ex){
             case 1:

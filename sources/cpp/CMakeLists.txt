@@ -33,14 +33,14 @@ set(SOURCE_FILES_TP1-2
         TP1-2/bubbleBreaker.c
         TP1-2/bubbleBreaker.h)
 
-set(SOURCE_FILES_TP3
-        TP3/main.c
-        TP3/arbresBasiques.c
-        TP3/arbresBasiques.h
-        TP3/arbresFctRecursives.c
-        TP3/arbresFctRecursives.h
-        TP3/modifArbres.c
-        TP3/modifArbres.h)
+set(SOURCE_FILES_TP3-4
+        TP3-4/main.c
+        TP3-4/arbresBasiques.c
+        TP3-4/arbresBasiques.h
+        TP3-4/arbresFctRecursives.c
+        TP3-4/arbresFctRecursives.h
+        TP3-4/modifArbres.c
+        TP3-4/modifArbres.h)
 
 set(SOURCE_FILES_TP5
         TP5/main.c)
@@ -57,13 +57,13 @@ set(SOURCE_FILES_TP9-10
 add_library(mylib ${SOURCE_FILES_LIBS})
 
 add_executable(TP1-2 ${SOURCE_FILES_TP1-2})
-add_executable(TP3 ${SOURCE_FILES_TP3})
+add_executable(TP3-4 ${SOURCE_FILES_TP3-4})
 add_executable(TP5 ${SOURCE_FILES_TP5})
 add_executable(TP9-10 ${SOURCE_FILES_TP9-10})
 
 # 'm' for cmath lib
 target_link_libraries(TP1-2 mylib m)
-target_link_libraries(TP3 mylib)
+target_link_libraries(TP3-4 mylib)
 target_link_libraries(TP5 mylib)
 target_link_libraries(TP9-10 mylib m)
 
