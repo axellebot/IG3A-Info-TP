@@ -26,7 +26,7 @@ void signalsHandler(int interruption){
 // Exercice 1
 void exercice1(){
     displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 1");
-
+    printf("Lancement du processus %i\n", getpid());
     while(true){
         sleep(1);
         printf(".\n");
@@ -46,15 +46,25 @@ void exercice2(){
     }
 }
 
+void exercice4(){
+    displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 4");
+    printf("Lancement du processus %i\n", getpid());
+    signal(SIGINT, signalsHandler);
+    while(true){
+        printf(".\n");
+        sleep(1);
+    }
+}
+
 int main(){
-    displayHeader(HEADER_LEVEL_TP, "TP 5");
+    displayHeader(HEADER_LEVEL_TP, "TP 5-6");
 
     printf("Lancement du processus %d\n", getpid());
 
     bool finished = false;
     int ex = 0;
     while(!finished){
-        printf("Select an exercice [1-2] : ");
+        printf("Select an exercice [1-4] : ");
         scanf("%d", &ex);
         switch(ex){
             case 1:
@@ -64,10 +74,12 @@ int main(){
                 exercice2();
                 break;
             case 3:
+                printf("See shell script");
                 break;
             case 4:
+                exercice4();
+                printf("See shell script too");
                 break;
-            case 5:
             default:
                 printf("404 Not found");
         }
