@@ -42,8 +42,8 @@ set(SOURCE_FILES_TP3-4
         TP3-4/modifArbres.c
         TP3-4/modifArbres.h)
 
-set(SOURCE_FILES_TP5
-        TP5/main.c)
+set(SOURCE_FILES_TP5-6
+        TP5-6/main.c)
 
 set(SOURCE_FILES_TP9-10
         TP9-10/main.cpp
@@ -58,12 +58,12 @@ add_library(mylib ${SOURCE_FILES_LIBS})
 
 add_executable(TP1-2 ${SOURCE_FILES_TP1-2})
 add_executable(TP3-4 ${SOURCE_FILES_TP3-4})
-add_executable(TP5 ${SOURCE_FILES_TP5})
+add_executable(TP5-6 ${SOURCE_FILES_TP5-6})
 add_executable(TP9-10 ${SOURCE_FILES_TP9-10})
 
 # 'm' for cmath lib
 target_link_libraries(TP1-2 mylib m)
 target_link_libraries(TP3-4 mylib)
-target_link_libraries(TP5 mylib)
+target_link_libraries(TP5-6 mylib)
 target_link_libraries(TP9-10 mylib m)
 
