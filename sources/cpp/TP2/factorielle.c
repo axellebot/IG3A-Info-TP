@@ -1,5 +1,5 @@
 //
-// Created by axel on 11/12/17.
+// Created by Axel LE BOT on 11/12/17.
 //
 
 #include "factorielle.h"

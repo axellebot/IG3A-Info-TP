@@ -57,7 +57,7 @@ void exercice7(){
     printf("etat de la matrice avant selection de cellule:");
     afficheMatrice(taille1, taille2, M);
 
-    // selection d'une cellule (0,0)
+    // selection de la case (8,0)
     remplir(taille1, taille2, M, 8, 0);
     printf("etat de la matrice apres selection d'une cellule:");
     afficheMatrice(taille1, taille2, M);

@@ -1,5 +1,5 @@
 //
-// Created by axel on 11/12/17.
+// Created by Axel LE BOT on 11/12/17.
 //
 
 #ifndef CPP_HARMONIQUE_H
