@@ -2,14 +2,18 @@
 *.log
 *.aux
 *.toc
+*.out
 
 # Pygments
-# _minted-report
+_minted-report
 *.pygtex
 *.pygstyle
 *.pyg*
 
-# pdf
-*.pdf
-
-*.out
+# Template : The Legrand Orange Book
+*.bll
+*.bcf
+*.blg
+*.ilg
+*.ptc
+*.run.xml
