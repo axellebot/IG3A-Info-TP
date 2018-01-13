@@ -1,4 +1,4 @@
-\chapterimage{./shell/cover1} % Chapter heading image
+\chapterimage{./shell/unix} % Chapter heading image
 \chapter{Shell - TP1 : Manipulations de l’environnement et des fichiers sous UNIX}
     \section{Exercice 1 : Découverte de quelques commandes d'archivage}
     \textit{L'objectif de cet exercice est de découvrir et manipuler les commandes de téléchargement, d'archivage, de compression et de décompression de fichier}
@@ -30,7 +30,8 @@
             En conclusion l'archive 2 et 3 donne le même résultat et sont plus petit que l'archive 1 puisqu'elles sont compréssés.
     \section{Exercice 2 : Utilisation des masques de création de fichiers}
         \subsection{1.}
-            \begin{minted}[linenos]{shell}
+            \begin{minted}[linenos,
+                            frame=lines]{bash}
                 $ touch Raphael.txt
                 $ umask 0666
                 $ touch Donatello.txt
