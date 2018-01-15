@@ -4,13 +4,17 @@
 ```shell
 ./build.sh
 ```
-
-## Require
-- pygments :
-To install pygments use the command below
+## Required
+- Minted :
 ```shell
-apt-get install python-pygments
+apt install texlive-latex-extra
 ```
+
+- Biber :
+```shell
+apt install texlive-bibtex-extra autolang
+```
+
 ## Sources
 - LaTeX Template : The Legrand Orange Book - Version 2.2 (30/3/17)
 
