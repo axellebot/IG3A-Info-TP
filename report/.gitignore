@@ -230,3 +230,5 @@ TSWLatexianTemp*
 
 # Custom
 build/
+## Template
+!StyleInd.ist
