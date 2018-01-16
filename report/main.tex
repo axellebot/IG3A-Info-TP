@@ -71,7 +71,7 @@
 \begingroup
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture,overlay]
-\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{background}};
+\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{./Pictures/background}};
 \draw (current page.center) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering Informatique\\[15pt] % Book title
 {\Large Travaux Pratiques}\\[20pt] % Subtitle
 {\huge Axel LE BOT}}}; % Author name
@@ -97,7 +97,7 @@
 
 %\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
 
-\chapterimage{cover_table_of_contents} % Table of contents heading image
+\chapterimage{./Pictures/cover-table_of_contents} % Table of contents heading image
 
 \pagestyle{empty} % No headers
 
@@ -136,7 +136,7 @@
 \section{Figure}\index{Figure}
 
 \begin{figure}[h]
-\centering\includegraphics[scale=0.5]{placeholder}
+\centering\includegraphics[scale=0.5]{./Pictures/placeholder}
 \caption{Figure caption}
 \end{figure}
 

@@ -6,7 +6,7 @@ COUNT=0
 
 for i in $*
 do
-	echo -n "$i " 
+	echo -n "$i "
 	(( COUNT++ ))
 done
 
