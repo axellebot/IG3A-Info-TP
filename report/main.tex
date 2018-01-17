@@ -131,27 +131,18 @@
 \input{./cpp/tp11+tp12}
 
 %----------------------------------------------------------------------------------------
-%	PART OTHER
+%	TABLE OF FIGURES
 %----------------------------------------------------------------------------------------
 
-\part{Autres}
+\chapterimage{./Pictures/cover-table_of_contents} % Table of contents heading image
 
-\section{Figure}\index{Figure}
+\pagestyle{empty} % No headers
 
-\begin{figure}[h]
-\centering\includegraphics[scale=0.5]{./Pictures/placeholder}
-\caption{Figure caption}
-\end{figure}
+\listoffigures % Print the table of contents itself
 
-%----------------------------------------------------------------------------------------
-%	INDEX
-%----------------------------------------------------------------------------------------
+%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
 
-\cleardoublepage
-\phantomsection
-\setlength{\columnsep}{0.75cm}
-\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
-\printindex
+\pagestyle{fancy} % Print headers again
 
 %----------------------------------------------------------------------------------------
 
