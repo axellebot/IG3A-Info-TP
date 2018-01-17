@@ -3,11 +3,11 @@
 //
 
 int main(){
-    int cpt = 0;
-    while(cpt < 3){
+    int counter = 0;
+    while(counter < 3){
         if(fork() > 0)
-            cpt++;
+            counter++;
         else
-            cpt = 3;
+            counter = 3;
     }
 }

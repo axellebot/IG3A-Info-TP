@@ -12,7 +12,7 @@ apt install texlive-latex-extra
 
 - Biber :
 ```shell
-apt install texlive-bibtex-extra autolang
+apt install texlive-bibtex-extra texlive-lang-french
 ```
 
 ## Sources

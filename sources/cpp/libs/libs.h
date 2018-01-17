@@ -1,4 +1,4 @@
-//LEVEL_EXERCICE
+//
 // Created by Axel LE BOT on 17/11/17.
 //
 
