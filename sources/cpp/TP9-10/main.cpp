@@ -8,21 +8,20 @@
 extern "C" {
 void displayHeader(int level, char *string);
 bool endOfProgram();
-
 }
 
 #include "../libs/libs.h"
 
-void combat(){
+void combat() {
     Mage *mage = new Mage("Mage 1", 10, 5, 3, 3);
     Guerrier *guerrier = new Guerrier("Guerrier", 10, 5, 10);
 }
 
-int main(){
+int main() {
     displayHeader(1, (char *) "TP 9-10");
     bool finished = false;
     int ex = 0;
-    while(!finished){
+    while (!finished) {
 
         finished = endOfProgram();
         printf("Bye !!!");
