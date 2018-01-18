@@ -39,25 +39,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%	DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
-
-%----------------------------------------------------------------------------------------
-% CUSTOM PACKAGES
-%----------------------------------------------------------------------------------------
-\usepackage[french]{babel} % config lang for babel
-\usepackage{graphicx}
-\usepackage{listings}
-
-% Configure listings
-\lstset{numbers=left,
-        numbersep=5pt,
-        showspaces=false,
-        showstringspaces=false,
-        showtabs=false,
-        tabsize=2}
+\documentclass[12pt,a4paper]{book} % Default font size and left-justified equations
 
 %----------------------------------------------------------------------------------------
 
@@ -109,13 +94,27 @@
 \pagestyle{fancy} % Print headers again
 
 %----------------------------------------------------------------------------------------
+%	TABLE OF FIGURES
+%----------------------------------------------------------------------------------------
+
+\chapterimage{./Pictures/cover-table_of_contents} % Table of contents heading image
+
+\pagestyle{empty} % No headers
+
+\listoffigures % Print the table of contents itself
+
+\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
+
+%----------------------------------------------------------------------------------------
 %	PART ONE
 %----------------------------------------------------------------------------------------
 
 \part{Shell}
 
-\input{./shell/shell-tp1}
-\input{./shell/shell-tp2}
+\input{./shell/tp1}
+\input{./shell/tp2}
 
 %----------------------------------------------------------------------------------------
 %	PART TWO
@@ -128,21 +127,7 @@
 \input{./cpp/tp5+tp6}
 \input{./cpp/tp7+tp8}
 \input{./cpp/tp9+tp10}
-\input{./cpp/tp11+tp12}
-
-%----------------------------------------------------------------------------------------
-%	TABLE OF FIGURES
-%----------------------------------------------------------------------------------------
-
-\chapterimage{./Pictures/cover-table_of_contents} % Table of contents heading image
-
-\pagestyle{empty} % No headers
-
-\listoffigures % Print the table of contents itself
-
-%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
-
-\pagestyle{fancy} % Print headers again
+%\input{./cpp/tp11+tp12}
 
 %----------------------------------------------------------------------------------------
 

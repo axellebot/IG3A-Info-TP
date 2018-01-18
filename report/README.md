@@ -7,7 +7,7 @@
 
 ## Required
 ```shell
-apt install texlive-latex-extra texlive-bibtex-extra texlive-lang-french
+apt install texlive-latex-extra texlive-bibtex-extra texlive-lang-french python-pygments
 ```
 
 ## Sources
