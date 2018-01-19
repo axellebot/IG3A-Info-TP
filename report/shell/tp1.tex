@@ -117,7 +117,7 @@ Les lignes affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -E "(ou
 
 \paragraph{9.}
 \begin{itemize}
-\item \texttt{$} représante la fin d'une ligne.
+\item \texttt{\$} représante la fin d'une ligne.
 \item \texttt{|} représante une condition "ou".
 \item \texttt{.} représante un caractère quelconque.
 \end{itemize}
@@ -141,10 +141,18 @@ Les motifs affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "
 \end{itemize}
 
 \paragraph{15.}
-La commande \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "[A-Za-z0-9\.\_]+@([A-Za-z0-9\-]+\.)*[a-zA-Z]{2,4}"} permet de récupérer les addresse e-mail.
+La commande
+\begin{minted}{Shell}
+cat unGrosBordel.txt | grep -o -E "[A-Za-z0-9\.\_]+@([A-Za-z0-9\-]+\.)*[a-zA-Z]{2,4}"
+\end{minted}
+permet de récupérer les addresse e-mail.
 
 \paragraph{16.}
-La commande \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "(\+33|0)(\.| )?[0-9]((\.| )?[0-9]{2}){4}"} permet de récupérer les numéro de téléphone.
+La commande
+\begin{minted}{Shell}
+cat unGrosBordel.txt | grep -o -E "(\+33|0)(\.| )?[0-9]((\.| )?[0-9]{2}){4}"
+\end{minted}
+permet de récupérer les numéro de téléphone.
 
 \paragraph{17.}
 La commande \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "\(\([a-z]+\)\)"} permet de trouver la phrase secrète : "bien joue  tu as trouve la reponse a la derniere question"
