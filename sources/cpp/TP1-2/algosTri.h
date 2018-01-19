@@ -1,3 +1,7 @@
+//
+// Created by Axel LE BOT on 11/12/17.
+//
+
 #ifndef TP_CPP_ALGOS_TRI_H
 #define TP_CPP_ALGOS_TRI_H
 

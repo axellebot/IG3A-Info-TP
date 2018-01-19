@@ -7,13 +7,15 @@
 
 #include "Personne.h"
 
-class Guerrier : public Personne{
+class Guerrier : public virtual Personne{
 protected:
     int pointsAttaque;
 public :
     Guerrier() = delete;
 
     Guerrier(string nom, int pointsVie, int pointsDefense, int pointAttaque);
+
+    virtual ~Guerrier();
 
     int attaquePhysique();
 };

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Personne{
+class Personne {
 protected:
     string nom;
     int pointsVie;
@@ -22,13 +22,19 @@ public:
 
     Personne(string nom, int pointsVie, int pointsDefense);
 
+    virtual ~Personne();
+
+    int combat();
+
+    void recevoirCoup(int coup);
+
+    bool estMorte();
+
     string getNom();
 
     int getPointsVie();
 
     int getPointsDefense();
-
-    void recevoirCoup(int coup);
 };
 
 #endif

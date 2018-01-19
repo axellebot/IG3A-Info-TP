@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Mage : public virtual Personne{
+class Mage : public virtual Personne {
+private:
 protected:
     int magie;
     int forceMagique;
@@ -19,7 +20,10 @@ public:
 
     Mage(string nom, int pointsVie, int pointsDefense, int magie, int forceMagique);
 
+    ~Mage();
+
     int attaqueMagique();
+
 };
 
 #endif

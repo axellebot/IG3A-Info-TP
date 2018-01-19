@@ -7,15 +7,15 @@
 int factorielle(int n) {
     int i;
     int result = 1;
-    for (i=1; i <= n; i++) {
-        result = result* i;
+    for (i = 1; i <= n; i++) {
+        result = result * i;
     }
     return result;
 }
 
 int factorielleRecursif(int n) {
     int result;
-    if (n ==1) result = 1;
-    else result = factorielleRecursif(n-1) * n;
+    if (n == 1) result = 1;
+    else result = factorielleRecursif(n - 1) * n;
     return result;
 }

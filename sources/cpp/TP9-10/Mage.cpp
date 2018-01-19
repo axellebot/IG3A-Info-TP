@@ -8,12 +8,24 @@ Mage::Mage(string nom,
            int pointsVie,
            int pointsDefense,
            int magie,
-           int forceMagique) : Personne(nom, pointsVie,
-                                        pointsDefense){
+           int forceMagique) : Personne(nom,
+                                        pointsVie,
+                                        pointsDefense) {
+    this->magie = magie;
     this->forceMagique = forceMagique;
 }
 
-int Mage::attaqueMagique(){
-    if(this->magie > 0) this->magie--;
-    return (this->magie > 0) ? rand() % this->forceMagique / 2 + this->forceMagique : 0;
+Mage::~Mage() {
+    cout << "Mage is being deleted\n";
 }
+
+int Mage::attaqueMagique() {
+    srand(time(NULL));
+    int attaque = 0;
+    if (magie > 0) {
+        attaque = rand() % forceMagique / 2 + forceMagique;
+        magie--;
+    }
+    return attaque;
+}
+
