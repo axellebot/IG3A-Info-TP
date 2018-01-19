@@ -1,7 +1,9 @@
 \chapterimage{./Pictures/cover-shell} % Chapter heading image
-\chapter{TP1 : Manipulations de l’environnement et des fichiers sous UNIX}
+\chapter{TP1+TP2 : Shell}
 
-\section{Exercice 1 : Découverte de quelques commandes d'archivage}
+\section{Manipulations de l’environnement et des fichiers sous UNIX}
+
+\subsection{Exercice 1 : Découverte de quelques commandes d'archivage}
 \textit{L'objectif de cet exercice est de découvrir et manipuler les commandes de téléchargement, d'archivage, de compression et de décompression de fichier}
 
 \paragraph{1. Récupération et décompression d'une archive}
@@ -33,7 +35,7 @@ symbole >.
 La redirection du flux dans un fichier recréer une archive compréssé "archive3" similaire à "archive2"  créé.
 En conclusion l'archive 2 et 3 donne le même résultat et sont plus petit que l'archive 1 puisqu'elles sont compréssés.
 
-\section{Exercice 2 : Utilisation des masques de création de fichiers}
+\subsection{Exercice 2 : Utilisation des masques de création de fichiers}
 \textit{Cet exercice permet de comprendre les droits UNIX à la création de fichier à l'aide des masque utilisateur.}
 La commande \mintinline{shell}{umask} permet de définir les permissions par défaut de fichiers ou de répertoires  créees. Pour sela il faut préciser les droits que l'on veut supprimer.
 Ci-dessous un tableau de droits UNIX pour rappel.
@@ -65,7 +67,7 @@ Après plusieurs test, on découvre qu'il n'est pas possible de donner plus de d
 \item \mintinline{shell}{umask 777} sur les répertoires
 \end{itemize}
 
-\section{Exercice 3 : Manipulation du Systeme de fichier et des droits de navigation}
+\subsection{Exercice 3 : Manipulation du Systeme de fichier et des droits de navigation}
 \textit{L'objectif de cet exercice est de manipuler les commandes de navigation dans l'arborescence et de création de fichier.}
 \begin{itemize}
 \item La commande \mintinline{shell}{mkdir <dirname>} permet de créer un répertoire.
@@ -88,7 +90,7 @@ La commande \mintinline{shell}{tar -xczf ITC313_TP_Shell_lebot.axel.tar.gz} perm
 \paragraph{7.}
 Après transfert de l'archive compressé toutes les permissions sont conservés.
 
-\section{Exercice 4 : Manipulation d'expression régulière}
+\subsection{Exercice 4 : Manipulation d'expression régulière}
 \textit{L'objectif de cet exercice est de manipuler les basiques des expressions régulière.}
 
 \paragraph{1.}
@@ -156,3 +158,22 @@ permet de récupérer les numéro de téléphone.
 
 \paragraph{17.}
 La commande \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "\(\([a-z]+\)\)"} permet de trouver la phrase secrète : "bien joue  tu as trouve la reponse a la derniere question"
+
+\section{Éditions de scripts}
+
+\subsection{Exercice 5 : Un premier script}
+\inputminted{bash}{../sources/shell/TP2/ex5.sh}
+
+\subsection{Exercice 6 : Comptage des paramètres}
+\inputminted{bash}{../sources/shell/TP2/ex6-parametres.sh}
+\inputminted{bash}{../sources/shell/TP2/ex6-parametres2.sh}
+
+\subsection{Exercice 7 : Portée des variables}
+
+\paragraph{1. Portée des variables locales}
+La variable créé dans le terminal n'est pas accessible depuis un script.
+
+\paragraph{2. Portée limitée au shell}
+Les variables sont local au terminal
+
+\paragraph{3. Étendre la portée de la valeur d’une variable locale}
