@@ -94,28 +94,28 @@ Après transfert de l'archive compressé toutes les permissions sont conservés.
 \textit{L'objectif de cet exercice est de manipuler les basiques des expressions régulière.}
 
 \paragraph{1.}
-La commande \mintinline{Shell}{wget https://cloud.infotro.fr/ITC313/unGrosBordel.txt} permettra de récupérer le fichier à analyser.
+La commande \mintinline{shell}{wget https://cloud.infotro.fr/ITC313/unGrosBordel.txt} permettra de récupérer le fichier à analyser.
 
 \paragraph{2.}
-Les lignes affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -E "ette"} contiennent toutes la suite de lettres "ette".
+Les lignes affichées par \mintinline{shell}{cat unGrosBordel.txt | grep -E "ette"} contiennent toutes la suite de lettres "ette".
 
 \paragraph{3.}
-Les lignes affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -E "T"} contiennent toutes la lettre "T".
+Les lignes affichées par \mintinline{shell}{cat unGrosBordel.txt | grep -E "T"} contiennent toutes la lettre "T".
 
 \paragraph{4.}
-Les lignes affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -E "ˆT"} contiennent toutes la lettre "T" en début de ligne.
+Les lignes affichées par \mintinline{shell}{cat unGrosBordel.txt | grep -E "ˆT"} contiennent toutes la lettre "T" en début de ligne.
 
 \paragraph{5.}
 L'expression \texttt{\^} signifie donc "début".
 
 \paragraph{6.}
-Les lignes affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -E "te$"} contiennent toutes la suite de lettres "te" en fin de ligne.
+Les lignes affichées par \mintinline{shell}{cat unGrosBordel.txt | grep -E "te$"} contiennent toutes la suite de lettres "te" en fin de ligne.
 
 \paragraph{7.}
-Les lignes affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -E "c.r"} contiennent toutes la suite de lettres "c", un caractère quelconque, "r".
+Les lignes affichées par \mintinline{shell}{cat unGrosBordel.txt | grep -E "c.r"} contiennent toutes la suite de lettres "c", un caractère quelconque, "r".
 
 \paragraph{8.}
-Les lignes affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -E "(oui|non)"} contiennent toutes soit "oui", soit "non".
+Les lignes affichées par \mintinline{shell}{cat unGrosBordel.txt | grep -E "(oui|non)"} contiennent toutes soit "oui", soit "non".
 
 \paragraph{9.}
 \begin{itemize}
@@ -125,16 +125,16 @@ Les lignes affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -E "(ou
 \end{itemize}
 
 \paragraph{10.}
-L'option \texttt{-o} dans la commande \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "c.r"} permet de n’afficher que la partie de la ligne correspondant à l’expression "c.r" appelé "motif".
+L'option \texttt{-o} dans la commande \mintinline{shell}{cat unGrosBordel.txt | grep -o -E "c.r"} permet de n’afficher que la partie de la ligne correspondant à l’expression "c.r" appelé "motif".
 
 \paragraph{11.}
-Les motifs affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "[A-Z]"} contiennent une suite de 4 lettres majuscule.
+Les motifs affichées par \mintinline{shell}{cat unGrosBordel.txt | grep -o -E "[A-Z]"} contiennent une suite de 4 lettres majuscule.
 
 \paragraph{12.}
-Les motifs affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "[A-Z][a-z]+"} contiennent une suite d'au moins une majuscule et une minuscule.
+Les motifs affichées par \mintinline{shell}{cat unGrosBordel.txt | grep -o -E "[A-Z][a-z]+"} contiennent une suite d'au moins une majuscule et une minuscule.
 
 \paragraph{13.}
-Les motifs affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "[A-Z][a-z]*"} contiennent une suite de 0, 1 ou plus de une majuscule et une minuscule.
+Les motifs affichées par \mintinline{shell}{cat unGrosBordel.txt | grep -o -E "[A-Z][a-z]*"} contiennent une suite de 0, 1 ou plus de une majuscule et une minuscule.
 
 \paragraph{14.}
 \begin{itemize}
@@ -144,36 +144,50 @@ Les motifs affichées par \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "
 
 \paragraph{15.}
 La commande
-\begin{minted}{Shell}
+\begin{minted}{shell}
 cat unGrosBordel.txt | grep -o -E "[A-Za-z0-9\.\_]+@([A-Za-z0-9\-]+\.)*[a-zA-Z]{2,4}"
 \end{minted}
 permet de récupérer les addresse e-mail.
 
 \paragraph{16.}
 La commande
-\begin{minted}{Shell}
+\begin{minted}{shell}
 cat unGrosBordel.txt | grep -o -E "(\+33|0)(\.| )?[0-9]((\.| )?[0-9]{2}){4}"
 \end{minted}
 permet de récupérer les numéro de téléphone.
 
 \paragraph{17.}
-La commande \mintinline{Shell}{cat unGrosBordel.txt | grep -o -E "\(\([a-z]+\)\)"} permet de trouver la phrase secrète : "bien joue  tu as trouve la reponse a la derniere question"
+La commande \mintinline{shell}{cat unGrosBordel.txt | grep -o -E "\(\([a-z]+\)\)"} permet de trouver la phrase secrète : "bien joue  tu as trouve la reponse a la derniere question"
 
 \section{Éditions de scripts}
 
 \subsection{Exercice 5 : Un premier script}
-\inputminted{bash}{../sources/shell/TP2/ex5.sh}
+\textit{L'objectif de cet exercice est de créer un scripts basique et de l'éxécuter.}
+\inputminted{bash}{../sources/shell/TP1-2/ex5.sh}
 
 \subsection{Exercice 6 : Comptage des paramètres}
-\inputminted{bash}{../sources/shell/TP2/ex6-parametres.sh}
-\inputminted{bash}{../sources/shell/TP2/ex6-parametres2.sh}
+\textit{Nous verrons ici comment le passage de paramètres, le comptage et la récupération des paramètres dans un script.}
+\inputminted{bash}{../sources/shell/TP1-2/ex6-parametres.sh}
+La commande \texttt{shift} permet de décaler la liste d’arguments. Nous l'utiliserons dans le script suivant.
+\inputminted{bash}{../sources/shell/TP1-2/ex6-parametres2.sh}
 
 \subsection{Exercice 7 : Portée des variables}
+\textit{L'exercice suivant permettra de comprendre la portée de variable et de modifications entre shell.}
 
 \paragraph{1. Portée des variables locales}
-La variable créé dans le terminal n'est pas accessible depuis un script.
+Après avoir créé initialisé une variables midichloriens à l'aide de la commande \mintinline{shell}{midichloriens=50000}, om peut bien l'afficher avec la commande \mintinline{shell}{echo midichloriens}.
+\inputminted{bash}{../sources/shell/TP1-2/ex7-yoda.sh}
+On execute ensuite le script \texttt{yoda.sh} ci-dessus qui n'affiche rien. On en conclue donc que la variable initialisé dans le terminal n'est pas accessible depuis le script. \par
+On essaie ensuite d'initialisé la variable \texttt{midichloriens} depuis le script \texttt{vador.sh} ci-dessous puis de ré-executer le script \texttt{yoda.sh}.
+\inputminted{bash}{../sources/shell/TP1-2/ex7-vador.sh}
+En éxécutant la commande \mintinline{shell}{echo midichloriens} la variable \texttt{midichloriens} reste égale à 50000. On peut donc conclure que variables sont locales à un shell ou à un script.
 
 \paragraph{2. Portée limitée au shell}
-Les variables sont local au terminal
+En utilisant un second terminal, lorsque l’on affiche la valeur de la variable \texttt{midichloriens} en utilisant \mintinline{shell}{echo midichloriens}, on constate que rien ne s’affiche. \par
+En lancant un sous-shell avec la commande \mintinline{shell}{bash} et en affichant la valeur de la variable \texttt{midichloriens}, rien ne s’affiche. \par
+Après être sorti du sous-shell, on peut afficher la variable \texttt{midichloriens}, la valeur est toujours égale à 50000.
 
 \paragraph{3. Étendre la portée de la valeur d’une variable locale}
+En ayant éxécuté la commande \mintinline{shell}{export midichloriens} et refait les manipulations de {2.}, cette fois, la variable \texttt{midichloriens} est lisible par le sous-shell. \par
+On initialise cette fois ci une variable \texttt{force} à 100. On modifie depuis le sous-shell cette valeur à 150. En fermant le sous-shell puis et en affichant la variable avec la commande \mintinline{shell}{echo force}, on s'appercoit que la variable n'a pas été modifié. \par
+La commande \mintinline{shell}{export} permet d'exporter le clone d'une variable ayant le même comportement, le même nom, la même valeur.
