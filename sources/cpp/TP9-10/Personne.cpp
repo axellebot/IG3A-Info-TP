@@ -6,26 +6,38 @@
 
 using namespace std;
 
-Personne::Personne(string nom, int pointsVie, int pointsDefense){
+Personne::Personne(string nom, int pointsVie, int pointsDefense) {
     this->nom = nom;
     this->pointsVie = pointsVie;
     this->pointsDefense = pointsDefense;
 }
 
-string Personne::getNom(){
+Personne::~Personne() {
+    cout<<"Personne is being deleted\n";
+}
+
+int Personne::combat() {
+    return 10;
+}
+
+void Personne::recevoirCoup(int coup) {
+    if (coup > this->pointsDefense) {
+        pointsVie -= (coup - pointsDefense);
+    }
+}
+
+bool Personne::estMorte() {
+    return (pointsVie <= 0);
+}
+
+string Personne::getNom() {
     return nom;
 }
 
-int Personne::getPointsVie(){
+int Personne::getPointsVie() {
     return pointsVie;
 }
 
-int Personne::getPointsDefense(){
+int Personne::getPointsDefense() {
     return pointsDefense;
-}
-
-void Personne::recevoirCoup(int coup){
-    if(coup > this->pointsDefense){
-        this->pointsVie -= (coup - this->pointsDefense);
-    }
 }

@@ -1,8 +1,12 @@
+//
+// Created by Axel LE BOT on 11/12/17.
+//
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "generationTableaux.h"
 
-int nbAleatoire(int min, int max){
+int nbAleatoire(int min, int max) {
     // @params : deux nombres
     // @retour : une valeur aleatoire comprise entre ces deux nombres
 
@@ -12,19 +16,19 @@ int nbAleatoire(int min, int max){
     return nb;
 }
 
-void afficherTab(int tab[], int taille){
+void afficherTab(int tab[], int taille) {
     // @params : tab : tableau d'entiers, taille :taille du tableau
     // @action : affiche le tableau a l'ecran
 
     // [a completer] ajouter boucle pour afficher le tableau
     int i = 0;
-    for(i = 0; i < taille; i++){
+    for (i = 0; i < taille; i++) {
         printf("%i , ", tab[i]);
     }
     printf(" \n");
 }
 
-void remplirTabValeursAleatoires(int tab[], int taille, int min, int max){
+void remplirTabValeursAleatoires(int tab[], int taille, int min, int max) {
     // @params : tab : tableau d'entiers, taille :taille du tableau
     //           min et max : deux entiers donnes avec min < max
     // @action : remplit le tableau avec les valeurs aleatoires tirees entre
@@ -33,34 +37,34 @@ void remplirTabValeursAleatoires(int tab[], int taille, int min, int max){
 
     // [a completer] ajouter boucle pour remplir le tableau
     int i = 0;
-    for(i = 0; i < taille; i++){
+    for (i = 0; i < taille; i++) {
 
         tab[i] = nbAleatoire(min, max);
 
     }
 }
 
-void remplirTabValeurs1aN(int tab[], int taille){
+void remplirTabValeurs1aN(int tab[], int taille) {
     // @params : tab : tableau d'entiers, taille :taille du tableau
     // @action : remplit le tableau avec les valeurs 1, 2, 3 ... N
 
     // [a completer] ajouter boucle pour remplir le tableau
     int i = 0;
-    for(i = 0; i < taille; i++){
+    for (i = 0; i < taille; i++) {
 
         tab[i] = i + 1;
 
     }
 }
 
-void melangerTab(int tab[], int taille, int nb){
+void melangerTab(int tab[], int taille, int nb) {
     // @params : tab : tableau d'entiers, taille :taille du tableau
     //           nb : nombre d'inversions a faire
     // @action : inverse nb fois deux valeurs aleatoires du tableau
     int u, v, temp;
     // [a completer] ajouter boucle pour remplir le tableau
     int i = 0;
-    for(i = 0; i < 100; i++){
+    for (i = 0; i < 100; i++) {
         // [a completer] Q. 2.b : melanger le tableau comme indique
         // indice : utiliser u, v, temp et nbAleatoire
         int u = nbAleatoire(0, 14);

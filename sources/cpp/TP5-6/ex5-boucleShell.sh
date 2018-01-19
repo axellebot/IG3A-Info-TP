@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author : Axel LE BOT
 
 echo "lancement du processus $$";
 

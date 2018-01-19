@@ -6,6 +6,7 @@
 #define TP_CPP_FACTORIELLE_H
 
 int factorielle(int n);
+
 int factorielleRecursif(int n);
 
 #endif //TP_CPP_FACTORIELLE_H

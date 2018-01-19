@@ -47,12 +47,15 @@ set(SOURCE_FILES_TP5-6
 
 set(SOURCE_FILES_TP9-10
         TP9-10/main.cpp
+        TP9-10/Mage.cpp
         TP9-10/Mage.h
+        TP9-10/MageGuerrier.cpp
+        TP9-10/MageGuerrier.h
         TP9-10/Personne.cpp
         TP9-10/Personne.h
         TP9-10/Guerrier.cpp
         TP9-10/Guerrier.h
-        TP9-10/Mage.cpp)
+        )
 
 add_library(mylib ${SOURCE_FILES_LIBS})
 
