@@ -5,7 +5,7 @@
 
 \subsection{Fonction sur les tableaux non triés}
 
-\subsubsection{Exercice 1 : Algorithmes de parcours classiaues sur tableau non triés}
+\subsubsection{Exercice 1 : Algorithmes de parcours classiques sur tableau non triés}
 Quelques copier coller ont suffit.
 Les tests ont bien été éffectué.
 
@@ -21,8 +21,51 @@ Les tests ont bien été éffectué.
 
 \subsubsection{Exercice 5 : Ajout et suppression d’éléments sur tableaux triés}
 
-\subsection{Exercice sur les Fonctions récursives}
+\section{Fonctions récursives}
+\textit{L’objectif ce cette partie est d’utiliser les fonctions qui s’appelle elle-même appellé "récursives" et dans comprendre leur implémentation.}
 
-\subsubsection{Exercice 6 : Definition de fonction recursive}
+\subsection{Exercice 6 : Definition de fonction recursive}
+\textit{On verra ici l'intéret d'utiliser des fonctions récursives sur des séries mathématique}
 
-\subsubsection{Exercice 7 : Algorithme recursif sur matrice}
+Une fonction récursive est une fonction qui s'appelle elle-même. Si dans le corps de la fonction, nous l'utilisons elle-même, alors elle est récursive.
+
+L'algorithme suivant permet de calculer la formation de Leibniz :
+
+\begin{itemize}
+\item Par iteration :
+\inputminted[linenos,firstline=7, lastline=14]{cpp}{../cpp/TP1-2/piLeibniz.c}
+\item Par récursivité :
+\inputminted[linenos,firstline=16, lastline=19]{cpp}{../cpp/TP1-2/piLeibniz.c}
+\end{itemize}
+
+L'algorithme suivant permet de calculer un produit factorielle :
+
+\begin{itemize}
+\item Par iteration :
+\inputminted[linenos,firstline=7, lastline=14]{cpp}{../cpp/TP1-2/factorielle.c}
+\item Par récursivité :
+\inputminted[linenos,firstline=16, lastline=21]{cpp}{../cpp/TP1-2/factorielle.c}
+\end{itemize}
+
+L'algorithme suivant permet de calculer la valeur d'un nombre harmonique :
+
+\begin{itemize}
+\item Par iteration :
+\inputminted[linenos,firstline=7, lastline=14]{cpp}{../cpp/TP1-2/harmonique.c}
+\item Par récursivité :
+\inputminted[linenos,firstline=16, lastline=21]{cpp}{../cpp/TP1-2/harmonique.c}
+\end{itemize}
+
+\subsection{Exercice 7 : Algorithme recursif sur matrice}
+\textit{Dans cet exercice nous implémenterons un algorithme récursif appliqué sur une matrice. On verra ainsi que la récursivité permet de solutionner beaucoup plus simplement un problème par rapport à un algorithme séquentiel.}
+
+Notre algorithme devra affecter la valeur 2 à chacune des cases de la case selectionné.
+Si la case est déjà égale à 2, rien ne sera fait.
+Les autres cases ne seront pas modifiés.
+Pour cela nous appelerons la fonction sur les cases de la même zone de la case selectionné.
+
+Afin de rendre notre algorithme réutilisable nous devront passer en paramètre les dimensions de la matrice utilisé avant de passer la matrice en paramètre, ainsi la fonction connaitra les dimensions de la matrice.
+
+Nous avons créé la fonction récursive suivante :
+
+\inputminted[linenos,firstline=8, lastline=25]{cpp}{../cpp/TP1-2/bubbleBreaker.c}
