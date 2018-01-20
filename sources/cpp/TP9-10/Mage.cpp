@@ -19,7 +19,7 @@ Mage::~Mage() {
     cout << "Mage is being deleted\n";
 }
 
-int Mage::attaqueMagique() {
+int Mage::attaque() {
     srand(time(NULL));
     int attaque = 0;
     if (magie > 0) {

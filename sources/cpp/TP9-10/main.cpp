@@ -26,8 +26,8 @@ void combat(Personne *p1, Personne *p2) {
     personneList.push_back(p2);
 
     while (!finDuCombat) {
-        p1->recevoirCoup(p2->combat());
-        p2->recevoirCoup(p1->combat());
+        p1->recevoirCoup(p2->attaque());
+        p2->recevoirCoup(p1->attaque());
 
         for (Personne *p : personneList) {
             if (p->estMorte()) {

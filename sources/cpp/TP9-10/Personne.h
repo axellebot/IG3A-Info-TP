@@ -24,7 +24,7 @@ public:
 
     virtual ~Personne();
 
-    int combat();
+    virtual int attaque();
 
     void recevoirCoup(int coup);
 
