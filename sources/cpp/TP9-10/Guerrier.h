@@ -7,6 +7,8 @@
 
 #include "Personne.h"
 
+using namespace std;
+
 class Guerrier : public virtual Personne {
 protected:
     int pointsAttaque;
@@ -15,10 +17,9 @@ public :
 
     Guerrier(string nom, int pointsVie, int pointsDefense, int pointAttaque);
 
-    virtual ~Guerrier();
+    ~Guerrier();
 
-    int attaque();
+    int attaque() override;
 };
-
 
 #endif //TP_CPP_GUERRIER_H

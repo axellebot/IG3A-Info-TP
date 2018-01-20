@@ -5,9 +5,9 @@
 #ifndef TP_CPP_PERSONNE_H
 #define TP_CPP_PERSONNE_H
 
-#include <string>
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -24,7 +24,7 @@ public:
 
     virtual ~Personne();
 
-    virtual int attaque();
+    virtual int attaque()=0; //pure specifier
 
     void recevoirCoup(int coup);
 
@@ -37,4 +37,4 @@ public:
     int getPointsDefense();
 };
 
-#endif
+#endif //TP_CPP_PERSONNE_H

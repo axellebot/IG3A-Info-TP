@@ -21,8 +21,8 @@ public:
 
     ~Mage();
 
-    int attaque();
+    int attaque() override;
 
 };
 
-#endif
+#endif //TP_CPP_MAGE_H

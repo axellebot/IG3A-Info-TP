@@ -16,10 +16,6 @@ Personne::~Personne() {
     cout << "Personne is being deleted\n";
 }
 
-int Personne::attaque() {
-    return 0;
-}
-
 void Personne::recevoirCoup(int coup) {
     if (coup > this->pointsDefense) {
         pointsVie -= (coup - pointsDefense);
