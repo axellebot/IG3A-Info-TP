@@ -1,16 +1,72 @@
 \chapterimage{./Pictures/cover-tree} % Chapter heading image
 \chapter{TP3+TP4 : Manipulation des arbres}
+\textit{Un arbre binaire de recherche (ABR) est une structure de données pour représenter un ensemble ou un tableau associatif dont les clés appartiennent à un ensemble totalement ordonné. Un arbre binaire de recherche permet des opérations rapides pour rechercher une clé, insérer ou supprimer une clé. Un arbre binaire de recherche est un arbre binaire dans lequel chaque nœud possède une clé, telle que chaque nœud du sous-arbre gauche ait une clé inférieure ou égale à celle du nœud considéré, et que chaque nœud du sous-arbre droit possède une clé supérieure ou égale à celle-ci — selon la mise en œuvre de l'ABR, on pourra interdire ou non des clés de valeur égale. Les nœuds que l'on ajoute deviennent des feuilles de l'arbre.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=200pt]{./cpp/Pictures/tp3+tp4-ABR}
+\caption{Arbre Binaire de Recherche}
+\label{Arbre Binaire de Recherche}
+\end{figure}
 
 \section{Algorithmes sur arborescences binaires de recherche (ABR) non équilibrées}
 
 \subsection{Exercice 1 : Mise en place d’ABR et premiers algorithmes}
+\textit{Cet exercice permettra de mettre en place les structures d'ABR (Arbres Binaires de Rechercher) et de créer les fonctions de calcules pour les arbres.}
+
+J'ai écrit une fonction \mintinline{cpp}{nouveauNoeud()} qui prend en paramètre une valeur, et réserve la mémoire nécessaire au stockage d’un nouveau nœud dans le tas. Elle affecte alors l’élément valeur avec la valeur passée en paramètre, et fait pointer filsGauche et filsDroit vers null. Enfin, elle retourne un pointeur vers le nœud créé.
+% nouveauNoeud
+\inputminted[linenos,firstline=9, lastline=24]{cpp}{../sources/cpp/TP3-4/arbresBasiques.c}
+
+J'ai écrit une fonction \mintinline{cpp}{estVide()} qui prend en paramètres un pointeur sur un noeud de l’arbre, et renvoie 1 si le pointeur a comme valeur NULL, et 0 sinon. Cette fonction permet par la suite de déterminer plus facilement si un sous-arbre est vide.
+% estVide
+\inputminted[linenos,firstline=76, lastline=78]{cpp}{../sources/cpp/TP3-4/arbresBasiques.c}
+
+J'ai écrit une fonction \mintinline{cpp}{estFeuille()} qui prend en paramètres un pointeur sur un noeud de l’arbre, et renvoie 1 si le noeud pointé est une feuille (le noeud existe et ses deux fils pointent sur NULL), et 0 sinon.
+% estFeuille
+\inputminted[linenos,firstline=80, lastline=84]{cpp}{../sources/cpp/TP3-4/arbresBasiques.c}
+
+J'ai écrit une fonction \mintinline{cpp}{rechercheValeur()} qui prend deux paramètres, le premier étant un pointeur sur la racine de l’arbre, et le second une valeur v à chercher. La fonction renvoie 1 si la valeur v est contenue dans l’arbre, et 0 sinon. Le déroulement de la fonction est le suivant : un pointeur parcours pointe sur le premier élément de l’arbre. Si cet élément est vide (pointeur null), la valeur v n’existe pas, et on renvoie 0. si cet élément existe, on regarde sa valeur. Si cette valeur est la valeur recherchée, on renvoie 1. Sinon, on déplace le pointeur parcours vers le fils gauche ou le fils droit du noeud selon que la valeur recherchée strictement inférieure ou strictement supérieure à la valeur du noeud pointé. Et on recommence.
+% rechercheValeur
+\inputminted[linenos,firstline=87, lastline=101]{cpp}{../sources/cpp/TP3-4/arbresBasiques.c}
 
 \subsection{Exercice 2 : Algorithmes récursifs sur arborescences}
+\textit{Cet exercice permettra de rajouter des algorithmes récursifs pour les arbres.}
+
+J'ai écrit une fonction \mintinline{cpp}{nbNoeuds()} qui prend en paramètre un pointeur noeudCourant vers le premier nœ ud d’un arbre, et renvoie son nombre de noeuds. Pour écrire cette fonction de manière récursive. Le nombre de noeuds d’un arbre vide (c.a.d. noeudCourant est égal à NULL) est égal à 0. Sinon, il est égal à 1 + le nombre de noeuds de son sous-arbre droit + le nombre de noeuds de son sous-arbre gauche.
+% nbNoeuds
+\inputminted[linenos,firstline=16, lastline=25]{cpp}{../sources/cpp/TP3-4/arbresFctRecursives.c}
+
+J'ai écrit une fonction \mintinline{cpp}{sommeValArbres()} qui prend en paramètre un pointeur noeudCourant vers le premier nœ ud d’un arbre, et renvoie la somme des valeurs des noeuds. Pour écrire cette fonction de manière récursive. La somme des noeuds d’un arbre vide (c.a.d. noeudCourant est égal à NULL) est égal à 0. Sinon, elle est égale à la valeur contenue dans le noeud + la somme des noeuds de son sous-arbre droit + la somme des noeuds de son sous-arbre gauche.
+% sommeValArbres
+\inputminted[linenos,firstline=26, lastline=38]{cpp}{../sources/cpp/TP3-4/arbresFctRecursives.c}
+
+J'ai écrit une fonction \mintinline{cpp}{hauteur()} qui prend en paramètre un pointeur noeudCourant vers le premier nœ ud d’un arbre, et renvoie sa hauteur. Pour écrire cette fonction de manière récursive. La hauteur d’un arbre vide (c.a.d. noeudCourant est égal à NULL) est égal à 0. Sinon, elle est égale au maximum des profondeurs de chacun de ses sous-arbres + 1
+% hauteur
+\inputminted[linenos,firstline=40, lastline=50]{cpp}{../sources/cpp/TP3-4/arbresFctRecursives.c}
+
+J'ai écrit une fonction \mintinline{cpp}{detruireArbre()} qui  prend en paramètre un pointeur vers la racine de l’arbre racine, et détruit l’arbre en libérant sa mémoire. Avant de libérer la mémoire d’un noeud, il faut bien évidemment libérer la mémoire de chacun de ses sous-arbres.
+% detruireArbre
+\inputminted[linenos,firstline=52, lastline=58]{cpp}{../sources/cpp/TP3-4/arbresFctRecursives.c}
 
 \section{Modification et parcours d’ABR non équilibrées}
 
 \subsection{Exercice 3 : Insertion et suppression de valeurs dans une arborescence}
+\textit{Cet exercice permettra de rajouter les algorithmes permettant de modifier les arbres (supprimer et ajouter des noeuds).}
+
+J'ai écrit une fonction \mintinline{cpp}{ajouterValeurABR()} qui prend comme paramètres un pointeur racine vers le premier nœ ud d’un arbre ainsi qu’une valeur, et ajoute cette valeur à l’arbre. De plus, elle renvoie un pointeur vers le premier noeud de l’arbre, au cas où ce dernier aurait changé (ce qui est le cas si l’arbre était vide). Rappelons que l’on ajoute un noeud en tant que nouvelle feuille, à l’unique endroit possible pour maintenir le caractère de recherche de l’arbre binaire.
+% ajouterValeurABR
+\inputminted[linenos,firstline=8, lastline=19]{cpp}{../sources/cpp/TP3-4/modifArbres.c}
+
+J'ai écrit une fonction \mintinline{cpp}{supprimerValeurABR()} qui prend comme paramètres un pointeur racine vers le premier nœud d’un arbre ainsi qu’une valeur, et supprime cette valeur de l’arbre si cette dernière existait. De plus, elle renvoie un pointeur vers le premier noeud de l’arbre, au cas où ce dernier aurait changé (ce qui est le cas si le premier noeud était la valeur à supprimer). Rappelons que la suppression d’une valeur d’un noeud doit maintenir le caractère de recherche de l’arbre binaire.
+% supprimerValeurABR
+\inputminted[linenos,firstline=21, lastline=123]{cpp}{../sources/cpp/TP3-4/modifArbres.c}
 
 \section{Parcours d’arborescences binaires}
 
 \subsection{Exercice 4 : Parcours sur arbres}
+\textit{Cet exercice permet de lister tous les éléments d'un arbre de manière récursive.}
+
+J'ai écrit une fonction \mintinline{cpp}{parcoursProfondeur()} permettant de réaliser un parcours en profondeur, c’est à dire lister les éléments dans l’ordre suivant : (sous-arbre gauche) element (sous-arbre droit).
+% parcoursProfondeur
+\inputminted[linenos,firstline=8, lastline=21]{cpp}{../sources/cpp/TP3-4/parcoursArbres.c}

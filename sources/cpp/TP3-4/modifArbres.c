@@ -18,10 +18,7 @@ struct noeud *ajouterValeurABR(struct noeud *noeud, int val) {
     return noeud;
 }
 
-
 struct noeud *supprimerValeurABR(struct noeud *racine, int val) {
-    // @action : supprime la valeur val a l'arbre.
-    // @return : un pointeur sur la racine (peut avoir change!)
     struct noeud *courant; // pointe sur le noeud a l'etude
     struct noeud *ainverser; // pointe sur le noeud a dont la valeur sera a inverser
     struct noeud *precedent; // pointe vers noeud precedent celui a supprimer
@@ -60,25 +57,8 @@ struct noeud *supprimerValeurABR(struct noeud *racine, int val) {
         return racine;
     }
 
-    // *** algorithme general *** //
-    // si le noeud n contenant la valeur a supprimer est trouvee :
-    // on regarde s'il a un fils gauche :
-    // si oui : on va à gauche 1 fois, puis tout a droite
-    //    et on inverse la valeur de ce noeud m avec la valeur du noeud n.
-    //     et on recommence l'algorithme à partir de m
-    //Sinon :
-    // on regarde s"il a un fils droit :
-    //  si oui : on va à droite 1 fois, puis tout a gauche
-    //    et on inverse la valeur de ce noeud m avec la valeur du noeud n.
-    //     et on recommence l'algorithme à partir de m
-    //   s'il n'a ni fils droit ni fils gauche, c'est une feuille. A supprimer et mettre à jour l'endroit d'ou on venait à NULL
-    // (on peut donc boucler tant que le noeud pointant la valeur a supprimer n'est pas une feuille
-    // l'arbre binaire reste "de recherche", a une valeur pres (celle a supprimer)
-    // *** fin algorithme general *** //
-
-    // ** mise en oeuvre **//
-    //tant que le noeud a supprimer a des fils, on avance selon l'algorithme
-
+    // algorithm general
+    // tant que le noeud a supprimer a des fils, on avance selon l'algorithme
     while (!estFeuille(courant)) {
 
         // si on peut aller a gauche : on avance une fois gauche puis tout a droite avec un autre pointeur, et on inverse les valeurs
@@ -125,7 +105,6 @@ struct noeud *supprimerValeurABR(struct noeud *racine, int val) {
         }
     }
 
-
     // on est au bout. Le noeud a supprimer est une feuille, et precedent doit pointer vers le noeud parent du noeud a supprimer
     if (direction == 'g') {
         courant = NULL;
@@ -142,6 +121,3 @@ struct noeud *supprimerValeurABR(struct noeud *racine, int val) {
     // on retourne la racine
     return racine;
 }
-
-
-
