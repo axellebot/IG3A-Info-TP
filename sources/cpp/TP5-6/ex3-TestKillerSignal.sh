@@ -1,30 +1,28 @@
 #!/bin/bash
 # Author : Axel LE BOT
 
-TAB=( "SIGHUP" "SIGINT" "SIGQUIT"  "SIGILL" "SIGTRAP" "SIGABRT" "SIGBUS" "SIGFPE" "SIGKILL" "SIGUSR1"
-"SIGSEGV" "SIGUSR2" "SIGPIPE" "SIGALRM" "SIGTERM" "SIGSTKFLT" "SIGCHLD" "SIGCONT" "SIGSTOP" "SIGTSTP" "SIGTTIN"
-"SIGTTOU" "SIGURG" "SIGXCPU" "SIGXFSZ" "SIGVTALRM" "SIGPROF" "SIGWINCH" "SIGIO" "SIGPWR" "SIGSYS" "SIGRTMIN"
-"SIGRTMIN+1" "SIGRTMIN+2" "SIGRTMIN+3" "SIGRTMIN+4" "SIGRTMIN+5" "SIGRTMIN+6" "SIGRTMIN+7" "SIGRTMIN+8"
-"SIGRTMIN+9" "SIGRTMIN+10" "SIGRTMIN+11" "SIGRTMIN+12" "SIGRTMIN+13" "SIGRTMIN+14" "SIGRTMIN+15" "SIGRTMAX-14"
-"SIGRTMAX-13" "SIGRTMAX-12" "SIGRTMAX-11" "SIGRTMAX-10" "SIGRTMAX-9" "SIGRTMAX-8" "SIGRTMAX-7" "SIGRTMAX-6"
-"SIGRTMAX-5" "SIGRTMAX-4" "SIGRTMAX-3" "SIGRTMAX-2" "SIGRTMAX-1" "SIGRTMAX" )
-
-for signal in "${TAB[@]}"
+for signal in "seq 1 64"
 do
-    echo "Signal : $signal"
-    # ./infinityLoop.sh & > /dev/null 2>&1
-    ./ex3-shellLoop.sh & > /dev/null 2>&1
+    # On lance le script de la boucle infinie en arrière plan et en redirigeant la sortie dans le fichier fantôme
+    ./boucleShell.sh & > /dev/null 2>&1
+    # On récupère l'id du processus
     PID=$!
     echo "Process $PID"
-    kill -s $signal $PID > /dev/null 2>&1
 
+    # On tue le processus avec le signal
+    kill -$signal $PID > /dev/null 2>&1
+
+    # On vérifie si le processus est en cours d'execution
     if ps -p $PID > /dev/null 2>&1
     then
+        # Si il est toujours en cours d'execution, on le tue.
         echo "Process not ended"
-        kill $PID > /dev/null 2>&1
+        kill -9 $PID > /dev/null 2>&1
     else
-        echo "Process ended"
+        # Sinon on affiche le signal qui à réussi à tuer
+        echo "Process ended with the signal : $signal"
     fi
     echo "------"
+    # Attendre
     sleep 0
 done
