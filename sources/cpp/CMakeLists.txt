@@ -40,7 +40,20 @@ set(SOURCE_FILES_TP3-4
         TP3-4/arbresFctRecursives.c
         TP3-4/arbresFctRecursives.h
         TP3-4/modifArbres.c
-        TP3-4/modifArbres.h)
+        TP3-4/modifArbres.h
+        TP3-4/parcoursArbres.c
+        TP3-4/parcoursArbres.h)
+
+set(SOURCE_FILES_TP3-4-stat
+        TP3-4/mainExostats.c
+        TP3-4/arbresBasiques.c
+        TP3-4/arbresBasiques.h
+        TP3-4/arbresFctRecursives.c
+        TP3-4/arbresFctRecursives.h
+        TP3-4/modifArbres.c
+        TP3-4/modifArbres.h
+        TP3-4/parcoursArbres.c
+        TP3-4/parcoursArbres.h)
 
 set(SOURCE_FILES_TP5-6
         TP5-6/main.c)
@@ -61,6 +74,7 @@ add_library(mylib ${SOURCE_FILES_LIBS})
 
 add_executable(TP1-2 ${SOURCE_FILES_TP1-2})
 add_executable(TP3-4 ${SOURCE_FILES_TP3-4})
+add_executable(TP3-4-Stat ${SOURCE_FILES_TP3-4-stat})
 add_executable(TP5-6 ${SOURCE_FILES_TP5-6})
 add_executable(TP7-8-UDP_Client TP7-8/clientUDP.c)
 add_executable(TP7-8-UDP_Server TP7-8/serveurUDP.c)
