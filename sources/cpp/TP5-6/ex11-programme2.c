@@ -7,4 +7,8 @@ int main() {
     result1 = fork();
     result2 = fork();
     result3 = fork();
+
+    if (result3) wait(NULL);
+    if (result2) wait(NULL);
+    if (result1) wait(NULL);
 }
