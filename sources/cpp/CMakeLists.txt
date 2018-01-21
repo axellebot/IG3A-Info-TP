@@ -81,6 +81,5 @@ add_executable(TP9-10 ${SOURCE_FILES_TP9-10})
 # 'm' for cmath lib
 target_link_libraries(TP1-2 mylib m)
 target_link_libraries(TP3-4 mylib)
-target_link_libraries(TP5-6 mylib)
 target_link_libraries(TP9-10 mylib m)
 
