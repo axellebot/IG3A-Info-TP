@@ -5,7 +5,7 @@
 int main() {
     printf("Lancement du processus %i\n", getpid());
     while (true) {
-        sleep(1);
         printf(".\n");
+        sleep(1);
     }
 }

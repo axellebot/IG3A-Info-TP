@@ -1,7 +1,7 @@
 #!/bin/bash
 # Author : Axel LE BOT
 
-for signal in "seq 1 64"
+for signal in "seq 1 31"
 do
     # On lance le script de la boucle infinie en arrière plan et en redirigeant la sortie dans le fichier fantôme
     ./boucleShell.sh & > /dev/null 2>&1
