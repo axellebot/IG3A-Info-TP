@@ -102,9 +102,8 @@ void exercice4() {
 int main() {
     displayHeader(HEADER_LEVEL_TP, "TP 3-4");
 
-    bool finished = false;
     int ex = 0;
-    while (!finished) {
+    do {
         printf("Select an exercice [1-4] : ");
         scanf("%d", &ex);
         switch (ex) {
@@ -123,8 +122,8 @@ int main() {
             default:
                 printf("404 Not found");
         }
-        finished = endOfProgram();
-    }
+
+    }while (!endOfProgram());
 
     printf("Bye !!!");
     exit(0);
