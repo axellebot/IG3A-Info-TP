@@ -14,85 +14,91 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <arpa/inet.h>
-#include <string.h>
 
 #define SERVER_PORT 4444
-#define MAXBUFFERSIZE 1024
+#define MAX_BUFFER_SIZE 1024
 
 // prend un tableau de caracteres en entree et sa taille
 // inverse les caracteres (le premier devient le dernier, etc ...
-void inverser_buffer(char *bufferainverser, int taille) {
+void inverser_buffer(char *bufferAInverser, int taille) {
     // precision : utiliser la taille du message, pas celle du buffer
     int i;
     char temp;
     for (i = 0; i < taille / 2; i++) {
-        temp = bufferainverser[i];
-        bufferainverser[i] = bufferainverser[taille - 1 - i];
-        bufferainverser[taille - i - 1] = temp;
+        temp = bufferAInverser[i];
+        bufferAInverser[i] = bufferAInverser[taille - 1 - i];
+        bufferAInverser[taille - i - 1] = temp;
     }
 }
 
 int main(int argc, char **argv) {
+    // Etape 0 : definition des variables
+    int socketMain;  // socket principale
+    int socketWorker;  // socket de travail
 
-    int sp;  // descripteur de la socket principale
-    int st;  // descripteur de la socket de travail
-    struct sockaddr_in serverAddr; // pour le stockage de sa propre identite (serveur)
-    struct sockaddr_in cliAddr; // pour le stockage de l'identité du client
-    socklen_t cliSize; // pour le stockage de l'adresse du client
+    struct sockaddr_in serverAddress; // pour le stockage de sa propre identite (serveur)
+    struct sockaddr_in clientAddress; // pour le stockage de l'identité du client
+    socklen_t clientAddressSize = sizeof(struct sockaddr_in); // Besoin de connaire la taille de la structure de type sockaddr_in
+    int binded; // valeur retour pour bind()
+    ssize_t recvBufferSize; // valeur retour pour recvFrom()
+    ssize_t sentBufferSize; // valeur retour pour send()
 
-    ssize_t nbRecus; // stockage du nombre d’octets recus
-    char buffer[MAXBUFFERSIZE]; // buffer pour lecture du message
+    char buffer[MAX_BUFFER_SIZE]; // buffer pour lecture du message
 
     // Etape 1 : creation de la socket de communication
-    sp = socket(PF_INET, SOCK_STREAM, 0);
-    if (sp == -1) {
+    socketMain = socket(PF_INET, SOCK_STREAM, 0);
+    if (socketMain == -1) {
         perror("Erreur création socket\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     // Etape 2 : creation d'une structure type sockaddr_in contenant sa propre identite
-    serverAddr.sin_family = AF_INET;   // famille d’adresse IPv4
-    serverAddr.sin_addr.s_addr = htonl(INADDR_ANY); // n'importe quelle IP
-    serverAddr.sin_port = htons(SERVER_PORT); // Port a associer
+    serverAddress.sin_family = AF_INET;   // famille d’adresse IPv4
+    serverAddress.sin_addr.s_addr = htonl(INADDR_ANY); // n'importe quelle IP
+    serverAddress.sin_port = htons(SERVER_PORT); // Port a associer
 
     // Etape 3 : association de l'adresse avec la socket
-    if (bind(sp, (struct sockaddr *) &serverAddr, sizeof(serverAddr)) == -1) {
-        perror("erreur 1 bind()");
-        exit(1);
+    binded = bind(socketMain, (struct sockaddr *) &serverAddress, clientAddressSize);
+    if (binded == -1) {
+        perror("erreur bind()");
+        exit(EXIT_FAILURE);
     }
 
     // Etape 4 : mise en route d'une boucle continue.
     // Ecoute sur la socket.
-    listen(sp, 1);
-    //boucle infinie : nous écoutons les connexions entrantes sur la socket principale
+    listen(socketMain, 1);
+    // boucle infinie : nous écoutons les connexions entrantes sur la socket principale
     while (1) {
         // mode écoute : on attend l'arrivee d'une connexion entrante
-        if ((st = accept(sp, (struct sockaddr *) &cliAddr, &cliSize)) == -1) {
-            perror("erreur 2 accept()");
-            exit(1);
+        socketWorker = accept(socketMain, (struct sockaddr *) &clientAddress, &clientAddressSize);
+        if (socketWorker == -1) {
+            perror("erreur accept()");
+            exit(EXIT_FAILURE);
         }
 
         // réception d'un message
         // message stocké dans buffer
         // on lit alors sur cette socket un message
-        nbRecus = recv(st, buffer, MAXBUFFERSIZE, 0);
-        if (nbRecus == -1) {
+        recvBufferSize = recv(socketWorker, buffer, MAX_BUFFER_SIZE, 0);
+        if (recvBufferSize == -1) {
             perror("erreur recv()");
-            exit(1);
+            exit(EXIT_FAILURE);
         }
 
         // on inverse le buffer :
-        inverser_buffer(buffer, strlen(buffer));
+        inverser_buffer(buffer, recvBufferSize);
         // ajout du caractère de fin de buffer :
-        buffer[nbRecus] = '\0';
+        buffer[recvBufferSize] = '\0';
 
-        //On renvoie le buffer inversé au client :
-        if (sendto(st, buffer, strlen(buffer), 0, (struct sockaddr *) &cliAddr, cliSize) == -1) {
+        // on renvoie le buffer inversé au client :
+        sentBufferSize = sendto(socketWorker, buffer, recvBufferSize, 0, (struct sockaddr *) &clientAddress,
+                                clientAddressSize);
+        if (sentBufferSize == -1) {
             perror("erreur sendto()");
-            exit(1);
+            exit(EXIT_FAILURE);
         }
 
-        // on ferme enfin la socket de travail
-        close(st);
+        // on ferme la socket de travail
+        close(socketWorker);
     }
 }

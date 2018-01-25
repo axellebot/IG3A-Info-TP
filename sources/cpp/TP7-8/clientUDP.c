@@ -13,57 +13,75 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <arpa/inet.h>
+#include <memory.h>
 
-#define MESSAGE_A_ENVOYER ".eruelp tnafne nu ,siofrap te ,erbmos etef enu'd engapmahc ed sellub sel emmoc tnellitnics seliote sel uo egenam nu tse ednom el"
-#define TAILLE_MESSAGE 128 // important d'etre exact, sinon probleme a l'inversion du buffer
+#define MAX_BUFFER_SIZE 1024
+
+void inverser_buffer(char *bufferAInverser, int taille) {
+    // precision : utiliser la taille du message, pas celle du buffer
+    int i;
+    char temp;
+    for (i = 0; i < taille / 2; i++) {
+        temp = bufferAInverser[i];
+        bufferAInverser[i] = bufferAInverser[taille - 1 - i];
+        bufferAInverser[taille - i - 1] = temp;
+    }
+}
 
 int main(int argc, const char *argv[]) {
-    /* le nombre d'arguments doit etre de 2 exactement */
-    if (argc != 3) {
+    if (argc < 4) {
         perror("erreur argument");
-        printf("usage : %s ip_server port\n", argv[0]);
-        printf("l'ip du serveur UDP sous forme xxx.xxx.xxx.xxx\n");
-        printf("le numéro du port à écouter, entre 1 et 65535\n");
-        exit(1);
+        printf("usage : %s server_ip server_port msg\n", argv[0]);
+        exit(EXIT_FAILURE);
     }
+
+    const char *ipAdress = argv[1];
+    const char *serverPort = argv[2];
+    const char *message = argv[3];
 
     // Etape 0 : definition des variables
     int sock;   // socket en mode non connecte UDP
     struct sockaddr_in serverAddr, rcptAdrr; // carte de visite contenant l'identite du serveur
-    socklen_t longueurStructAdresse; // contient la taille d'une carte de visite
+    socklen_t clientAddressSize = sizeof(struct sockaddr_in); // Besoin de connaire la taille de la structure de type sockaddr_in
     ssize_t nbSend; // stockage du nombre d'octets recus
-    ssize_t recus;
-    char *buffer = MESSAGE_A_ENVOYER;  // buffer pour envoyer le message (taille ajustee)
-    char buffer2[1024];
+    ssize_t recvBufferSize;
 
-    //initialisation de longueurStructAdresse
-    longueurStructAdresse = sizeof(struct sockaddr_in);
+    char buffer[strlen(message)]; // buffer pour envoyer le message (taille ajustee)
+    strcpy(buffer, message);
 
     // Etape 1 : creation de la socket de communication
     sock = socket(PF_INET, SOCK_DGRAM, 0);
     if (sock == -1) {
-        perror("erreur socket()\n");
+        perror("erreur socket()");
+        exit(EXIT_FAILURE);
     }
 
     // Etape 2 : creation d'une structure type sockaddr_in contenant l'identite du serveur
     serverAddr.sin_family = AF_INET; // famille d’adresse IPv4
-    inet_aton(argv[1], &serverAddr.sin_addr); // IP du serveur
-    serverAddr.sin_port = htons(atoi(argv[2]));// Port du serveur relie à l'application
+    serverAddr.sin_addr.s_addr = inet_addr(ipAdress); // IP du serveur
+    serverAddr.sin_port = htons(atoi(serverPort));// Port du serveur relie à l'application
 
     // Etape 3 : envoi du message au serveur
-    nbSend = sendto(sock, buffer, TAILLE_MESSAGE, 0, (struct sockaddr *) &serverAddr, longueurStructAdresse);
+    nbSend = sendto(sock, buffer, strlen(buffer), 0, (struct sockaddr *) &serverAddr, clientAddressSize);
     if (nbSend == -1) {
         perror("erreur sendto()");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
-    printf("message sent\n");
+    printf("message sent : %s\n",buffer);
 
     //Etape 4 : attente du retour du serveur
-    recus = recvfrom(sock, buffer2, 1024, 0, (struct sockaddr *) &rcptAdrr, &longueurStructAdresse);
-    if (recus == -1) {
+    recvBufferSize = recvfrom(sock, buffer, MAX_BUFFER_SIZE, 0, (struct sockaddr *) &rcptAdrr, &clientAddressSize);
+
+    if (recvBufferSize == -1) {
         perror("erreur recvfrom()");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
-    printf("message received : %s \n", buffer2);
+
+    // ajout du caractère de fin de buffer :
+    buffer[recvBufferSize] = '\0';
+
+    printf("message received : %s \n", buffer);
     close(sock);
+
+    exit(EXIT_SUCCESS);
 }
