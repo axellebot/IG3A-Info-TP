@@ -27,7 +27,7 @@ Et maintenant en langage \texttt{C} :
 \subsection{Exercice 3 : Capture de signaux et redirections (exercice difficile)}
 \textit{Cet exercice permet de capturés des signaux et les redirigés, c’est à dire que lorsque le signal est reçu, on redéfinit le comportement par défaut qu’aurait du avoir le processus. Dans un premier temps, nous allons voir quel est le comportement par défaut des processus lors de la réception d’un signal. Dans un  second temps, nous allons redéfinir le comportement d’un processus à la réception d’un signal.}
 
-Plusieurs signaux permettent de terminer l'exécution d'un porocessus. Afin de pouvoir savoir lesquels nous allons écrire un script. Pour chaque signal X, un processus sera lancé en arrière plan, ici le script de la boucle infinie sera utilisé. Son PID sera retrouvé grace à la variable \mintinline{bash}{$!} afin de lui envoyer le signal X. À l'aide de la commande \mintinline{shell}{ps -p <PID>} nous saurons si le processus à été arrété, ainsi on pourra conclure que le signal X tuje ou pas le processus.
+Plusieurs signaux permettent de terminer l'exécution d'un processus. Afin de pouvoir savoir lesquels nous allons écrire un script. Pour chaque signal X, un processus sera lancé en arrière plan, ici le script de la boucle infinie sera utilisé. Son PID sera retrouvé grace à la variable \mintinline{bash}{$!} afin de lui envoyer le signal X. À l'aide de la commande \mintinline{shell}{ps -p <PID>} nous saurons si le processus à été arrété, ainsi on pourra conclure que le signal X tuje ou pas le processus.
 Voici le script :
 \inputminted[linenos]{bash}{../sources/cpp/TP5-6/ex3-testKillerSignal.sh}
 
@@ -63,15 +63,40 @@ Le \texttt{+} qui suit indique si le processus est en arrière plan.
 \subsection{Exercice 6 : Duplication et recouvrement de processus}
 \textit{Dans cet exercice, nous recouvrons un processus existant, d’abord au travers d’un script shell, puis en appliquant ce concept au sein d’un programme C.}
 \paragraph{1. Manipulation de la commande \mintinline{shell}{exec} sur un shell}
+\begin{itemize}
+  \item La commande \mintinline{shell}{exec} Permet d'executer un programme. ( couplé a \mintinline{bash}{fork} )
+  \item La commande \mintinline{bash}{sleep 3} permet d'attendre 3 secondes.
+  Utiliser dans un terminal, le terminal se fermera apr`s son exécution.
+\end{itemize}
+
 \paragraph{2. Application dans un script shell}
+\begin{minted}
+exec echo "Bonjour";
+exec echo "bonsoir";
+\end{minted}
+À exécution du script ci-dessus uniquement "Bonjour" s'affichera dans le terminal. On peut ainsi constater qu'après l'utilisation de la commande mintinline{shell}{exec}, le programme se termine.
+
 \paragraph{3. Application dans un programme C}
+\textit{Dans cette partie nous verrons comment lancer  des programmes depuis un programme.}
+
+Le programme implémenté ci-dessous permet deux choisir deux tache :
+\beging{itemize}
+\item Si vous entrez \texttt{1} le processus sera remplacer avec le programme \texttt{/bin/hostname}.
+\item Si vous entrez \texttt{2} le processus sera remplacer avec le programme \texttt{/bin/date}.
+\end{itemize}
+
 \inputminted[linenos,firstline=8, lastline=23]{cpp}{../sources/cpp/TP5-6/ex6.c}
 
 \section{Gestion des processus - Suite}
 \subsection{Exercice 7 : Duplication de processus}
 \textit{L’objectif de cet exercice est de comprendre la notion de processus parent et de processus enfant lors de la duplication d’un processus par l’appel à la fonction \mintinline{shell}{fork()}. Nous y revoyons la notion de PID et PPID (ou PID du parent) vus en cours. L’objectif est de mettre en évidence le role de l’appel à l’instruction fork() ainsi que la particularité de son code retour, et d’identifier que lors d’une duplication, le processus nouvellement créé ne reprend pas au début de son code mais poursuit l’exécution du processus parent. On rappelle que \mintinline{shell}{fork()} retourne 0 dans le processus nouvellement créé (fils) et une valeur strictement supérieure à 0 sinon (qui correspond au PID du processus nouvellement créé)}
 
+Dans ce programme nous devons faire en sorte que le programme principale se duplique avec la commande fork() et que nous puissions identifier les enfants et parent en écrivant dans la console son rôle, son PID et le PID père.
+
 \inputminted[linenos,firstline=9, lastline=27]{cpp}{../sources/cpp/TP5-6/ex7-fork1.c}
+
+Dans ce programme nous devons faire en sorte que le programme principale se duplique avec la commande fork(), que l'enfant se duplique à son tour et que chaque processus puisse être identifier comme enfants, parent ou grand-parent en écrivant dans la console son rôle, son PID et le PID père.
+
 \inputminted[linenos,firstline=9, lastline=30]{cpp}{../sources/cpp/TP5-6/ex7-fork2.c}
 
 \subsection{Exercice 8 : Creation et destruction de processus}
@@ -80,9 +105,11 @@ En lançant la commande \mintinline{shell}{ps -aux} on peut observer le statut d
 
 \paragraph{1. Processus zombie}
 Un processus zombie est un processus présent alors que sont processus parent ayant terminé son exécution, il reste présent sur le système, en attente d'être pris en compte par son processus parent..
+Pour créer un processus zombie nous pouvons dans le processus père ometre d'utiliser la fonction \mintinline{cpp}{wait()}.
 
 \paragraph{2. Processus orphelin}
 Un processus orphelin est un processus présent alors que sont processus parent est mort. Le processus orphelin est donc "adopté" par le processus 1, le processus "init"
+Pour créer un processus orphelin nous pouvons dans le processus enfant (\mintinline{cpp}{fork()==0}) executer la commande \mintinline{cpp}{sleep(60)} afin d'endormir le processus 60 secondes et le processus père \mintinline{cpp}{fork!=0} pourrais executer la commande (\mintinline{cpp}{exit(0)}) afin de terminer son execution.
 
 \subsection{Exercice 9 : Evaluation du nombre de processus}
 \textit{L’objectif de cet exercice est de comprendre le résultat de l’appel à l’instruction \mintinline{shell}{fork()} ainsi que la particularité de son code retour, et d’identifier que lors d’une duplication, le processus nouvellement créé ne reprend pas au début de son code mais poursuit l’exécution du processus parent. On rappelle que \mintinline{cpp}{fork()} retourne 0 dans le processus nouvellement créé (fils) et une valeur strictement supérieure à 0 sinon (qui correspond au PID du processus nouvellement créé).}
