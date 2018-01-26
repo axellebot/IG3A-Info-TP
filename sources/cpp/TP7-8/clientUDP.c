@@ -30,7 +30,7 @@ void inverser_buffer(char *bufferAInverser, int taille) {
 
 int main(int argc, const char *argv[]) {
     if (argc < 4) {
-        perror("erreur argument");
+        perror("error argument");
         printf("usage : %s server_ip server_port msg\n", argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -40,9 +40,9 @@ int main(int argc, const char *argv[]) {
     const char *message = argv[3];
 
     // Etape 0 : definition des variables
-    int sock;   // socket en mode non connecte UDP
+    int socketUDP;   // socket en mode non connecte UDP
     struct sockaddr_in serverAddr, rcptAdrr; // carte de visite contenant l'identite du serveur
-    socklen_t clientAddressSize = sizeof(struct sockaddr_in); // Besoin de connaire la taille de la structure de type sockaddr_in
+    socklen_t addressSize = sizeof(struct sockaddr_in); // Besoin de connaire la taille de la structure de type sockaddr_in
     ssize_t nbSend; // stockage du nombre d'octets recus
     ssize_t recvBufferSize;
 
@@ -50,9 +50,9 @@ int main(int argc, const char *argv[]) {
     strcpy(buffer, message);
 
     // Etape 1 : creation de la socket de communication
-    sock = socket(PF_INET, SOCK_DGRAM, 0);
-    if (sock == -1) {
-        perror("erreur socket()");
+    socketUDP = socket(PF_INET, SOCK_DGRAM, 0);
+    if (socketUDP == -1) {
+        perror("error socket()");
         exit(EXIT_FAILURE);
     }
 
@@ -62,26 +62,31 @@ int main(int argc, const char *argv[]) {
     serverAddr.sin_port = htons(atoi(serverPort));// Port du serveur relie à l'application
 
     // Etape 3 : envoi du message au serveur
-    nbSend = sendto(sock, buffer, strlen(buffer), 0, (struct sockaddr *) &serverAddr, clientAddressSize);
+    printf("Sending to UDP server at : %s:%i\n",
+           inet_ntoa(serverAddr.sin_addr),
+           ntohs(serverAddr.sin_port));
+    nbSend = sendto(socketUDP, buffer, strlen(buffer), 0, (struct sockaddr *) &serverAddr, addressSize);
     if (nbSend == -1) {
-        perror("erreur sendto()");
+        perror("error sendto()");
         exit(EXIT_FAILURE);
     }
-    printf("message sent : %s\n",buffer);
 
     //Etape 4 : attente du retour du serveur
-    recvBufferSize = recvfrom(sock, buffer, MAX_BUFFER_SIZE, 0, (struct sockaddr *) &rcptAdrr, &clientAddressSize);
-
+    puts("Waiting reception from an UDP server");
+    recvBufferSize = recvfrom(socketUDP, buffer, MAX_BUFFER_SIZE, 0, (struct sockaddr *) &rcptAdrr, &addressSize);
     if (recvBufferSize == -1) {
-        perror("erreur recvfrom()");
+        perror("error recvfrom()");
         exit(EXIT_FAILURE);
     }
+    printf("Received from UDP server at : %s:%i\n",
+           inet_ntoa(rcptAdrr.sin_addr),
+           ntohs(rcptAdrr.sin_port));
 
     // ajout du caractère de fin de buffer :
     buffer[recvBufferSize] = '\0';
 
     printf("message received : %s \n", buffer);
-    close(sock);
+    close(socketUDP);
 
     exit(EXIT_SUCCESS);
 }

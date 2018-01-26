@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <arpa/inet.h>
 
-#define SERVER_PORT 5000
+#define SERVER_UDP_PORT 5000
 #define MAX_BUFFER_SIZE 1024
 
 // prend un tableau de caracteres en entree et sa taille
@@ -33,11 +33,12 @@ void inverser_buffer(char *bufferAInverser, int taille) {
 
 int main(int argc, const char *argv[]) {
     // Etape 0 : definition des variables
-    int sock;   // socket en mode non connecte UDP
+    int socketUDP;   // socket en mode non connecte UDP
 
-    struct sockaddr_in serverAddress; // pour le stockage de sa propre identite (serveur)
-    struct sockaddr_in clientAddress; // pour le stockage de l'identité du client
-    socklen_t clientAddressSize = sizeof(struct sockaddr_in); // Besoin de connaire la taille de la structure de type sockaddr_in
+    struct sockaddr_in
+            serverAddress, // pour le stockage de sa propre identite (serveur)
+            clientAddress; // pour le stockage de l'identité du client
+    socklen_t addressSize = sizeof(struct sockaddr_in); // Besoin de connaire la taille de la structure de type sockaddr_in
     int binded; // valeur retour pour bind()
     ssize_t recvBufferSize; // valeur retour pour recvFrom()
     ssize_t sentBufferSize; // valeur retour pour send()
@@ -45,9 +46,9 @@ int main(int argc, const char *argv[]) {
     char buffer[MAX_BUFFER_SIZE];  // buffer pour lecture du message
 
     // Etape 1 : creation de la socket de communication
-    sock = socket(PF_INET, SOCK_DGRAM, 0);
-    if (sock == -1) {
-        perror("Erreur création socket");
+    socketUDP = socket(PF_INET, SOCK_DGRAM, 0);
+    if (socketUDP == -1) {
+        perror("error création socket");
         exit(EXIT_FAILURE);
     }
 
@@ -56,12 +57,12 @@ int main(int argc, const char *argv[]) {
     // identité composée d'une association IP-port
     serverAddress.sin_family = AF_INET; // famille d’adresse IPv4
     serverAddress.sin_addr.s_addr = htonl(INADDR_ANY); // n'importe quelle IP
-    serverAddress.sin_port = htons(SERVER_PORT); // Port a associer
+    serverAddress.sin_port = htons(SERVER_UDP_PORT); // Port a associer
 
     // Etape 3 : association de l'adresse avec la socket
-    binded = bind(sock, (struct sockaddr *) &serverAddress, clientAddressSize);
+    binded = bind(socketUDP, (struct sockaddr *) &serverAddress, addressSize);
     if (binded == -1) {
-        perror("erreur 1 bind()");
+        perror("error bind()");
         exit(EXIT_FAILURE);
     }
 
@@ -76,17 +77,27 @@ int main(int argc, const char *argv[]) {
         // message stocké dans buffer (taille max: 1023 octetcs
         // identité de l'émetteur stockée dans cliAddr
 
-        recvBufferSize = recvfrom(sock, buffer, MAX_BUFFER_SIZE, 0, (struct sockaddr *) &clientAddress,
-                                  &clientAddressSize);
+        // on recoit le buffer du client :
+        printf("Waiting reception from a UDP client on : %s:%i\n",
+               inet_ntoa(serverAddress.sin_addr),
+               ntohs(serverAddress.sin_port));
+        recvBufferSize = recvfrom(socketUDP, buffer, MAX_BUFFER_SIZE, 0, (struct sockaddr *) &clientAddress,
+                                  &addressSize);
         if (recvBufferSize == -1) {
-            perror("erreur recvfrom()");
+            perror("error recvfrom()");
             exit(EXIT_FAILURE);
         }
+        printf("Received from UDP client at : %s:%i\n",
+               inet_ntoa(clientAddress.sin_addr),
+               ntohs(clientAddress.sin_port));
 
         // on renvoie le buffer au client :
-        sentBufferSize = sendto(sock, buffer, recvBufferSize, 0, (struct sockaddr *) &clientAddress, clientAddressSize);
+        printf("Sending to UDP client at : %s:%i\n",
+               inet_ntoa(clientAddress.sin_addr),
+               ntohs(clientAddress.sin_port));
+        sentBufferSize = sendto(socketUDP, buffer, recvBufferSize, 0, (struct sockaddr *) &clientAddress, addressSize);
         if (sentBufferSize == -1) {
-            perror("erreur sendto()");
+            perror("error sendto()");
             exit(EXIT_FAILURE);
         }
 
@@ -96,7 +107,7 @@ int main(int argc, const char *argv[]) {
         buffer[recvBufferSize] = '\0';
 
         // affichage du buffer 
-        printf("message send from %s:%i : %s \n",
+        printf("message received from %s:%i : %s \n",
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port),
                buffer);
