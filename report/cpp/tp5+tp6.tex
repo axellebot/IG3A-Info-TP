@@ -11,7 +11,7 @@
 La commande \mintinline{shell}{kill -l} nous permet de lister l'ensemble des signaux. Pour pouvoir les compter nous éxecutons la commande \mintinline{shell}{kill -l | wc -w} qui compte 31 signaux sur ma machine. On peut envoyer un signal à un processus dont on connait son \texttt{PID} à l'aide de la commande \mintinline{shell}{kill -<SIG_NAME> <PID>}. Par exempler nous pouvons tuer le processus 1285 à l'aide de la commande \mintinline{shell}{kill -SIGKILL 1285}.
 
 Nous écrivons un programme permettant de boucler à l'infinie à l'aide d'une boucle \mintinline{cpp}{while(1)}. Le programme était en \texttt{BASH} je l'ai implémenté en C :
-\inputminted[linenos]{cpp}{../sources/cpp/TP5-6/ex1.c}
+\inputminted[linenos,firstline=8,lastline=14]{cpp}{../sources/cpp/TP5-6/ex1.c}
 
 En éxecutans ce programme dans et en récupérant son PID, nous pouvons dans un terminal, en utilisant la commande \mintinline{shell}{kill} envoyer un signal SIGKILL à ce processus et ainsi mettre fin au programme en le tuant. Si j'envoie le signal à un processus dont je ne suis pas le propriétaire ( appartenant à autre utilisateur ou au root), l'erreur "Operation not authorized" s'affiche. Je peut le vérifier en éxécutant la commande sur un processus root et en vérificant son éxécution dans la liste des processus à l'aide de la commande \mintinline{shell}{top}.
 
@@ -22,7 +22,7 @@ J'ai écrit un script shell comportant une boucle infinie affichant un "." chqau
 Le script et le suivant :
 \inputminted{bash}{../sources/cpp/TP5-6/ex2-boucle.sh}
 Et maintenant en langage \texttt{C} :
-\inputminted[linenos,firstline=5, lastline=27]{cpp}{../sources/cpp/TP5-6/ex2.c}
+\inputminted[linenos,firstline=10,lastline=32]{cpp}{../sources/cpp/TP5-6/ex2.c}
 
 \subsection{Exercice 3 : Capture de signaux et redirections (exercice difficile)}
 \textit{Cet exercice permet de capturés des signaux et les redirigés, c’est à dire que lorsque le signal est reçu, on redéfinit le comportement par défaut qu’aurait du avoir le processus. Dans un premier temps, nous allons voir quel est le comportement par défaut des processus lors de la réception d’un signal. Dans un  second temps, nous allons redéfinir le comportement d’un processus à la réception d’un signal.}
@@ -36,7 +36,7 @@ Voici le script :
 Nous avons besoin dans un premier temps du code ayant une boucle infinie et capturant le signal SIGINT (CTRL+C). Le script est ci-dessous :
 \inputminted{bash}{../sources/cpp/TP5-6/ex4-captureShell.sh}
 Et maintenant en langage \texttt{C} :
-\inputminted[linenos,firstline=5, lastline=23]{cpp}{../sources/cpp/TP5-6/ex4.c}
+\inputminted[linenos,firstline=10, lastline=28]{cpp}{../sources/cpp/TP5-6/ex4.c}
 Nous pouvons maintenant lancer 3 processus de notre programme C afin de les tuers avec la commande \mintinline{shell}{killall -SIGINT ex4}.
 On essaie aussi de les mettre en pause et des les relancer grace aux commandes
 \begin{itemize}
@@ -60,13 +60,19 @@ Il affiche le status du processus :
 \end{itemize}
 Le \texttt{+} qui suit indique si le processus est en arrière plan.
 
-%\subsection{Exercice 6 : Duplication et recouvrement de processus}
-%\textit{Dans cet exercice, nous recouvrons un processus existant, d’abord au travers d’un script shell, puis en appliquant ce concept au sein d’un programme C.}
+\subsection{Exercice 6 : Duplication et recouvrement de processus}
+\textit{Dans cet exercice, nous recouvrons un processus existant, d’abord au travers d’un script shell, puis en appliquant ce concept au sein d’un programme C.}
+\paragraph{1. Manipulation de la commande \mintinline{shell}{exec} sur un shell}
+\paragraph{2. Application dans un script shell}
+\paragraph{3. Application dans un programme C}
+\inputminted[linenos,firstline=8, lastline=23]{cpp}{../sources/cpp/TP5-6/ex6.c}
 
 \section{Gestion des processus - Suite}
-
 \subsection{Exercice 7 : Duplication de processus}
 \textit{L’objectif de cet exercice est de comprendre la notion de processus parent et de processus enfant lors de la duplication d’un processus par l’appel à la fonction \mintinline{shell}{fork()}. Nous y revoyons la notion de PID et PPID (ou PID du parent) vus en cours. L’objectif est de mettre en évidence le role de l’appel à l’instruction fork() ainsi que la particularité de son code retour, et d’identifier que lors d’une duplication, le processus nouvellement créé ne reprend pas au début de son code mais poursuit l’exécution du processus parent. On rappelle que \mintinline{shell}{fork()} retourne 0 dans le processus nouvellement créé (fils) et une valeur strictement supérieure à 0 sinon (qui correspond au PID du processus nouvellement créé)}
+
+\inputminted[linenos,firstline=9, lastline=27]{cpp}{../sources/cpp/TP5-6/ex7-fork1.c}
+\inputminted[linenos,firstline=9, lastline=30]{cpp}{../sources/cpp/TP5-6/ex7-fork2.c}
 
 \subsection{Exercice 8 : Creation et destruction de processus}
 \textit{Cet exercice rappelle les notions de processus zombie et processus orphelin, et définit les modalités d’apparition de ces deux types particuliers de processus.}
@@ -82,7 +88,7 @@ Un processus orphelin est un processus présent alors que sont processus parent 
 \textit{L’objectif de cet exercice est de comprendre le résultat de l’appel à l’instruction \mintinline{shell}{fork()} ainsi que la particularité de son code retour, et d’identifier que lors d’une duplication, le processus nouvellement créé ne reprend pas au début de son code mais poursuit l’exécution du processus parent. On rappelle que \mintinline{cpp}{fork()} retourne 0 dans le processus nouvellement créé (fils) et une valeur strictement supérieure à 0 sinon (qui correspond au PID du processus nouvellement créé).}
 
 \paragraph{1. premier programme :}
-\inputminted[linenos,firstline=5, lastline=9]{cpp}{../sources/cpp/TP5-6/ex9-programme1.c}
+\inputminted[linenos,firstline=7, lastline=11]{cpp}{../sources/cpp/TP5-6/ex9-programme1.c}
 Nous pouvons expliquer le code ci-dessus par le schema suivant :
 \begin{figure}[H]
 \centering
@@ -92,7 +98,7 @@ Nous pouvons expliquer le code ci-dessus par le schema suivant :
 \end{figure}
 
 \paragraph{2. deuxième programme :}
-\inputminted[linenos,firstline=5, lastline=9]{cpp}{../sources/cpp/TP5-6/ex9-programme2.c}
+\inputminted[linenos,firstline=7, lastline=11]{cpp}{../sources/cpp/TP5-6/ex9-programme2.c}
 Nous pouvons expliquer le code ci-dessus par le schema suivant :
 \begin{figure}[H]
 \centering
@@ -102,7 +108,7 @@ Nous pouvons expliquer le code ci-dessus par le schema suivant :
 \end{figure}
 
 \paragraph{3. troisieme programme :}
-\inputminted[linenos,firstline=5, lastline=13]{cpp}{../sources/cpp/TP5-6/ex9-programme3.c}
+\inputminted[linenos,firstline=7, lastline=15]{cpp}{../sources/cpp/TP5-6/ex9-programme3.c}
 Nous pouvons expliquer le code ci-dessus par le schema suivant :
 \begin{figure}[H]
 \centering
@@ -117,7 +123,7 @@ Nous pouvons expliquer le code ci-dessus par le schema suivant :
 En éxécutant quelques programmes exemple ci-dessous nous pouvons déterminer le fonctionnement des conjonctions et des disjonctions.
 
 \paragraph{1. premier programme :}
-\inputminted[linenos,firstline=5, lastline=8]{cpp}{../sources/cpp/TP5-6/ex10-conjonction1.c}
+\inputminted[linenos,firstline=8, lastline=11]{cpp}{../sources/cpp/TP5-6/ex10-conjonction1.c}
 \begin{enumerate}
 \item Le processus père P0 : éxécute le premer \mintinline{cpp}{fork()} créant le processus P1 et retourne une valeur non-nulle et s'arrete.
 \item Le processus fils P1 : la valeur du premier \mintinline{cpp}{fork()} est égale à 0 et évalue \mintinline{cpp}{&&}
@@ -135,7 +141,7 @@ Nous pouvons expliquer le code ci-dessus par le schema suivant :
 \end{figure}
 
 \paragraph{2. deuxième programme :}
-\inputminted[linenos,firstline=5, lastline=8]{cpp}{../sources/cpp/TP5-6/ex10-conjonction2.c}
+\inputminted[linenos,firstline=8, lastline=11]{cpp}{../sources/cpp/TP5-6/ex10-conjonction2.c}
 \begin{enumerate}
 \item Le processus père P0 éxécute le premier \mintinline{cpp}{fork()} créant le processus P1 et retourne une valeur non-nulle.
 \item Le processus fils P1 la valeur du premier \mintinline{cpp}{fork()} est égale à 0 et court-circuite \mintinline{cpp}{&&} et s'arrete.
@@ -158,10 +164,10 @@ Nous pouvons expliquer le code ci-dessus par le schema suivant :
 Lorsque le processus fils se termine avant le processus père, il devient un zombie. Pour permettre à un processus fils en état zombie de disparaître complètement, on utilise la \mintinline{cpp}{wait()}.
 
 \paragraph{1. premier programme :}
-\inputminted[linenos,firstline=5, lastline=11]{cpp}{../sources/cpp/TP5-6/ex11-programme1.c}
+\inputminted[linenos,firstline=8, lastline=14]{cpp}{../sources/cpp/TP5-6/ex11-programme1.c}
 
 \paragraph{2. deuxième programme :}
-\inputminted[linenos,firstline=5, lastline=14]{cpp}{../sources/cpp/TP5-6/ex11-programme2.c}
+\inputminted[linenos,firstline=8, lastline=17]{cpp}{../sources/cpp/TP5-6/ex11-programme2.c}
 
 \paragraph{3. troisieme programme :}
-\inputminted[linenos,firstline=5, lastline=19]{cpp}{../sources/cpp/TP5-6/ex11-programme3.c}
+\inputminted[linenos,firstline=8, lastline=22]{cpp}{../sources/cpp/TP5-6/ex11-programme3.c}
