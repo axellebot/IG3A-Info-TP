@@ -70,7 +70,7 @@ Le \texttt{+} qui suit indique si le processus est en arrière plan.
 \end{itemize}
 
 \paragraph{2. Application dans un script shell}
-\begin{minted}
+\begin{minted}{bash}
 exec echo "Bonjour";
 exec echo "bonsoir";
 \end{minted}
@@ -80,7 +80,7 @@ exec echo "bonsoir";
 \textit{Dans cette partie nous verrons comment lancer  des programmes depuis un programme.}
 
 Le programme implémenté ci-dessous permet deux choisir deux tache :
-\beging{itemize}
+\begin{itemize}
 \item Si vous entrez \texttt{1} le processus sera remplacer avec le programme \texttt{/bin/hostname}.
 \item Si vous entrez \texttt{2} le processus sera remplacer avec le programme \texttt{/bin/date}.
 \end{itemize}
