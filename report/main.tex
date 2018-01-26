@@ -57,7 +57,7 @@
 \begingroup
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture,overlay]
-\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{./Pictures/background}};
+\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{./Pictures/background.png}};
 \draw (current page.center) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering Informatique\\[15pt] % Book title
 {\Large Travaux Pratiques}\\[20pt] % Subtitle
 {\huge Axel LE BOT}}}; % Author name
@@ -78,6 +78,21 @@
 \noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information
 
 %----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+\pagestyle{empty} % No headers
+
+\chapterimage{./Pictures/cover-start}
+
+\chapter*{Introduction}\addcontentsline{toc}{part}{\texorpdfstring{\protect\@myparttocformat{Introduction}}{Introduction}}
+
+\lipsum[1-3]
+
+\cleardoublepage % Forces the table of contents chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
+
+%----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
@@ -89,7 +104,7 @@
 
 \tableofcontents % Print the table of contents itself
 
-\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+\cleardoublepage % Forces the table of content to start on an odd page so it's on the right
 
 \pagestyle{fancy} % Print headers again
 
@@ -127,6 +142,22 @@
 \input{./cpp/tp7+tp8}
 \input{./cpp/tp9+tp10}
 %\input{./cpp/tp11+tp12}
+
+%----------------------------------------------------------------------------------------
+%	CONCLUSION
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage % Forces the conclusion chapter to start on an odd page so it's on the right
+
+\pagestyle{empty}
+
+\chapterimage{./Pictures/cover-end}
+
+\chapter*{Conclusion}\addcontentsline{toc}{part}{\texorpdfstring{\protect\@myparttocformat{Conclusion}}{Conclusion}}
+
+\lipsum[1-3]
+
+\pagestyle{fancy}
 
 %----------------------------------------------------------------------------------------
 
