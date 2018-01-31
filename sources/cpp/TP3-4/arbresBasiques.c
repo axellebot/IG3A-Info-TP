@@ -6,29 +6,7 @@
 #include <stdlib.h>
 #include "arbresBasiques.h"
 
-struct noeud *nouveauNoeud(int val) {
-    struct noeud *noeudRetour;
-    // reservation d'un espace memoire dans le tas
-    noeudRetour = (struct noeud *) malloc(sizeof(struct noeud));
-
-    // affectation des valeurs si l'allocation memoire reussit
-    if (noeudRetour != NULL) {
-        noeudRetour->valeur = val;
-        noeudRetour->filsGauche = NULL;
-        noeudRetour->filsDroit = NULL;
-    } else {
-        printf("erreur : plus de memoire (gros probleme!)\n");
-        exit(1);
-    }
-    //renvoi du pointeur vers le noeud nouvellement cree
-    return noeudRetour;
-}
-
-
 struct noeud *unArbrePredefini() {
-    // action : definit en memoire l'arbre de l'enonce
-    // result : un pointeur vers la racine de cet arbre
-    // fonction a ne pas modifier, ne fonctionnera que si nouveauNoeud est faite
     struct noeud *Racine = NULL;
     Racine = nouveauNoeud(17);
     struct noeud *NewNoeud;
@@ -49,6 +27,24 @@ struct noeud *unArbrePredefini() {
     return Racine;
 }
 
+struct noeud *nouveauNoeud(int val) {
+    struct noeud *noeudRetour;
+    // reservation d'un espace memoire dans le tas
+    noeudRetour = (struct noeud *) malloc(sizeof(struct noeud));
+
+    // affectation des valeurs si l'allocation memoire reussit
+    if (noeudRetour != NULL) {
+        noeudRetour->valeur = val;
+        noeudRetour->filsGauche = NULL;
+        noeudRetour->filsDroit = NULL;
+    } else {
+        perror("error : not enough memory");
+        exit(1);
+    }
+    //renvoi le pointeur vers le noeud crée
+    return noeudRetour;
+}
+
 int afficheArbre(struct noeud *noeudPointe) {
     // @action : affiche l'arbre pointe par noeudPointe
     // a ne pas modifier sauf si vous savez ce que vous faites
@@ -61,7 +57,7 @@ int afficheArbre(struct noeud *noeudPointe) {
         printf("filsGauche : %4i  - ", noeudPointe->filsGauche->valeur);
 
     if (noeudPointe->filsDroit == NULL)
-        printf("filsDroit : vide\n");
+        puts("filsDroit : vide");
     else
         printf("filsDroit : %4i\n", noeudPointe->filsDroit->valeur);
 
@@ -83,8 +79,6 @@ int estFeuille(struct noeud *noeudPointe) {
             noeudPointe->filsDroit == NULL) ? 1 : 0;
 }
 
-
-//renvoie 1 si la valeur val est contenue dans l'arbre, 0 sinon
 int rechercheValeur(struct noeud *noeudPointe, int val) {
     struct noeud *courant = noeudPointe;
     int trouve = 0;

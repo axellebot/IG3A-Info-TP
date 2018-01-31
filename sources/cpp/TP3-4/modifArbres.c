@@ -19,46 +19,30 @@ struct noeud *ajouterValeurABR(struct noeud *noeud, int val) {
 }
 
 struct noeud *supprimerValeurABR(struct noeud *racine, int val) {
+    // vérifier si que l'arbre n'est pas vide
+    if (estVide(racine)){
+        printf("Empty tree\n");
+        return racine;
+    }
+
+    // vérifier que la valeur à supprimer existe
+    if (!rechercheValeurRec(racine, val)) {
+        printf("%d Not Found\n", val);
+        return racine;
+    }
+
     struct noeud *courant; // pointe sur le noeud a l'etude
-    struct noeud *ainverser; // pointe sur le noeud a dont la valeur sera a inverser
-    struct noeud *precedent; // pointe vers noeud precedent celui a supprimer
-    struct noeud *ptrRetour; // pour retourner l'adresse de la racine de l'arbre
-    int temp;
-    char direction;  // a chaque fois que l'on avance, permet de savoir si on venait de la droite ou de la gauche
+    struct noeud *ainverser; // pointe sur le noeud dont la valeur sera a inverser
+    struct noeud *precedent; // pointe vers noeud précédent, celui a supprimer
+
+    int _val; // permet de stocker temporaire la valeur d'un noeud
+    char direction;  // permet de savoir si on venait de la droite ou de la gauche à chaque iteration de la boucle
 
     // initialisation de parcours
     precedent = NULL;
-    courant = racine;
+    courant = rechercheNoeudRec(racine, val);
 
-    // d'abord on repere si la valeur a supprimer existe
-    // on avance courant jusqu'a ce qu'il pointe sur le neoud contenant la valeur a supprimer
-    while (courant != NULL && courant->valeur != val) {
-        precedent = courant;
-        if (courant->valeur <= val) {
-            direction = 'g';
-            courant = courant->filsDroit;
-        } else {
-            courant = courant->filsGauche;
-            direction = 'd';
-        }
-    }
-    // si elle n'existe pas :
-    if (courant == NULL) {
-        printf("valeur inexistante\n");
-        return racine;
-    }
-
-    // cas particulier : la racine doit etre supprimee et n'a pas de fils
-    // l'arbre deviendra vide apres suppression
-
-    if (racine->valeur == val && estFeuille(racine)) {
-        free(racine);
-        racine = NULL;
-        return racine;
-    }
-
-    // algorithm general
-    // tant que le noeud a supprimer a des fils, on avance selon l'algorithme
+    // tant que le noeud a supprimer n'est pas une feuille (pas de fils), on continue la boucle
     while (!estFeuille(courant)) {
 
         // si on peut aller a gauche : on avance une fois gauche puis tout a droite avec un autre pointeur, et on inverse les valeurs
@@ -74,48 +58,46 @@ struct noeud *supprimerValeurABR(struct noeud *racine, int val) {
                 precedent = ainverser;
                 ainverser = ainverser->filsDroit;
             }
-            // on inverse les valeurs
 
-            temp = ainverser->valeur;
+            // on inverse les valeurs
+            _val = ainverser->valeur;
             ainverser->valeur = courant->valeur;
-            courant->valeur = temp;
+            courant->valeur = _val;
 
             // on recommencera la boucle a partir du noeud contenant la valeur a supprimer
             courant = ainverser;
-        } else
-            // on ne pouvait pas aller a gauche. On doit pouvoir aller a droite
-        {           // on avance une fois a droite
+        } else {  // on ne peut pas aller a gauche on va a droite
             direction = 'g';
             ainverser = courant->filsDroit;
             precedent = courant;
+
             // on avance tout a gauche
             while (ainverser->filsGauche != NULL) {
                 direction = 'd';
                 precedent = ainverser;
                 ainverser = ainverser->filsGauche;
             }
+
             // on inverse les valeurs
-
-            temp = ainverser->valeur;
+            _val = ainverser->valeur;
             ainverser->valeur = courant->valeur;
-            courant->valeur = temp;
+            courant->valeur = _val;
 
-            // on recommencera la boucle a partir du noeud contenant la valeur a supprimer
             courant = ainverser;
         }
+        // on recommencera la boucle a partir du noeud contenant la valeur à supprimer
     }
 
-    // on est au bout. Le noeud a supprimer est une feuille, et precedent doit pointer vers le noeud parent du noeud a supprimer
-    if (direction == 'g') {
-        courant = NULL;
-        free(courant);
-        printf("Precedent nul : %i\n", precedent == NULL);
-        precedent->filsDroit = NULL;
-    } else {
-        courant = NULL;
-        free(courant);
-        printf("Precedent nul : %i\n", precedent == NULL);
-        precedent->filsGauche = NULL;
+    // Le noeud a supprimer est une feuille, et precedent doit pointer vers le noeud parent du noeud a supprimer
+    courant = NULL;
+    free(courant);
+    printf("Precedent NULL ? : %i\n", precedent == NULL);
+    if (precedent) {
+        if (direction == 'g') {
+            precedent->filsDroit = NULL;
+        } else {
+            precedent->filsGauche = NULL;
+        }
     }
 
     // on retourne la racine

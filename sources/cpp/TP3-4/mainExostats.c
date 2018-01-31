@@ -19,7 +19,7 @@ int main() {
     racine = unArbrePredefini();
     i = afficheArbre(racine);
     if (i == 0)
-        printf("Arbre vide\n");
+        puts("Arbre vide");
 
     for (i = 0; i < 10000000; i++) {
         j = rand();
@@ -31,7 +31,7 @@ int main() {
     for (i = 0; i < 500000; i++) {
         j = rand();
         rechercheValeur(racine, j);
-        printf("%i est dans larbre ? %i\n", j, rechercheValeur(racine, j));
+        printf("%i est dans l'arbre ? %i\n", j, rechercheValeur(racine, j));
     }
 
 }

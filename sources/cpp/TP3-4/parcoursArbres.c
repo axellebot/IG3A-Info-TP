@@ -6,9 +6,6 @@
 #include "parcoursArbres.h"
 
 void parcoursProfondeur(struct noeud *racine) {
-    // sinon, on affiche son sous-arbre gauche, puis la valeur du noeud
-    // puis son sous-arbre droit
-    // si le noeud racine est NULL, on ne fait rien
     if (!estVide(racine)) {
         if (racine->filsGauche != NULL) {
             parcoursProfondeur(racine->filsGauche);

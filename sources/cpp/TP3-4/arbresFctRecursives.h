@@ -19,4 +19,8 @@ int hauteur(struct noeud *noeudCourant);
 
 void detruireArbre(struct noeud *noeudRacine);
 
+int rechercheValeurRec(struct noeud *noeudCourant, int val);
+
+struct noeud *rechercheNoeudRec(struct noeud *noeudCourant, int val);
+
 #endif

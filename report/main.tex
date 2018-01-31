@@ -44,11 +44,11 @@
 
 \documentclass[12pt,a4paper]{book} % Default font size and left-justified equations
 
-%----------------------------------------------------------------------------------------
-
 \input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
 
 \begin{document}
+
+%----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -59,7 +59,7 @@
 \begin{tikzpicture}[remember picture,overlay]
 \node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{./Pictures/background.png}};
 \draw (current page.center) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering Informatique\\[15pt] % Book title
-{\Large Compte-rendu de Travaux Pratiques}\\[20pt] % Subtitle
+{\Large Compte Rendu de Travaux Pratiques}\\[20pt] % Subtitle
 {\huge Axel LE BOT}}}; % Author name
 \end{tikzpicture}
 \vfill
@@ -80,6 +80,7 @@
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
+
 \pagestyle{empty} % No headers
 
 \chapterimage{./Pictures/cover-start}

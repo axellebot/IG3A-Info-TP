@@ -6,47 +6,25 @@
 #include "arbresFctRecursives.h"
 
 int max(int a, int b) {
-    // params : a , b deux entiers
-    // return : la valeur maximale entre a et b
-    // fonction a ne pas modifier, a utiliser pour hauteur()
-    if (a > b) return a;
-    return b;
+    return a > b ? a : b;
 }
 
 int nbNoeuds(struct noeud *noeudCourant) {
-    int nb;
-    if (estVide(noeudCourant)) {
-        nb = 0;
-    } else {
-        nb = 1 + nbNoeuds(noeudCourant->filsGauche) + nbNoeuds(noeudCourant->filsDroit);
-    }
-
-    return nb;
+    return estVide(noeudCourant) ? 0 : 1 +
+                                       nbNoeuds(noeudCourant->filsGauche) +
+                                       nbNoeuds(noeudCourant->filsDroit);
 }
 
 int sommeValArbres(struct noeud *noeudCourant) {
-    int somme;
-
-    if (estVide(noeudCourant)) {
-        somme = 0;
-    } else {
-        somme = noeudCourant->valeur + sommeValArbres(noeudCourant->filsGauche) +
-                sommeValArbres(noeudCourant->filsDroit);
-    }
-
-    return somme;
+    return estVide(noeudCourant) ? 0 : noeudCourant->valeur +
+                                       sommeValArbres(noeudCourant->filsGauche) +
+                                       sommeValArbres(noeudCourant->filsDroit);
 }
 
 int hauteur(struct noeud *noeudCourant) {
-    int h;
-
-    if (estVide(noeudCourant)) {
-        h = 0;
-    } else {
-        h = 1 + max(hauteur(noeudCourant->filsGauche), hauteur(noeudCourant->filsDroit));
-    }
-
-    return h;
+    return estVide(noeudCourant) ? 0 : 1 +
+                                       max(hauteur(noeudCourant->filsGauche),
+                                           hauteur(noeudCourant->filsDroit));
 }
 
 void detruireArbre(struct noeud *noeudRacine) {
@@ -55,4 +33,25 @@ void detruireArbre(struct noeud *noeudRacine) {
         detruireArbre(noeudRacine->filsDroit);
         free(noeudRacine);
     }
+}
+
+int rechercheValeurRec(struct noeud *noeudCourant, int val) {
+    return !estVide(noeudCourant) && (noeudCourant->valeur == val ||
+                                      rechercheValeur(noeudCourant->filsGauche, val) ||
+                                      rechercheValeur(noeudCourant->filsDroit, val));
+}
+
+struct noeud *rechercheNoeudRec(struct noeud *noeudCourant, int val) {
+    if (rechercheValeurRec(noeudCourant, val)) {
+        if (noeudCourant->valeur == val) {
+            return noeudCourant;
+        } else {
+            struct noeud *noeudTrouve = rechercheNoeudRec(noeudCourant->filsGauche, val);
+            if (noeudTrouve == NULL) {
+                noeudTrouve = rechercheNoeudRec(noeudCourant->filsDroit, val);
+            }
+            return noeudTrouve;
+        }
+    }
+    return NULL;
 }

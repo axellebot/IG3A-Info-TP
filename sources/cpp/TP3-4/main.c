@@ -29,39 +29,38 @@ void exercice2() {
     struct noeud *racine;
     // recuperation de l'arbre predefini
     racine = unArbrePredefini();
-    printf("affichage d'un arbre : \n");
+    puts("Affichage d'un arbre : \n");
     i = afficheArbre(racine);
     if (i == 0)
-        printf("arbre vide\n");
+        puts("Arbre vide");
 
     // test de la fonction nbNoeuds
     i = nbNoeuds(racine);
-    printf("le nombre de ses noeuds est %i\n", i);
+    printf("Le nombre de noeuds cet arbre est de %i\n", i);
 
     // test de la fonction sommeValArbres
     i = sommeValArbres(racine);
-    printf("la somme de ses valeurs est %i\n", i);
+    printf("La somme de ses noeuds est de %i\n", i);
 
     // test de la fonction hauteur
     i = hauteur(racine);
-    printf("sa hauteur est %i\n", i);
+    printf("La hauteur de l'arbre est de %i noeud(s)\n", i);
 }
 
 void exercice3() {
     displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 3");
+    srand(time(NULL));
+
     int i, j;
     struct noeud *racine;
-    racine = NULL;
-    srand(time(NULL));
-    // recuperation de l'arbre predefini
-    racine = unArbrePredefini();
+    racine = unArbrePredefini(); // recuperation de l'arbre predefini
     i = afficheArbre(racine);
     if (i == 0)
-        printf(" arbre vide\n");
+        puts("Arbre vide");
 
     for (i = 0; i < 5; i++) {
         j = rand() % 100;
-        printf("ajout de la valeur %i\n", j);
+        printf("Ajout de la valeur %i\n", j);
         racine = ajouterValeurABR(racine, j);
     }
     afficheArbre(racine);
@@ -70,13 +69,14 @@ void exercice3() {
         j = rand() % 100;
 
         rechercheValeur(racine, j);
-        printf("% dans larbre? %i\n", j, rechercheValeur(racine, j));
+        printf("%d est dans l'arbre ? %i\n", j, rechercheValeur(racine, j));
     }
 
-    printf("entrez une valeur a supprimer ");
-    scanf("%d", &i);
+    printf("Entrez une valeur a supprimer : ");
+    scanf("%d", &i);puts("");
+
     supprimerValeurABR(racine, i);
-    printf("arbre apres suppression ");
+    puts("Arbre après suppression :");
     afficheArbre(racine);
 }
 
@@ -84,13 +84,12 @@ void exercice4() {
     displayHeader(HEADER_LEVEL_EXERCICE, "Exercice 4");
     int i, j;
     struct noeud *racine;
-    racine = NULL;
 
     // recuperation de l'arbre predefini
     racine = unArbrePredefini();
 
     // affichage de l'arbre en format classique
-    printf("affichage de l'arbre :\n");
+    puts("Affichage de l'arbre :");
     afficheArbre(racine);
 
     // affichage du parcours en profondeur
