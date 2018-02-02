@@ -1,5 +1,5 @@
 //
-// Created by axel on 20/12/17.
+// Created by Axel LE BOT on 20/12/17.
 //
 
 #ifndef TP_CPP_GUERRIER_H
@@ -7,7 +7,9 @@
 
 #include "Personne.h"
 
-class Guerrier : public virtual Personne{
+using namespace std;
+
+class Guerrier : public virtual Personne {
 protected:
     int pointsAttaque;
 public :
@@ -15,10 +17,9 @@ public :
 
     Guerrier(string nom, int pointsVie, int pointsDefense, int pointAttaque);
 
-    virtual ~Guerrier();
+    ~Guerrier();
 
-    int attaquePhysique();
+    int attaque() override;
 };
-
 
 #endif //TP_CPP_GUERRIER_H

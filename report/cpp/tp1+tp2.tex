@@ -2,27 +2,134 @@
 \chapter{TP1+TP2 : Tableaux, matrices et Fonctions recursives}
 
 \section{Exercice sur des tableaux}
+\textit{Dans cette partie on verra la différence de complexités de manipulation de tableau entre les tableaux qui sont triés et ceux qui sont non triés.}
 
 \subsection{Fonction sur les tableaux non triés}
 
-\subsubsection{Exercice 1 : Algorithmes de parcours classiaues sur tableau non triés}
-Quelques copier coller ont suffit.
-Les tests ont bien été éffectué.
+\subsubsection{Exercice 1 : Algorithmes de parcours classiques sur tableau non triés}
+\textit{Dans cet exercice, nous nous intéressons à des algorithmes de parcours classiques sur les tableaux non triés. Nous allons définir des fonctions de parcours, et organiser le code en plusieurs fichiers. Découper le code en plusieurs fichiers permet non seulement une meilleure lecture, mais améliore la vitesse de compilation.}
+\\\\
+J'ai écrit une fonction \mintinline{cpp}{sommeElementsTab()} qui prend en paramètres un tableau d’entiers tab et sa taille taille, et renvoie la somme des éléments contenus dans le tableau.
+% sommeElementsTab
+\inputminted[linenos,firstline=7,lastline=14]{cpp}{../sources/cpp/TP1-2/manipTableauxNonTries.c}
+
+J'ai écrit une fonction \mintinline{cpp}{moyenneValeursTab()} qui prend en paramètres un tableau d’entiers tab et sa taille taille, et renvoie la moyenne des valeurs contenues dans le tableau.
+% moyenneValeursTab
+\inputminted[linenos,firstline=16,lastline=18]{cpp}{../sources/cpp/TP1-2/manipTableauxNonTries.c}
+
+J'ai écrit une fonction \mintinline{cpp}{valeurContenueDansTabNonTrie()} qui prend en paramètres un tableau d’entiers tab et sa taille taille, ainsi qu’une valeur val, et renvoie 1 si le tableau contient au moins une occurence de la valeur val, et 0 sinon.
+% valeurContenueDansTabNonTrie
+\inputminted[linenos,firstline=20,lastline=28]{cpp}{../sources/cpp/TP1-2/manipTableauxNonTries.c}
+
+Pour finir cet exercice, j'ai écrit une fonction \mintinline{cpp}{nbOccurencesValeurDansTabNonTrie()} qui prend en paramètres un tableau d’entierstab et sa taille taille, ainsi qu’une valeur val, et renvoie le nombre de fois que la valeur val est contenue dans le tableau.
+% nbOccurencesValeurDansTabNonTrie
+\inputminted[linenos,firstline=30,lastline=37]{cpp}{../sources/cpp/TP1-2/manipTableauxNonTries.c}
 
 \subsubsection{Exercice 2 : Ajout et suppression d'éléments tableaux non triés}
+\textit{Dans cet exercice, nous nous intéressons aux algorithmes modifiant le nombre d’éléments d’un tableau non triés, mais dont l’espace mémoire ne peut varier.}
+\\\\
+Nous implémenterons ici les fonctions pouvant Être utiles pour modifier des tableaux non triés.\\
+
+J'ai écrit une fonction \mintinline{cpp}{ajoutValeurTabNonTrie()} qui prend en paramètres un tableau d’entier tab, sa taille maximum tailleMax, le nombre réel d’éléments qu’il contient taille, et une valeur à ajouter val. Cette fonction essaye d’ajouter \textbf{val} au tableau tab (par exemple à la fin du tableau), et retourne 1 si l’ajout a pu être correctement réalisé, et 0 sinon.
+% ajoutValeurTabNonTrie
+\inputminted[linenos,firstline=7,lastline=13]{cpp}{../sources/cpp/TP1-2/modifTableauxNonTries.c}
+
+J'ai écrit une fonction \mintinline{cpp}{supprimeValeurTabNonTrie()} qui prend en paramètres un tableau d’entier tab, le nombre réel d’éléments qu’il contient taille, et une valeur à supprimer val. Cette fonction essaye de supprimer la première occurence de val rencontrée dans le tableau tab, et retourne 1 si la suppression a pu être correctement réalisée (le tableau contenait cette valeur), et 0 sinon. Pour supprimer une telle valeur dans un tableau non trié, une astuce consiste à chercher l’indice de la première cellule contenant la valeur à supprimer, à inverser cette valeur avec la valeur de la dernière cellule, et considérer que la taille du tableau sera diminuée de 1. L’inversion des valeurs de deux cellules n’a pas d’incidence ici puisque le tableau n’est pas censé être trié.
+% supprimeValeurTabNonTrie
+\inputminted[linenos,firstline=15,lastline=27]{cpp}{../sources/cpp/TP1-2/modifTableauxNonTries.c}
+
+J'ai écrit une fonction \mintinline{cpp}{supprimeToutesLesValeursTabNonTrie()} qui prend en paramètres un tableau d’entier tab, le nombre réel d’éléments qu’il contient taille, et une valeur à supprimer val. Cette fonction essaye de supprimer toutes les occurences de val rencontrée dans le tableau tab, et retourne le nombre d’éléments qui ont été supprimés et 0 sinon.
+% supprimeToutesLesValeursTabNonTrie
+\inputminted[linenos,firstline=29,lastline=35]{cpp}{../sources/cpp/TP1-2/modifTableauxNonTries.c}
 
 \subsection{Algorithmes de tri de tableaux}
-
 \subsubsection{Exercice 3 : Trier des tableaux aléatoires}
+\textit{Dans cet exercice, nous allons écrire en C deux fonctions de tri de tableau, à partir des algorithmes de ces méthodes de tri. Dans cet exercice, nous allons nous baser sur les travaux réalisés dans les exercices précédents, en ajoutant de nouvelles fonctions dans un nouveau fichier, de la même façon que nous l’avons fait dans l’exercice 2}
+\\\\
+Nous avons défini les fonctions précédentes pour le cas d’un tableau aléatoire, non trié.\\
+Il existe plusieurs algorithmes permettant de trier un tableau, ici nous allons utiliser deux de ces algorithmes et les implémenter afin de l'utiliser sur nos tableaux non triés.
+
+J'ai écrit une fonction \mintinline{cpp}{triABulle()} qui prend en paramètre un tableau d’entiers et sa taille (effective), et trie les éléments du tableau selon l’algorithme de tri tri à bulle. Le principe du tri à bulles est de comparer deux valeurs adjacentes et d'inverser leur position si elles sont mal placées.
+% triABulle
+\inputminted[linenos,firstline=7,lastline=18]{cpp}{../sources/cpp/TP1-2/algosTri.c}
+
+J'ai écrit une fonction \mintinline{cpp}{triSelection()} qui prend en paramètre un tableau d’entiers et sa taille (effective), et trie les éléments du tableau selon l’algorithme de tri tri par sélection. Le principe de cet algorithme est rappelé ci-après. Il vous revient de définir les variables intermédiaires au bon endroit, ou d’adapter les valeurs en fonction du cas de figure.
+L'idée est simple : rechercher le plus grand élément (ou le plus petit), le placer en fin de tableau (ou en début), recommencer avec le second plus grand (ou le second plus petit), le placer en avant-dernière position (ou en seconde position) et ainsi de suite jusqu'à avoir parcouru la totalité du tableau.
+% triSelection
+\inputminted[linenos,firstline=20,lastline=31]{cpp}{../sources/cpp/TP1-2/algosTri.c}
+
+Nous pouvons maintenant trier les tableaux ce qui nous permet de travailler sur les tableaux triés.
 
 \subsection{Fonctions sur les tableaux triés}
 
-\subsubsection{Exercice 4 : Algorithmes de parcours classiques sur tableau non triés}
+\subsubsection{Exercice 4 : Algorithmes de parcours classiques sur tableau triés}
+\textit{Dans cet exercice, nous nous intéressons à des algorithmes de parcours classiques sur les tableaux triés. Il s’agit d’une reprise des questions de l’exercice 1, adaptées aux tableaux triés.}
+\\\\
+J'ai écrit une fonction \mintinline{cpp}{valeurContenueDansTabTrie()} qui prend en paramètres un tableau d’entiers tab et sa taille taille, ainsi qu’une valeur val, et renvoie 1 si le tableau contient au moins une occurence de la valeur val, et 0 sinon. L’algorithme modifié fonctionne par recherche dichotomique, comme vu en cours : on définit les indices min et max de recherche de la valeur dans le tableau (respectivement initialisés à 0 et taille), et on regarde la valeur contenue dans la case d’indice médian ((min + max) /2). Selon que la valeur lu est plus grande, plus petite ou égale, on fait varier la valeur de l’indice min, ou max, ou on conclut.
+% valeurContenueDansTabTrie
+\inputminted[linenos,firstline=7,lastline=22]{cpp}{../sources/cpp/TP1-2/manipTableauxTries.c}
+
+J'ai écrit une fonction \mintinline{cpp}{nbOccurencesValeurDansTabTrie()} qui prend en paramètres un tableau d’entierstab et sa taille taille, ainsi qu’une valeur val, et renvoie le nombre de fois que la valeur val est contenue dans le tableau. La version optimisée consiste à rechercher une valeur, comme vu précédemment. Si cette valeur existe, on regarde simplement le nombre de cellules à gauche et à droite contenant cette valeur.
+% nbOccurencesValeurDansTabTrie
+\inputminted[linenos,firstline=24,lastline=48]{cpp}{../sources/cpp/TP1-2/manipTableauxTries.c}
 
 \subsubsection{Exercice 5 : Ajout et suppression d’éléments sur tableaux triés}
+\textit{Dans cet ultime exercice, nous nous intéressons aux algorithmes d’ajout et suppression de valeur sur les tableaux triés. Il s’agit d’une reprise des questions de l’exercice 2, adaptées aux tableaux triés.}
+\\\\
+J'ai écrit une fonction \mintinline{cpp}{ajoutValeurTabTrie()} qui prend en paramètres un tableau d’entier tab trié, sa taille maximum tailleMax, le nombre réel d’éléments qu’il contient taille, et une valeur à ajouter val. Cette fonction essaye d’ajouter val au tableau tab en respectant le tri (par exemple à la fin du tableau), et retourne 1 si l’ajout a pu être correctement réalisé, et 0 sinon. L’algorithme consiste à décaler les valeurs de 1 à droite en partant de la fin, jusqu’à trouver l’endroit où insérer la valeur.
+% ajoutValeurTabTrie
+\inputminted[linenos,firstline=7,lastline=25]{cpp}{../sources/cpp/TP1-2/modifTableauxTries.c}
 
-\subsection{Exercice sur les Fonctions récursives}
+J'ai écrit une fonction \mintinline{cpp}{supprimeValeurTabTrie()} qui prend en paramètres un tableau d’entier tab trié, le nombre réel d’éléments qu’il contient taille, et une valeur à supprimer val. Cette fonction essaye de supprimer la première occurence de val rencontrée dans le tableau tab, et retourne 1 si la suppression a pu être correctement réalisée (le tableau contenait cette valeur), et 0 sinon. Pour supprimer une telle valeur dans un tableau trié, une astuce consiste à chercher l’indice de la première cellule contenant la valeur à supprimer (par exemple en utilisant la recherche dichotomique), puis à décaler les valeurs successives de un vers la gauche jusqu’à la fin du tableau.
+% supprimeValeurTabTrie
+\inputminted[linenos,firstline=27,lastline=46]{cpp}{../sources/cpp/TP1-2/modifTableauxTries.c}
 
-\subsubsection{Exercice 6 : Definition de fonction recursive}
+J'ai écrit une fonction \mintinline{cpp}{supprimeToutesLesValeursTabTrie()} qui prend en paramètres un tableau d’entier tab trié, le nombre réel d’éléments qu’il contient taille, et une valeur à supprimer val. Cette fonction essaye de supprimer toutes les occurences de val rencontrée dans le tableau tab, et retourne le nombre d’éléments qui ont été supprimés et 0 sinon. Cet algorithme est le moins facile : il consiste à trouver une occurence au moyen d’une recherche dichotomique, puis se positionner sur celle la plus à gauche, compter le nombre d’occurences de cette valeur (contenues dans les cellules immédiatement suivantes), et décaler les valeurs suivantes du nombre d’occurences calculé.
+% supprimeToutesLesValeursTabTrie
+\inputminted[linenos,firstline=48,lastline=81]{cpp}{../sources/cpp/TP1-2/modifTableauxTries.c}
 
-\subsubsection{Exercice 7 : Algorithme recursif sur matrice}
+\section{Fonctions récursives}
+\textit{L’objectif ce cette partie est d’utiliser les fonctions qui s’appelle elle-même appellé "récursives" et dans comprendre leur implémentation.}
+
+\subsection{Exercice 6 : Definition de fonction recursive}
+\textit{Dans cet exercice, il nous est demandé de définir des algorithmes récursifs permettant de calculer deux fonctions mathématiques pour lesquelles nous avons déjà définis des algorithmes itératifs précédemment.}
+\\\\
+Une fonction récursive est une fonction qui s'appelle elle-même. Si dans le corps de la fonction, nous l'utilisons elle-même, alors elle est récursive.\\
+L'algorithme suivant permet de calculer la formation de Leibniz :
+
+\begin{itemize}
+  \item Par iteration :
+  \inputminted[linenos,firstline=7,lastline=14]{cpp}{../sources/cpp/TP1-2/piLeibniz.c}
+  \item Par récursivité :
+  \inputminted[linenos,firstline=16,lastline=19]{cpp}{../sources/cpp/TP1-2/piLeibniz.c}
+\end{itemize}
+
+L'algorithme suivant permet de calculer un produit factorielle :
+\begin{itemize}
+  \item Par iteration :
+  \inputminted[linenos,firstline=7,lastline=14]{cpp}{../sources/cpp/TP1-2/factorielle.c}
+  \item Par récursivité :
+  \inputminted[linenos,firstline=16,lastline=21]{cpp}{../sources/cpp/TP1-2/factorielle.c}
+\end{itemize}
+
+L'algorithme suivant permet de calculer la valeur d'un nombre harmonique :
+\begin{itemize}
+  \item Par iteration :
+  \inputminted[linenos,firstline=7,lastline=14]{cpp}{../sources/cpp/TP1-2/harmonique.c}
+  \item Par récursivité :
+  \inputminted[linenos,firstline=16,lastline=21]{cpp}{../sources/cpp/TP1-2/harmonique.c}
+\end{itemize}
+
+\subsection{Exercice 7 : Algorithme recursif sur matrice}
+\textit{Dans cet exercice nous implémenterons un algorithme récursif appliqué sur une matrice. On verra ainsi que la récursivité permet de solutionner beaucoup plus simplement un problème par rapport à un algorithme séquentiel.}
+\\\\
+Notre algorithme devra affecter la valeur 2 à chacune des cases de la case selectionné.
+Si la case est déjà égale à 2, rien ne sera fait.
+Les autres cases ne seront pas modifiés.
+Pour cela nous appelerons la fonction sur les cases de la même zone de la case selectionné.\\
+
+Afin de rendre notre algorithme réutilisable nous devront passer en paramètre les dimensions de la matrice utilisé avant de passer la matrice en paramètre, ainsi la fonction connaitra les dimensions de la matrice.
+
+Nous avons créé la fonction récursive suivante :
+
+\inputminted[linenos,firstline=8,lastline=25]{cpp}{../sources/cpp/TP1-2/bubbleBreaker.c}

@@ -10,7 +10,6 @@
 using namespace std;
 
 class Mage : public virtual Personne {
-private:
 protected:
     int magie;
     int forceMagique;
@@ -22,8 +21,8 @@ public:
 
     ~Mage();
 
-    int attaqueMagique();
+    int attaque() override;
 
 };
 
-#endif
+#endif //TP_CPP_MAGE_H

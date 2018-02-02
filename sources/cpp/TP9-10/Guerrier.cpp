@@ -1,5 +1,5 @@
 //
-// Created by axel on 20/12/17.
+// Created by Axel LE BOT on 20/12/17.
 //
 
 #include "Guerrier.h"
@@ -15,7 +15,7 @@ Guerrier::~Guerrier() {
     cout << "Guerrier is being deleted\n";
 }
 
-int Guerrier::attaquePhysique() {
+int Guerrier::attaque() {
     srand(time(NULL));
     return rand() % this->pointsAttaque / 2 + this->pointsAttaque;
 }

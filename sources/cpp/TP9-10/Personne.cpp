@@ -13,11 +13,7 @@ Personne::Personne(string nom, int pointsVie, int pointsDefense) {
 }
 
 Personne::~Personne() {
-    cout<<"Personne is being deleted\n";
-}
-
-int Personne::combat() {
-    return 10;
+    cout << "Personne is being deleted\n";
 }
 
 void Personne::recevoirCoup(int coup) {
@@ -41,3 +37,4 @@ int Personne::getPointsVie() {
 int Personne::getPointsDefense() {
     return pointsDefense;
 }
+

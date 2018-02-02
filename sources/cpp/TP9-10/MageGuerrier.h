@@ -14,16 +14,12 @@
 using namespace std;
 
 class MageGuerrier : public Mage, public Guerrier {
-
-private:
-    bool magique;
-protected:
 public:
     MageGuerrier(string name, int pointsVie, int pointsDefense, int pointsAttaque, int magie, int forceMagique);
 
     ~MageGuerrier();
 
-    int combat();
+    int attaque() override;
 };
 
 #endif

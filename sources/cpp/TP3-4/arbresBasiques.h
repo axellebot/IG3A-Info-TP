@@ -6,7 +6,7 @@
 #define TP_CPP_ARBRES_BASIQUES_H
 
 // definition de la structure contenant un noeud
-struct noeud{
+struct noeud {
     int valeur;
     struct noeud *filsGauche;
     struct noeud *filsDroit;

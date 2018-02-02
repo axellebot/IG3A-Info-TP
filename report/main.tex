@@ -44,11 +44,11 @@
 
 \documentclass[12pt,a4paper]{book} % Default font size and left-justified equations
 
-%----------------------------------------------------------------------------------------
-
 \input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
 
 \begin{document}
+
+%----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -57,10 +57,11 @@
 \begingroup
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture,overlay]
-\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{./Pictures/background}};
-\draw (current page.center) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering Informatique\\[15pt] % Book title
-{\Large Travaux Pratiques}\\[20pt] % Subtitle
-{\huge Axel LE BOT}}}; % Author name
+\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{./Pictures/background.png}};
+\draw (current page.center) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering Module ITC313 - Informatique\\[15pt] % Book title
+{\Large Compte-rendu de travaux pratiques}\\[20pt] % Subtitle
+{\huge Axel LE BOT}\\ % Author name
+{\small \href{mailto:axellebot@gmail.com}{axellebot@gmail.com}}}}; % Email
 \end{tikzpicture}
 \vfill
 \endgroup
@@ -75,7 +76,32 @@
 
 \noindent Copyright \copyright\ 2017-2018 Axel LE BOT \\ % Copyright notice
 
-\noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information
+\noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ''License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\pagestyle{empty} % No headers
+
+\chapterimage{./Pictures/cover-start}
+
+\chapter*{Introduction}\addcontentsline{toc}{part}{\texorpdfstring{\protect\@myparttocformat{Introduction}}{Introduction}}
+
+Ce rapport contient le compte-rendu des travaux pratiques d’Informatique (Module ITC313) concernant les parties UNIX ainsi que C/C++.
+Nous allons appliquer les différents principes informatiques étudiés en cours en partant des appels systèmes jusqu'à la gestion des processus en passant par les sockets de communication.
+Nous étudierons aussi la manipulation de structures de données en passant par la programmation orientée objet.\\
+\\\\
+L’objectif de ces travaux pratiques est d’appréhender et approfondir ces différentes connaissances essentielles comme notions de base en informatique et surtout nécessaires au développement et à l'utilisation de programmes informatiques complexes, que ca soit coté serveur ou coté client sur des applications desktop, mobile, ou encore web.
+\\\\
+Le rapport est entièrement rédigé en LaTeX et construit à l'aide d'un script. La totalité des exercices en C et C++ seront effectués sur l'IDE Clion utilisant Cmake. L'ensemble des codes sources sont disponible sur Github à l'adresse suivante : \href{http://github.axel.lebot.me}{github.axel.lebot.me}
+\\\\
+Les codes complexes sont commentés afin de simplifier leurs compréhension.\\ 
+En vous souhaitant une bonne lecture.
+
+\cleardoublepage % Forces the table of contents chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
@@ -89,7 +115,7 @@
 
 \tableofcontents % Print the table of contents itself
 
-\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+\cleardoublepage % Forces the table of content to start on an odd page so it's on the right
 
 \pagestyle{fancy} % Print headers again
 
@@ -97,7 +123,7 @@
 %	TABLE OF FIGURES
 %----------------------------------------------------------------------------------------
 
-\chapterimage{./Pictures/cover-table_of_contents} % Table of contents heading image
+\chapterimage{./Pictures/cover-table_of_figures} % Table of contents heading image
 
 \pagestyle{empty} % No headers
 
@@ -127,6 +153,28 @@
 \input{./cpp/tp7+tp8}
 \input{./cpp/tp9+tp10}
 %\input{./cpp/tp11+tp12}
+
+%----------------------------------------------------------------------------------------
+%	CONCLUSION
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage % Forces the conclusion chapter to start on an odd page so it's on the right
+
+\pagestyle{empty}
+
+\chapterimage{./Pictures/cover-end}
+
+\chapter*{Conclusion}\addcontentsline{toc}{part}{\texorpdfstring{\protect\@myparttocformat{Conclusion}}{Conclusion}}
+
+Au cours de ces séances de travaux pratiques, j'aurai aimé revoir des notions de processus multi-thread avec l'utilisation de sémaphores et de mutex par exemple.\\
+Cependant les travaux pratiques effectué m'ont permis de revoir des notions déja rencontré en DUT et de les approfondir.
+J'ai pu aussi implémenter une petite librairie et de l'ajouter à mes différentes communication utilisateur console.
+\\\\
+Le compte-rendu demandé m'a permis de m'introduire au langage LaTeX jamais utilisé auparavant. Je l'utilise maintenant pour chaque compte-rendu en utilisant mes modèles, mon arborescence et mes scripts.
+\\\\
+Tout celà m'a ainsi permis d'en apprendre plus sur des notions que j'avais en parti acquise ou survolé concernant les différents langages ou outils (IDE, programmes ...), et qui font que l'informatique sera un domaine toujours aussi intérressant de mon point de vue puisqu'on en découvre toujours plus.
+
+\pagestyle{fancy}
 
 %----------------------------------------------------------------------------------------
 

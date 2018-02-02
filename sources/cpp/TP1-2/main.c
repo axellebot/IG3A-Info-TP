@@ -225,13 +225,12 @@ void exercice7() {
 }
 
 int main() {
-    srand(time(NULL)); // initialise le generateur de nb aleatoires
-
     displayHeader(HEADER_LEVEL_TP, "TP 1-2");
 
-    bool finished = false;
+    srand(time(NULL)); // initialise le generateur de nb aleatoires
+
     int ex = 0;
-    while (!finished) {
+    do {
         printf("Select an exercice [1-7] : ");
         scanf("%d", &ex);
         switch (ex) {
@@ -259,8 +258,7 @@ int main() {
             default:
                 printf("404 Not found");
         }
-        finished = endOfProgram();
-    }
+    } while (!endOfProgram());
 
     printf("Bye !!!");
     exit(0);
