@@ -22,10 +22,5 @@ bool endOfProgram(){
     char s;
     printf("\nStop ? [Y/n] : ");
     scanf("%s", &s);
-
-    if(s == 'N' || s == 'n'){
-        return false;
-    }else{
-        return true;
-    }
+    return !(s == 'N' || s == 'n');
 }

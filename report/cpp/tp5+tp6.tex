@@ -17,10 +17,10 @@ En éxecutans ce programme dans et en récupérant son PID, nous pouvons dans un
 \subsection{Exercice 2 : capture de signal et traduction en langage C}
 \textit{Cet exercice nous apprendra capturer des signaux, c’est à dire que l’on peut détecter la réception d’un signal envoyé par un autre processus, et redéfinir le comportement à adopter, c’est à dire la suite d’instructions à exécuter, lorsqu’un signal est détecté.}
 \\\\
-J'ai écrit un script shell comportant une boucle infinie affichant un "." chqaue seconde. Le script capture aussi le signal \textbf{SIGINT} et \textbf{SIGUSR1} ainsi si l'utilisateur appuie sur \textbf
+J'ai écrit un script shell comportant une boucle infinie affichant un "." chaque seconde. Le script capture aussi le signal \textbf{SIGINT} et \textbf{SIGUSR1} ainsi si l'utilisateur appuie sur \textbf
 {CTRL+C} ou envoie un signal \textbf{SIGUSR1} pendant son éxécution un message sera affiché. Ce script lancé ne pourra donc pas être arrété si l'utilisateur appuie sur \textbf{CTRL+C} ou utilise la commande \mintinline{shell}{killl -SIGKILL <PID>}.
 Le script et le suivant :
-\inputminted{bash}{../sources/cpp/TP5-6/ex2-boucle.sh}
+\inputminted[linenos]{bash}{../sources/cpp/TP5-6/ex2-boucle.sh}
 Et maintenant en langage \textbf{C} :
 \inputminted[linenos,firstline=10,lastline=32]{cpp}{../sources/cpp/TP5-6/ex2.c}
 
@@ -35,7 +35,7 @@ Voici le script :
 \textit{Au terme des exercices précédents nous avons compris les notions de signal, de redirection et de mise en oeuvre en langage shell. L'objectif de cet exercice est la simple traduction de ce qui a été vu en shell en langage C, et l’étude d’une autre commande nommée killall}
 \\\\
 Nous avons besoin dans un premier temps du code ayant une boucle infinie et capturant le signal SIGINT (CTRL+C). Le script est ci-dessous :
-\inputminted{bash}{../sources/cpp/TP5-6/ex4-captureShell.sh}
+\inputminted[linenos]{bash}{../sources/cpp/TP5-6/ex4-captureShell.sh}
 Et maintenant en langage \textit{C} :
 \inputminted[linenos,firstline=10,lastline=28]{cpp}{../sources/cpp/TP5-6/ex4.c}
 Nous pouvons maintenant lancer 3 processus de notre programme C afin de les tuers avec la commande \mintinline{shell}{killall -SIGINT ex4}.
@@ -54,11 +54,11 @@ Puis nous les tuons grace à la commande \mintinline{shell}{killall -9 ex4}
 La commande \mintinline{shell}{ps aux} permet d'afficher l'etat d'execution des processus.
 Il affiche le status du processus :
 \begin{itemize}
-\item R : "runnable", veut dire que le processus est prêt à être éxécuté.
-\item S : "sleeping", veut dire que le processus est endormi.
-\item D : veut dire que le processus est sommeil interruptible.
-\item T : "traced", veut dire que le processus est arrété ou suivi.
-\item Z : zombie
+  \item R : "runnable", veut dire que le processus est prêt à être éxécuté.
+  \item S : "sleeping", veut dire que le processus est endormi.
+  \item D : veut dire que le processus est sommeil interruptible.
+  \item T : "traced", veut dire que le processus est arrété ou suivi.
+  \item Z : zombie
 \end{itemize}
 Le \textbf{+} qui suit indique si le processus est en arrière plan.
 
@@ -66,7 +66,7 @@ Le \textbf{+} qui suit indique si le processus est en arrière plan.
 \textit{Dans cet exercice, nous recouvrons un processus existant, d’abord au travers d’un script shell, puis en appliquant ce concept au sein d’un programme C.}
 \paragraph{1. Manipulation de la commande \mintinline{shell}{exec} sur un shell}
 \begin{itemize}
-  \item La commande \mintinline{shell}{exec} Permet d'executer un programme. ( couplé a \mintinline{bash}{fork} )
+  \item La commande \mintinline{bash}{exec} Permet d'executer un programme. ( couplé a \mintinline{bash}{fork} )
   \item La commande \mintinline{bash}{sleep 3} permet d'attendre 3 secondes.
   Utiliser dans un terminal, le terminal se fermera apr`s son exécution.
 \end{itemize}
@@ -83,8 +83,8 @@ Le \textbf{+} qui suit indique si le processus est en arrière plan.
 \\\\
 Le programme implémenté ci-dessous permet deux choisir deux tache :
 \begin{itemize}
-\item Si vous entrez \textbf{1} le processus sera remplacer avec le programme \textit{/bin/hostname}.
-\item Si vous entrez \textbf{2} le processus sera remplacer avec le programme \textit{/bin/date}.
+  \item Si vous entrez \textbf{1} le processus sera remplacer avec le programme \textit{/bin/hostname}.
+  \item Si vous entrez \textbf{2} le processus sera remplacer avec le programme \textit{/bin/date}.
 \end{itemize}
 
 \inputminted[linenos,firstline=8,lastline=23]{cpp}{../sources/cpp/TP5-6/ex6.c}
@@ -200,5 +200,5 @@ Lorsque le processus fils se termine avant le processus père, il devient un zom
 \paragraph{2. deuxième programme :}
 \inputminted[linenos,firstline=8,lastline=17]{cpp}{../sources/cpp/TP5-6/ex11-programme2.c}
 
-\paragraph{3. troisieme programme :}
+\paragraph{3. troisième programme :}
 \inputminted[linenos,firstline=8,lastline=22]{cpp}{../sources/cpp/TP5-6/ex11-programme3.c}

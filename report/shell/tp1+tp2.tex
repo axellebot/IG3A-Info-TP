@@ -165,23 +165,23 @@ La commande \mintinline{shell}{cat unGrosBordel.txt | grep -o -E "\(\([a-z]+\)\)
 
 \subsection{Exercice 5 : Un premier script}
 \textit{L'objectif de cet exercice est de créer un scripts basique et de l'éxécuter.}
-\inputminted{bash}{../sources/shell/TP1-2/ex5.sh}
+\inputminted[linenos]{bash}{../sources/shell/TP1-2/ex5.sh}
 
 \subsection{Exercice 6 : Comptage des paramètres}
 \textit{Nous verrons ici comment le passage de paramètres, le comptage et la récupération des paramètres dans un script.}
-\inputminted{bash}{../sources/shell/TP1-2/ex6-parametres.sh}
+\inputminted[linenos]{bash}{../sources/shell/TP1-2/ex6-parametres.sh}
 La commande \textbf{shift} permet de décaler la liste d’arguments. Nous l'utiliserons dans le script suivant.
-\inputminted{bash}{../sources/shell/TP1-2/ex6-parametres2.sh}
+\inputminted[linenos]{bash}{../sources/shell/TP1-2/ex6-parametres2.sh}
 
 \subsection{Exercice 7 : Portée des variables}
 \textit{L'exercice suivant permettra de comprendre la portée de variable et de modifications entre shell.}
 
 \paragraph{1. Portée des variables locales}
 Après avoir créé initialisé une variables midichloriens à l'aide de la commande \mintinline{shell}{midichloriens=50000}, om peut bien l'afficher avec la commande \mintinline{shell}{echo midichloriens}.
-\inputminted{bash}{../sources/shell/TP1-2/ex7-yoda.sh}
+\inputminted[linenos]{bash}{../sources/shell/TP1-2/ex7-yoda.sh}
 On execute ensuite le script \textit{yoda.sh} ci-dessus qui n'affiche rien. On en conclue donc que la variable initialisé dans le terminal n'est pas accessible depuis le script.\\
 On essaie ensuite d'initialisé la variable \textit{midichloriens} depuis le script \texttt{vador.sh} ci-dessous puis de ré-executer le script \texttt{yoda.sh}.
-\inputminted{bash}{../sources/shell/TP1-2/ex7-vador.sh}
+\inputminted[linenos]{bash}{../sources/shell/TP1-2/ex7-vador.sh}
 En éxécutant la commande \mintinline{shell}{echo midichloriens} la variable \texttt{midichloriens} reste égale à 50000. On peut donc conclure que variables sont locales à un shell ou à un script.
 
 \paragraph{2. Portée limitée au shell}

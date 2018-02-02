@@ -8,7 +8,6 @@
  auteur : Axel LE BOT
  */
 
-// Liste des includes necessaires
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>

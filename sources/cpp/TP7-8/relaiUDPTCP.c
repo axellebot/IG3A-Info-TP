@@ -2,14 +2,6 @@
 // Created by Axel LE BOT on 20/12/17.
 //
 
-/*
- nom : RelaiUDPTCP
- description : écoute en continu les messages UDP sur un port donné (ex 5000) en IPV4
- affiche le message recu ainsi que l'identité de l'émetteur
- auteur : Axel LE BOT
- */
-
-// Liste des includes necessaires
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -38,22 +30,20 @@ int main(int argc, const char *argv[]) {
 
     char buffer[MAX_BUFFER_SIZE];  // buffer pour lecture du message
 
-    // Etape 1 : creation de la socket de communication
-    socketUDP = socket(PF_INET, SOCK_DGRAM, 0);
+    // Etape 1 : creation des sockets de communication
+    socketUDP = socket(PF_INET, SOCK_DGRAM, 0); // UDP
     if (socketUDP == -1) {
         perror("error création socket");
         exit(EXIT_FAILURE);
     }
 
-    socketTCP = socket(PF_INET, SOCK_STREAM, 0);
+    socketTCP = socket(PF_INET, SOCK_STREAM, 0); // TCP
     if (socketTCP == -1) {
         perror("error création socket");
         exit(EXIT_FAILURE);
     }
 
-    // Etape 2 : creation d'une structure type sockaddr_in contenant sa propre identite
-    // cette structure permettra de faire connaitre son identité
-    // identité composée d'une association IP-port
+    // Etape 2 : creation des structures sockaddr_in pour connaitre l'identité des appareils (IP-Port)
     relayAddress.sin_family = AF_INET; // famille d’adresse IPv4
     relayAddress.sin_addr.s_addr = htonl(INADDR_ANY); // n'importe quelle IP
     relayAddress.sin_port = htons(RELAY_PORT); // Port a associer
@@ -62,14 +52,13 @@ int main(int argc, const char *argv[]) {
     serverAddress.sin_addr.s_addr = htonl(INADDR_ANY); // IP du serveur
     serverAddress.sin_port = htons(SERVER_TCP_PORT);// Port du serveur relie à l'application
 
-    // Etape 3 : association de l'adresse avec la socket
+    // Etape 3 : association et connections des sockets
     binded = bind(socketUDP, (struct sockaddr *) &relayAddress, addressSize);
     if (binded == -1) {
         perror("error bind()");
         exit(EXIT_FAILURE);
     }
-
-    //Connect to remote server
+    // Connection au server TCP distant :
     printf("Connecting to TCP server at : %s:%i\n",
            inet_ntoa(serverAddress.sin_addr),
            ntohs(serverAddress.sin_port));
@@ -82,17 +71,8 @@ int main(int argc, const char *argv[]) {
            inet_ntoa(serverAddress.sin_addr),
            ntohs(serverAddress.sin_port));
 
-    // Etape 4 : mise en route d'une boucle continue.
-    // Ecoute sur la socket.
-    // Tout message extrait est affiché
-    // l'affichage correct via printf : dernier caractère du buffer  ‘\0'
-    // de ce fait, on ne recevra qu'au maximum 1023 caractères
-    // boucle infinie
+    // Etape 4 : mise en route d'une boucle infinie.
     while (1) {
-        // réception (mode bloquant par défaut) d'un message
-        // message stocké dans buffer (taille max: 1023 octetcs
-        // identité de l'émetteur stockée dans cliAddr
-
         // on recoit le buffer du client UDP :
         printf("Waiting reception from an UDP client on : %s:%i\n",
                inet_ntoa(relayAddress.sin_addr),
@@ -107,7 +87,7 @@ int main(int argc, const char *argv[]) {
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port));
 
-        // on envoie le buffer au serveur TCP :
+        // On envoie le buffer au serveur TCP :
         printf("Sending to TCP server at : %s:%i\n",
                inet_ntoa(serverAddress.sin_addr),
                ntohs(serverAddress.sin_port));
@@ -117,7 +97,7 @@ int main(int argc, const char *argv[]) {
             exit(EXIT_FAILURE);
         }
 
-        // on recoit le buffer du serveur TCP :
+        // On recoit le buffer du serveur TCP :
         printf("Receiving from TCP server at : %s:%i\n",
                inet_ntoa(serverAddress.sin_addr),
                ntohs(serverAddress.sin_port));
@@ -129,7 +109,7 @@ int main(int argc, const char *argv[]) {
 
         buffer[recvBufferSize] = '\0';
 
-        // on renvoie le buffer au client UDP :
+        // On renvoie le buffer au client UDP :
         printf("Sending to UDP client at : %s:%i\n",
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port));

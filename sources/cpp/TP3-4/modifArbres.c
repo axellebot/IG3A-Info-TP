@@ -19,18 +19,6 @@ struct noeud *ajouterValeurABR(struct noeud *noeud, int val) {
 }
 
 struct noeud *supprimerValeurABR(struct noeud *racine, int val) {
-    // vérifier si que l'arbre n'est pas vide
-    if (estVide(racine)){
-        printf("Empty tree\n");
-        return racine;
-    }
-
-    // vérifier que la valeur à supprimer existe
-    if (!rechercheValeurRec(racine, val)) {
-        printf("%d Not Found\n", val);
-        return racine;
-    }
-
     struct noeud *courant; // pointe sur le noeud a l'etude
     struct noeud *ainverser; // pointe sur le noeud dont la valeur sera a inverser
     struct noeud *precedent; // pointe vers noeud précédent, celui a supprimer
@@ -41,6 +29,7 @@ struct noeud *supprimerValeurABR(struct noeud *racine, int val) {
     // initialisation de parcours
     precedent = NULL;
     courant = rechercheNoeudRec(racine, val);
+    if (!courant) return courant;
 
     // tant que le noeud a supprimer n'est pas une feuille (pas de fils), on continue la boucle
     while (!estFeuille(courant)) {

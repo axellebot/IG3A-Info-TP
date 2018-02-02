@@ -42,16 +42,9 @@ int rechercheValeurRec(struct noeud *noeudCourant, int val) {
 }
 
 struct noeud *rechercheNoeudRec(struct noeud *noeudCourant, int val) {
-    if (rechercheValeurRec(noeudCourant, val)) {
-        if (noeudCourant->valeur == val) {
-            return noeudCourant;
-        } else {
-            struct noeud *noeudTrouve = rechercheNoeudRec(noeudCourant->filsGauche, val);
-            if (noeudTrouve == NULL) {
-                noeudTrouve = rechercheNoeudRec(noeudCourant->filsDroit, val);
-            }
-            return noeudTrouve;
-        }
-    }
-    return NULL;
+    if (noeudCourant == NULL || noeudCourant->valeur == val)
+        return noeudCourant;
+    if (noeudCourant->valeur < val)
+        return rechercheNoeudRec(noeudCourant->filsDroit, val);
+    return rechercheNoeudRec(noeudCourant->filsGauche, val);
 }

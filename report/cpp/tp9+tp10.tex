@@ -62,3 +62,7 @@ On applique ici le mécanisme de polymorphisme d'héritage qui permet de faire a
 Afin d'eviter les fuites mémoire à la fin de l'éxécution du programme il faut \mintinline{cpp}{delete} les objets créés.
 
 \inputminted[linenos,firstline=43,lastline=60]{cpp}{../sources/cpp/TP9-10/main.cpp}
+
+NB : La fonction \mintinline{cpp}{endOfProgram()} à été implémenté dans une librairie personnel dans le but de pouvoir laisser à l'utilisateur la possibilité de recommencer les différents exercice de chaque travaux pratiques. Il a aussi été implémenté d'autre fonctions permettant à l'utilisateur de mieux se repéré dans les différents exercice lors de sorties console. Vous trouverez ci-dessous un bref exemple de code :
+
+\inputminted[linenos,firstline=8,lastline=26]{cpp}{../sources/cpp/libs/libs.c}

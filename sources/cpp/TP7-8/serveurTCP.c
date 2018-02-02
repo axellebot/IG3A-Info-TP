@@ -2,14 +2,6 @@
 // Created by Axel LE BOT on 20/12/17.
 //
 
-/*
- nom : ServeurTCP
- description : écoute en continu les messages TCP sur un port donné (ex 5000) en IPV4
- affiche le message recu ainsi que l'identité de l'émetteur
- auteur : Axel LE BOT
- */
-
-// Liste des includes necessaires
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -38,7 +30,7 @@ int main(int argc, char **argv) {
 
     struct sockaddr_in serverAddress; // pour le stockage de sa propre identite (serveur)
     struct sockaddr_in clientAddress; // pour le stockage de l'identité du client
-    socklen_t addressSize = sizeof(struct sockaddr_in); // Besoin de connaire la taille de la structure de type sockaddr_in
+    socklen_t addressSize = sizeof(struct sockaddr_in); // Besoin de connaitre la taille de la structure de type sockaddr_in
     int binded; // valeur retour pour bind()
     ssize_t recvBufferSize; // valeur retour pour recvFrom()
     ssize_t sentBufferSize; // valeur retour pour send()
@@ -65,15 +57,14 @@ int main(int argc, char **argv) {
     }
 
     // Etape 4 : mise en route d'une boucle continue.
-    // Ecoute sur la socket.
-    listen(socketMain, 1);
-    // boucle infinie : nous écoutons les connexions entrantes sur la socket principale
+    listen(socketMain, 1); // On demande à la socket TCP principal d'ecouter
     while (1) {
-        // mode écoute : on attend l'arrivee d'une connexion entrante
+        // On attend l'arrivee d'une connexion entrante (mode écoute)
         printf("Waiting connection from a TCP client on : %s:%i\n",
                inet_ntoa(serverAddress.sin_addr),
                ntohs(serverAddress.sin_port));
         socketWorker = accept(socketMain, (struct sockaddr *) &clientAddress, &addressSize);
+        // On a donné la connexion présente dans la FIFO du socket principal au socket travailleur
         if (socketWorker == -1) {
             perror("error accept()");
             exit(EXIT_FAILURE);
@@ -82,7 +73,7 @@ int main(int argc, char **argv) {
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port));
 
-        // on recoit le buffer du client :
+        // On reçoit le buffer du client :
         printf("Waiting reception from TCP client at : %s:%i\n",
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port));
@@ -95,30 +86,30 @@ int main(int argc, char **argv) {
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port));
 
-        // on inverse le buffer :
+        // On inverse le buffer :
         inverser_buffer(buffer, recvBufferSize);
         // ajout du caractère de fin de buffer :
         buffer[recvBufferSize] = '\0';
 
-        // on renvoie le buffer inversé au client :
+        // On renvoie le buffer inversé au client :
         printf("Sending to TCP client at : %s:%i\n",
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port));
-        sentBufferSize = sendto(socketWorker, buffer, recvBufferSize, 0, (struct sockaddr *) &clientAddress,
-                                addressSize);
+        sentBufferSize = sendto(socketWorker, buffer, recvBufferSize, 0,
+                                (struct sockaddr *) &clientAddress, addressSize);
         if (sentBufferSize == -1) {
             perror("error sendto()");
             exit(EXIT_FAILURE);
         }
 
-        // affichage du buffer
-        printf("message received from %s:%i : %s \n",
+        // Affichage du buffer
+        printf("Message received from %s:%i : %s \n",
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port),
                buffer);
 
-        // on ferme la socket de travail
-        printf("Disonnecting TCP client at : %s:%i\n",
+        // On ferme la socket de travail
+        printf("Closing connection with TCP client at : %s:%i\n",
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port));
         close(socketWorker);
